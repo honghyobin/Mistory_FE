@@ -2,10 +2,11 @@
   margin: 0;
 }
 
-.slide_container {
+.slide_container, .slide_container_2 {
   width: 1320px;
   height: 651px;
   margin: auto;
+   position: relative;
 }
 
 .slide_item {
@@ -15,7 +16,6 @@
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  /* color: rgb(179, 61, 61); */
 }
 
 .slide_item:nth-child(2) {
@@ -25,19 +25,12 @@
 .slide_item:nth-child(3) {
   background-color: rgb(114, 84, 44);
 }
-.slide_container {
-  width: 1320px;
-  height: 651px;
-  margin: auto;
-  position: relative; /* 버튼의 절대 위치 지정을 위해 상대 위치 지정 */
-}
 
-/* 버튼 스타일 설정 */
 .previous_button,
 .next_button {
   position: absolute;
-  top: calc(50% - 85px); /* 세로 중앙 정렬을 위해 top 위치 조정 */
-  transform: translateY(-50%); /* 높이의 절반만큼 위로 이동 */
+  top: 283px;
+  transform: translateY(-50%); 
   width: 50px;
   height: 50px;
   color: black;
@@ -48,13 +41,58 @@
 }
 
 .previous_button {
-  left: 180px; /* 이전 버튼을 왼쪽에 배치 */
+  left: 180px; 
 }
 
 .next_button {
-  right: 180px; /* 다음 버튼을 오른쪽에 배치 */
+  right: 180px; 
 }
 .slick-dots li.slick-active button:before {
   opacity: .175;
   color: #008156 !important;
+}
+.lesson{
+  margin-left: 102px;
+  margin-top: 80px;
+  font-size: 18px;
+}
+.slide_item>hr{
+  margin-left: 102px;
+  margin-top: 9px;
+  width: 336px;
+}
+.slide_item>h1{
+  margin-left: 102px;
+  margin-top: 25px;
+}
+
+.S, .W, .D, .line,button {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 132px;
+  text-align: center;
+}
+.S{
+  margin-left: 807px;
+  margin-right: 21px;
+}
+.W{
+margin-left: 30px;
+margin-right: 28px;
+}
+.D{
+  margin-left: 37px;
+}
+.line{
+  border:1px solid #878787;
+  height: 201px;
+  margin-top: 81px;
+  
+}
+.slick-dots li button:before {
+  margin-top: 140px !important;
+}
+
+.a{
+  align-items: baseline;
 }
