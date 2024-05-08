@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Mistory/css/index.css">
+    <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    
+    <title>미스토리</title>
+
+    <style>
+        .slide_item{
+            width: 1320px;
+            height: 651px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
+        <div class="header_bottom" style="height:70px;">
+            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
+           <nav_menu>
+               <ul class="nav_list">
+                   <li><a href="#">학교소개</a></li>
+                   <li><a href="#">학과소개</a></li>
+                   <li><a href="#">학교생활</a></li>
+                   <li><a href="#">입학상담 Q&A</a></li>
+               </ul>
+           </nav_menu>
+           <i class="bi bi-list"></i>
+        </div>
+    </header>
+
+    <div class="slide_container">
+        <div class="slide_item">
+            <p class="lesson">학과소개</p> <hr>
+            <h1 style="font-size: 42px;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
+                교육문화의 장을 만들어가겠습니다.</h1>
+            <p class="lesson S">뉴미디어<br>소프트웨어과</p>
+            <div class="line"></div>
+            <p class="lesson W">뉴미디어<br>웹솔루션과</p>
+            <div class="line"></div>
+            <p class="lesson D">뉴미디어<br>디자인과</p>
+        </div>
+        <div class="slide_item" >
+            <p class="lesson">학과소개</p> <hr>
+            <h1 style="font-size: 42px;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
+                교육문화의 장을 만들어가겠습니다.</h1>
+        </div>
+    </div><!--slide_container-->
+
+    <button class="previous_button">p</button>
+    <button class="next_button">n</button>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.slide_container').slick({
+                dots: true,
+                arrows: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+
+            // 이전 슬라이더로 이동
+            $('.previous_button').click(function() {
+                var slick = $('.slide_container');
+                var currentSlide = slick.slick('slickCurrentSlide');
+                if (currentSlide === 0) {
+                    return; 
+                }
+
+                slick.slick('slickPrev');
+            });
+
+            //다음 슬라이더로 이동
+            $('.next_button').click(function() {
+                var slick = $('.slide_container');
+                var currentSlide = slick.slick('slickCurrentSlide');
+                var slideCount = slick.slick('getSlick').slideCount;
+
+                if (currentSlide === slideCount - 1) {
+                    return; 
+                }
+
+                slick.slick('slickNext');
+            });
+        });
+    </script>
+</body>

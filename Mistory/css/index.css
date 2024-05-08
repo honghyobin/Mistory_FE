@@ -1,0 +1,98 @@
+*{
+  margin: 0;
+}
+
+.slide_container, .slide_container_2 {
+  width: 1320px;
+  height: 651px;
+  margin: auto;
+   position: relative;
+}
+
+.slide_item {
+  width: 1320px;
+  height: 651px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.slide_item:nth-child(2) {
+  background-color: rgb(142, 193, 193);
+}
+
+.slide_item:nth-child(3) {
+  background-color: rgb(114, 84, 44);
+}
+
+.previous_button,
+.next_button {
+  position: absolute;
+  top: 283px;
+  transform: translateY(-50%); 
+  width: 50px;
+  height: 50px;
+  color: black;
+  font-size: 18px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.previous_button {
+  left: 180px; 
+}
+
+.next_button {
+  right: 180px; 
+}
+.slick-dots li.slick-active button:before {
+  opacity: .175;
+  color: #008156 !important;
+}
+.lesson{
+  margin-left: 102px;
+  margin-top: 80px;
+  font-size: 18px;
+}
+.slide_item>hr{
+  margin-left: 102px;
+  margin-top: 9px;
+  width: 336px;
+}
+.slide_item>h1{
+  margin-left: 102px;
+  margin-top: 25px;
+}
+
+.S, .W, .D, .line,button {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 132px;
+  text-align: center;
+}
+.S{
+  margin-left: 807px;
+  margin-right: 21px;
+}
+.W{
+margin-left: 30px;
+margin-right: 28px;
+}
+.D{
+  margin-left: 37px;
+}
+.line{
+  border:1px solid #878787;
+  height: 201px;
+  margin-top: 81px;
+  
+}
+.slick-dots li button:before {
+  margin-top: 140px !important;
+}
+
+.a{
+  align-items: baseline;
+}

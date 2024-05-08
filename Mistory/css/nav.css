@@ -1,0 +1,29 @@
+.header_bottom {
+    display: flex;
+    align-items: center;
+    width: 1320px;
+    margin: auto;
+}
+nav_menu{
+   margin: auto; /*메뉴를 가운데 정렬*/
+}
+.nav_list {
+    list-style: none;
+    display: flex;
+    /* column-gap: 20px; */
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    margin: 23px 16px 23px 16px;
+    font-size: 18px;
+    color: #000;
+}
+.header_bottom>img{
+    position: absolute; /*메뉴 가운데 정렬시 로고 이미지를 무시*/
+}
+.bi-list{
+    font-size: 30px;
+    color: #000;
+}
