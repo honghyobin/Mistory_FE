@@ -1,8 +1,13 @@
 *{
   margin: 0;
 }
+hr{
+  color: #fff;
+  border-style: solid;
+  font-size: 1px;
+}
 
-.slide_container, .slide_container_2 {
+.slide_container, .slide_container2 {
   width: 1320px;
   height: 651px;
   margin: auto;
@@ -18,12 +23,8 @@
   font-size: 24px;
 }
 
-.slide_item:nth-child(2) {
-  background-color: rgb(142, 193, 193);
-}
-
-.slide_item:nth-child(3) {
-  background-color: rgb(114, 84, 44);
+.slide_item:nth-child(2),.slide_item:nth-child(3) {
+  background-color: #D9D9D9;
 }
 
 .previous_button,
@@ -55,6 +56,7 @@
   margin-left: 102px;
   margin-top: 80px;
   font-size: 18px;
+  color: #fff;
 }
 .slide_item>hr{
   margin-left: 102px;
@@ -91,8 +93,164 @@ margin-right: 28px;
 }
 .slick-dots li button:before {
   margin-top: 140px !important;
+  left: 50% !important;
 }
 
-.a{
-  align-items: baseline;
+.S, .W, .D, .line {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.W {
+  margin: 132px 0px 0px 25px;
+}
+
+.D {
+  margin-left: 25px;
+}
+
+.line {
+  border: 1px solid #878787;
+  height: 201px;
+  margin-top: 81px;
+  margin-left: 25px;
+}
+
+.lesson_S_button, .lesson_W_button, .lesson_D_button {
+  display: inline-block;
+  margin-top: 201px;
+  margin-left: -128px;
+  width: 92px; height: 40px;
+  background-color: #028156;
+  color: #fff;
+  border: none;
+}
+.lesson_W_button{
+  margin-left: -100px;
+  background-color: #EFB11D;
+}
+.lesson_D_button{
+  margin-left: -87px;
+  background-color: #E7477E;
+}
+
+.previous_button,
+.next_button {
+    position: absolute;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    color: black;
+    font-size: 25px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999; 
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.previous_button {
+    left: 60px;
+}
+
+.next_button {
+    right: 60px;
+}
+
+.slide_container2{
+  margin-top: 107px;
+  margin-bottom: 80px;
+}
+.admissions{
+  margin: 60px 0px 13px 0px !important;
+  text-align: center;
+}
+.admissions_explanation{
+  text-align: center;
+}
+.admissions_img{
+  margin-left: 112px;
+  margin-top: 13px;
+}
+.previous_button2 {
+  position: absolute;
+  left: 60px;
+  top: 1150px;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+  color: black;
+  font-size: 25px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999; 
+  background-color: #fff;
+  box-shadow: 4px 0px 4px rgba(0,0,0,0.2);
+}
+.next_button2 {
+  position: absolute;
+  right: 60px;
+  top: 1150px;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+  color: black;
+  font-size: 25px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: -4px 0px 4px rgba(0,0,0,0.2);
+}
+
+.i{
+  width: 25px;
+  height: 12.5px;
+}
+
+.ellipse_container{
+  display: flex;
+  align-items: center;
+  width: 918px;
+  margin-left: 120px;
+  margin-top: 28px;
+  
+}
+.slide_container2 .slick-dots {
+  display: none !important;
+}
+.ellipse_title{
+  font-size: 18px;
+  margin-top: 17px;
+  font-weight: bolder;
+}
+.ellipse_explanation{
+  font-size: 16px;
+  width: 260px;
+}
+.ellipse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 17px; 
+  margin-right: 20px;
+}
+.scroll{
+  position: absolute;
+  left: 937px;
+  margin-top: -130px;
+  animation: scrollAnimation 0.7s infinite alternate;
+}
+@keyframes scrollAnimation {
+  0% {
+    transform: translateY(0); /* 초기 위치 */
+  }
+  100% {
+    transform: translateY(30px); /* 원하는 스크롤 양 */
+  }
 }
