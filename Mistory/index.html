@@ -12,12 +12,18 @@
     <title>미스토리</title>
 
     <style>
-        .slide_item{
+        .slide_item {
             width: 1320px;
             height: 651px;
         }
+       
+        .slide_container2 .slide_item:nth-child(2),.slide_container2 .slide_item:nth-child(3) {
+            height: 821px; 
+            width: 1320px;
+        }
 
     </style>
+
 </head>
 <body>
     <header>
@@ -34,16 +40,16 @@
            </nav_menu>
            <i class="bi bi-list"></i>
         </div>
+
     </header>
 
     <div class="slide_container">
         <div class="slide_item">
-            <p class="lesson">학과소개</p> <hr style="border-style:solid; border-color:#fff">
-            <h1 style="font-size: 42px; color: #fff;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
+            <p class="lesson">학과소개</p> <hr>
+            <h1 style="font-size: 42px; color:#fff;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
                 교육문화의 장을 만들어가겠습니다.</h1>
             <p class="lesson S">뉴미디어<br>소프트웨어과</p>
             <button class="lesson_S_button">자세히보기</button>
-            
             <div class="line"></div>
             <p class="lesson W">뉴미디어<br>웹솔루션과</p>
             <button class="lesson_W_button">자세히보기</button>
@@ -51,17 +57,61 @@
             <p class="lesson D">뉴미디어<br>디자인과</p>
             <button class="lesson_D_button">자세히보기</button>
         </div>
-        
         <div class="slide_item" >
-            <p class="lesson">학과소개</p> <hr style="border-style:solid; border-color:#fff">
-            <h1 style="font-size: 42px; color: #fff;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
+            <p class="lesson">학과소개</p> <hr>
+            <h1 style="font-size: 42px;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
                 교육문화의 장을 만들어가겠습니다.</h1>
         </div>
-    </div><!--slide_container-->
+    </div>
+    <img class="scroll" src="./img/scroll.png" alt="">
 
+    <!-- 첫 번째 슬라이드의 이전/다음 버튼 -->
     <button class="previous_button"><i class="bi bi-chevron-left"></i></button>
     <button class="next_button"><i class="bi bi-chevron-right"></i></button>
-    
+        
+    <div class="slide_container2">
+        <div class="slide_item" style="background-color: #F3F3F3;">
+            <h1 class="admissions" style="font-size:50px;">입학안내</h1>
+            <p class="admissions_explanation" style="font-size: 16px;">지식과 기술을 바탕으로,장인의 열정과 도전정신으로 세계로 우뚝 서는 미림마이스터고입니다.</p>
+            <img class="admissions_img" src="img/admissions_img.png" alt="">
+            <div class="ellipse_container">
+                <div class="ellipse 1">
+                    <img src="img/Ellipse 1.png" alt="">
+                    <p class="ellipse_title">전형요강</p>
+                    <p class="ellipse_explanation">다양한 전형을 살펴보고 <br>
+                        여러분의 미래를 설계해 보세요.</p>
+                </div>
+                <div class="ellipse 2">
+                    <img src="img/Ellipse 2.png" alt="">
+                    <p class="ellipse_title">원서접수</p>
+                    <p class="ellipse_explanation">입학에 필요한 서류와 정보를 <br>
+                        확인하세요.</p>
+                </div>
+                <div class="ellipse 3">
+                    <img src="img/Ellipse 3.png" alt="">
+                    <p class="ellipse_title">입학설명회 신청</p>
+                    <p class="ellipse_explanation">뉴미디어에 관심있는 <br>
+                        전국의 남녀학생,누구나 환영합니다.</p>
+                </div>
+                <div class="ellipse 4">
+                    <img src="img/Ellipse 4.png" alt="">
+                    <p class="ellipse_title">입학상담 Q&A</p>
+                    <p class="ellipse_explanation">입학 관련 궁금한 점이 있으시면 <br>
+                        질문해 주시기 바랍니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide_item">
+            학사일정
+        </div>
+        <div class="slide_item">
+            동아리활동
+        </div>
+    </div>
+
+    <button class="previous_button2"><i class="bi bi-chevron-left"></i></button>
+    <button class="next_button2"><i class="bi bi-chevron-right"></i></button>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
@@ -75,29 +125,36 @@
                 slidesToScroll: 1
             });
 
-            // 이전 슬라이더로 이동
-            $('.previous_button').click(function() {
-                var slick = $('.slide_container');
-                var currentSlide = slick.slick('slickCurrentSlide');
-                if (currentSlide === 0) {
-                    return; 
-                }
-
-                slick.slick('slickPrev');
+            $('.slide_container2').slick({
+                dots: true,
+                arrows: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
             });
 
-            //다음 슬라이더로 이동
+            // 첫 번째 슬라이드 이전/다음 버튼
+            $('.previous_button').click(function() {
+                $('.slide_container').slick('slickPrev');
+            });
+
             $('.next_button').click(function() {
-                var slick = $('.slide_container');
-                var currentSlide = slick.slick('slickCurrentSlide');
-                var slideCount = slick.slick('getSlick').slideCount;
+                $('.slide_container').slick('slickNext');
+            });
 
-                if (currentSlide === slideCount - 1) {
-                    return; 
-                }
+            // 두 번째 슬라이드 이전/다음 버튼
+            $('.previous_button2').click(function() {
+                $('.slide_container2').slick('slickPrev');
+            });
 
-                slick.slick('slickNext');
+            $('.next_button2').click(function() {
+                $('.slide_container2').slick('slickNext');
             });
         });
     </script>
+    <hr>
+
+
 </body>
+</html>
