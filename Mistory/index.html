@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Mistory/css/index.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="/Mistory/css/shcoolLife.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -21,7 +22,7 @@
             height: 821px; 
             width: 1320px;
         }
-
+        
     </style>
 
 </head>
@@ -56,14 +57,19 @@
             <div class="line"></div>
             <p class="lesson D">뉴미디어<br>디자인과</p>
             <button class="lesson_D_button">자세히보기</button>
+            <img class="scroll" src="./img/scroll.png" alt="">
         </div>
         <div class="slide_item" >
+            <section class="sub-header">
+                <a href="#" tabindex="-1"><div class="sub-header-title"><p>학사일정</p></div></a>
+                <a href="#" tabindex="-1"><div class="sub-header-title"><p>동아리 활동</p></div></a>
+                <a href="#" tabindex="-1"><div class="sub-header-title"><p>미림 갤러리</p></div></a>
+            </section>    
             <p class="lesson">학과소개</p> <hr>
             <h1 style="font-size: 42px;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
                 교육문화의 장을 만들어가겠습니다.</h1>
         </div>
     </div>
-    <img class="scroll" src="./img/scroll.png" alt="">
 
     <!-- 첫 번째 슬라이드의 이전/다음 버튼 -->
     <button class="previous_button"><i class="bi bi-chevron-left"></i></button>
@@ -132,15 +138,20 @@
                 speed: 500,
                 slidesToShow: 1,
                 slidesToScroll: 1
+                
             });
+
+            
 
             // 첫 번째 슬라이드 이전/다음 버튼
             $('.previous_button').click(function() {
                 $('.slide_container').slick('slickPrev');
+                $('.slide_container2').slick('slickPrev');
             });
 
             $('.next_button').click(function() {
                 $('.slide_container').slick('slickNext');
+                $('.slide_container2').slick('slickNext');
             });
 
             // 두 번째 슬라이드 이전/다음 버튼
@@ -153,8 +164,26 @@
             });
         });
     </script>
-    <hr>
+    <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
 
-
+    <footer style=" padding: 20px 0;">
+        <div class="footer-content" style="max-width:1320px; margin:0 auto; display:flex; justify-content: space-between; flex-wrap: wrap;">
+            <img src="./img/footer_logo.png" alt="" style="width:91px; height: 76px;">
+            <div class="footer-info" style="flex:1; min-width:250px; padding:10px;">
+                <div class="footer-top" style="display:flex; gap:15px; margin-bottom:10px; font-size: 13px;">
+                    <h3>개인정보보호방침</h3>|<h3>학교정보공개</h3>|<h3>배너모음</h3>
+                </div>
+                <p style="font-size:14px; margin-bottom: 8px; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                <div class="footer-middle" style="display: flex; gap: 5px; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                    <p><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p>|<p><strong>개발채용</strong> 070-5099-8306</p>|<p><strong>디자인채용</strong> 070-5099-8315</p>|<p><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p>|<p><strong>행정실</strong>  02-886-1812(Fax 02-878-2188</p>
+                </div>
+                <div class="fotter-bottom" style="display: flex; gap:15px; font-weight:bold; font-size: 15px; color: #565555;">
+                    <p>546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                    <p>MIRIM MEISTER SCHOOL</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
 </body>
 </html>
