@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    
+
     <title>미스토리</title>
 
     <style>
@@ -17,7 +17,7 @@
             height: 651px;
             background-color: gray;
         }
-       
+
         .slide_container2 .slide_item:nth-child(2),.slide_container2 .slide_item:nth-child(3) {
             height: 821px; 
             width: 1320px;
@@ -30,12 +30,12 @@
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
+           <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
            <nav_menu>
                <ul class="nav_list">
                    <li><a href="#">학교소개</a></li>
                    <li><a href="#">학과소개</a></li>
-                   <li><a href="#">학교생활</a></li>
+                   <li><a href="#" style="color: #028156;">학교생활</a></li>
                    <li><a href="#">입학상담 Q&A</a></li>
                </ul>
            </nav_menu>
@@ -50,17 +50,165 @@
         </div>
     </div>
 
-    <section class="sub-header">
-        <a href="#"><div class="sub-header-title"><p>학사일정</p></div></a>
-        <a href="#"><div class="sub-header-title"><p>동아리 활동</p></div></a>
-        <a href="#"><div class="sub-header-title"><p>미림 갤러리</p></div></a>
-    </section>    
+    <ul class="sub-header">
+        <a href="#"><li class="sub-header-title on"><p>학사일정</p></li></a>
+        <a href="#"><li class="sub-header-title"><p>동아리 활동</p></li></a>
+        <a href="#"><li class="sub-header-title"><p>미림 갤러리</p></li></a>
+    </ul>    
     <div class="sub-element">
-        <!-- 여기에 캘린더 등등등 -->
-    </div>        
+        <div class="calendarTitle">캘린더 보기</div>
+        <main id="calendar">
+            <!-- title < 9월 > -->
+            <div class="title flex-container">
+                <div class="left"><i class="bi bi-caret-left"></i></div>
+                <!-- <div class="month"></div> -->
+                <select name="" id="">
+                    <option value="1">2020년</option>
+                    <option value="2">2021년</option>
+                    <option value="2">2022년</option>
+                    <option value="2">2023년</option>
+                    <option value="2" selected="selected">2024년</option>
+                </select>
+                <select name="" id="">
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4">4월</option>
+                    <option value="5" selected="selected">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                </select>
+                <div class="right"><i class="bi bi-caret-right"></i></div>
+            </div>
     
+            <!-- weekday 일 월 화 수 목 금 토 -->
+            <div class="weekday container">
+                <div class="weekday item">일</div>
+                <div class="weekday item">월</div>
+                <div class="weekday item">화</div>
+                <div class="weekday item">수</div>
+                <div class="weekday item">목</div>
+                <div class="weekday item">금</div>
+                <div class="weekday item">토</div>
+            </div>
+    
+            <!-- dates 1 2 3 4 5 ... 30 -->
+            <div class="dates container">
+            </div>
+        </main>
+    </div>        
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        //화면 로딩
+        $(function(){
+            $('html').removeClass('no-js');
+        });
+
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+
+        const datesContainerDiv = document.getElementsByClassName("dates container")[0];
+
+        const setCalendar = (year, month) => {
+            //현재 월 제목에 표시
+            //html -> js
+            var titleMonthDiv = document.getElementsByClassName("month")[0];
+            // = `${month}월`;
+            titleMonthDiv.innerHTML = `${month}월`;
+
+            // 1~해당 월의 마지막 날짜까지 날짜 div 만들자
+            //1. //datesContainerDiv의 자식들(dataItemDiv) clear
+            while (datesContainerDiv.firstChild) {
+                datesContainerDiv.removeChild(datesContainerDiv.firstChild);
+            }
+
+            //2. //datesContainerDiv.innerHTML = "";
+            
+            //3. //datesContainerDiv.replaceChild();
+
+            // 해당 월의 마지막 날짜
+            var thisMonthLastDate = new Date(year, month + 1 - 1, 0).getDate();
+            for(let date = 1; date <= thisMonthLastDate; date++){
+                let dateItemDiv = document.createElement("div"); //<div></div>
+                dateItemDiv.classList.add("date");
+                dateItemDiv.classList.add("item");     //<div class="date item"></div>
+                dateItemDiv.innerHTML = date;          //<div class="date item">date</div>
+                //.dates.container에게 자식으로 붙이자
+                datesContainerDiv.appendChild(dateItemDiv)
+
+            }
+
+            
+            // 1일을 해당 요일로 이동
+            let firstDateDiv = datesContainerDiv.querySelector(".date.item:nth-child(1)");
+            //css: .date.item:nth-child(1) {grid-column-start: 6}
+            //1일에 요일 구하자
+            var firstDateDay = new Date(year, month - 1, 1).getDay();
+            firstDateDiv.style.gridColumnStart = firstDateDay + 1;
+            
+            let sundayFirstDate = (8 - firstDateDay) % 7;
+            let sundayDivs = datesContainerDiv.querySelectorAll(`.date.item:nth-child(7n+${sundayFirstDate})`);
+            for(let sundayDiv of sundayDivs){
+                sundayDiv.style.color = "red";
+            }
+        }
+
+        setCalendar(year, month);
+
+        // <: 이전달
+        const leftDiv = document.getElementsByClassName("left")[0];
+        leftDiv.onclick = () => { //onclick 함수x 시험에 나옴!
+            month--;
+            let prevMonth = new Date(year, month - 1);
+            year = prevMonth.getFullYear();
+            month = prevMonth.getMonth() + 1;
+            setCalendar(year, month);
+        } 
+        // leftDiv.addEventListener("click", () => console.log("이전달"));
+
+        // >: 이후달
+        let rightDiv = document.getElementsByClassName("right")[0];
+        rightDiv.onclick = () => {
+            month++;
+            if(month === 13){
+                year++;
+                month = 1;
+            }
+            setCalendar(year, month);
+        };
+
+    </script>
+
+    
+    <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
+
+    <footer style=" padding: 20px 0;">
+        <div class="footer-content" style="max-width:1320px; margin:0 auto; display:flex; justify-content: space-between; flex-wrap: wrap;">
+            <img src="./img/footer_logo.png" alt="" style="width:91px; height: 76px;">
+            <div class="footer-info" style="flex:1; min-width:250px; padding:10px;">
+                <div class="footer-top" style="display:flex; gap:15px; margin-bottom:10px; font-size: 13px;">
+                    <h3>개인정보보호방침</h3>|<h3>학교정보공개</h3>|<h3>배너모음</h3>
+                </div>
+                <p style="font-size:14px; margin-bottom: 8px; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                <div class="footer-middle" style="display: flex; gap: 5px; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                    <p><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p>|<p><strong>개발채용</strong> 070-5099-8306</p>|<p><strong>디자인채용</strong> 070-5099-8315</p>|<p><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p>|<p><strong>행정실</strong>  02-886-1812(Fax 02-878-2188</p>
+                </div>
+                <div class="fotter-bottom" style="display: flex; gap:15px; font-weight:bold; font-size: 15px; color: #565555;">
+                    <p>546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                    <p>MIRIM MEISTER SCHOOL</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 </body>
