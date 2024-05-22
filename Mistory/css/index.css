@@ -7,11 +7,16 @@ hr{
   font-size: 1px;
 }
 
+.no-js { 
+  display:none; 
+}
+
 .slide_container, .slide_container2 {
   width: 1320px;
   height: 651px;
   margin: auto;
-   position: relative;
+  position: relative;
+  z-index: 3;
 }
 
 .slide_item {
@@ -22,6 +27,7 @@ hr{
   align-items: center;
   font-size: 24px;
   position: relative;
+  z-index: 3;
 }
 
 .slide_item:nth-child(2),.slide_item:nth-child(3) {
