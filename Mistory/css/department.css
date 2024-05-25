@@ -1,0 +1,154 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.slide_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+
+.slide_item {
+    width: 1320px;
+    height: 651px;
+    background-color: #8E8E8E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+p{
+    margin: 0;
+}
+
+.elements {
+    width: 1320px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.element {
+    max-width: 1320px;
+    height: 830px; 
+    /* background-color: #aaa; */
+    margin: 70px 0;
+    position: relative; 
+    display: flex;
+    justify-content: space-between; 
+}
+
+.softwareIntroduction,
+.designIntroduction{
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    background-color: #fff;
+    right: 0; 
+    bottom: 0;
+    z-index: 5;
+}
+
+.wepSolutionIntroduction {
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    background-color: #fff;
+    left: 0; 
+    bottom: 0;
+    z-index: 5;
+}
+
+.softwareIntroduction,
+.designIntroduction,
+.wepSolutionIntroduction {
+    padding: 60px;
+    font-size: 1rem;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: scale(1);
+    line-height: 35px;
+}
+
+.software {
+    text-align: left;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.titleDiv{
+    margin-left: 90px;
+    font-size: 1.25rem;
+}
+
+.title{
+    margin: 0 0 10px 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.titleDiv button{
+    background-color: #028156;
+    color: #fff;
+    border: 0;
+    width: 260px;
+    height: 50px;
+    font-size: 1.25rem;
+    text-align: left;
+    padding: 10px 15px;
+}
+
+.i1{
+    margin: 0 0 20px 0;
+}
+
+.i2{
+    margin: 0 0 50px 0;
+}
+
+.wepSolution {
+    position: absolute;
+    right: 0;
+    text-align: left;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.wepSolution > .titleDiv{
+    margin-left: 300px;
+}
+
+.design {
+    text-align: left;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.e{
+    position: absolute;
+    width: 900px;
+    height: 650px;
+    background-color: #fff;
+    z-index: 6;
+    background-image: linear-gradient(90deg, #505050, #8f8f8f);
+
+}
+
+.softwareIntroduction:hover,
+.designIntroduction:hover,
+.wepSolutionIntroduction:hover{
+    z-index: 7;
+    transform: scale(1.05); /* 확대 효과 */
+}
+
+.footer-top h3 {
+    margin: 0;
+    font-size: 16px;
+}
