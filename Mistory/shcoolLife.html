@@ -59,16 +59,16 @@
         <main id="calendar">
             <!-- title < 9월 > -->
             <div class="title flex-container">
-                <div class="left"><i class="bi bi-caret-left"></i></div>
+                <div class="left"><i class="bi bi-chevron-left"></i></div>
                 <!-- <div class="month"></div> -->
-                <select name="" id="">
-                    <option value="1">2020년</option>
-                    <option value="2">2021년</option>
-                    <option value="2">2022년</option>
-                    <option value="2">2023년</option>
-                    <option value="2" selected="selected">2024년</option>
+                <select name="yearSelect" id="yearSelect">
+                    <option value="2020">2020년</option>
+                    <option value="2021">2021년</option>
+                    <option value="2022">2022년</option>
+                    <option value="2023">2023년</option>
+                    <option value="2024" selected="selected">2024년</option>
                 </select>
-                <select name="" id="">
+                <select name="monthSelect" id="monthSelect">
                     <option value="1">1월</option>
                     <option value="2">2월</option>
                     <option value="3">3월</option>
@@ -82,25 +82,27 @@
                     <option value="11">11월</option>
                     <option value="12">12월</option>
                 </select>
-                <div class="right"><i class="bi bi-caret-right"></i></div>
+                <div class="right"><i class="bi bi-chevron-right"></i></div>
             </div>
     
             <!-- weekday 일 월 화 수 목 금 토 -->
-            <div class="weekday container">
-                <div class="weekday item">일</div>
-                <div class="weekday item">월</div>
-                <div class="weekday item">화</div>
-                <div class="weekday item">수</div>
-                <div class="weekday item">목</div>
-                <div class="weekday item">금</div>
-                <div class="weekday item">토</div>
-            </div>
-    
-            <!-- dates 1 2 3 4 5 ... 30 -->
-            <div class="dates container">
+            <div class="MandD">
+                <div class="weekday container">
+                    <div class="weekday item">일</div>
+                    <div class="weekday item">월</div>
+                    <div class="weekday item">화</div>
+                    <div class="weekday item">수</div>
+                    <div class="weekday item">목</div>
+                    <div class="weekday item">금</div>
+                    <div class="weekday item">토</div>
+                </div>
+        
+                <!-- dates 1 2 3 4 5 ... 30 -->
+                <div class="dates container">
+                </div>
             </div>
         </main>
-    </div>        
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -118,77 +120,76 @@
         const datesContainerDiv = document.getElementsByClassName("dates container")[0];
 
         const setCalendar = (year, month) => {
-            //현재 월 제목에 표시
-            //html -> js
-            var titleMonthDiv = document.getElementsByClassName("month")[0];
-            // = `${month}월`;
-            titleMonthDiv.innerHTML = `${month}월`;
-
-            // 1~해당 월의 마지막 날짜까지 날짜 div 만들자
-            //1. //datesContainerDiv의 자식들(dataItemDiv) clear
             while (datesContainerDiv.firstChild) {
                 datesContainerDiv.removeChild(datesContainerDiv.firstChild);
             }
 
-            //2. //datesContainerDiv.innerHTML = "";
-            
-            //3. //datesContainerDiv.replaceChild();
-
-            // 해당 월의 마지막 날짜
-            var thisMonthLastDate = new Date(year, month + 1 - 1, 0).getDate();
-            for(let date = 1; date <= thisMonthLastDate; date++){
-                let dateItemDiv = document.createElement("div"); //<div></div>
-                dateItemDiv.classList.add("date");
-                dateItemDiv.classList.add("item");     //<div class="date item"></div>
-                dateItemDiv.innerHTML = date;          //<div class="date item">date</div>
-                //.dates.container에게 자식으로 붙이자
-                datesContainerDiv.appendChild(dateItemDiv)
-
+            var thisMonthLastDate = new Date(year, month, 0).getDate();
+            for (let date = 1; date <= thisMonthLastDate; date++) {
+                let dateItemDiv = document.createElement("div");
+                dateItemDiv.classList.add("date", "item");
+                dateItemDiv.innerHTML = date;
+                datesContainerDiv.appendChild(dateItemDiv);
             }
 
-            
-            // 1일을 해당 요일로 이동
             let firstDateDiv = datesContainerDiv.querySelector(".date.item:nth-child(1)");
-            //css: .date.item:nth-child(1) {grid-column-start: 6}
-            //1일에 요일 구하자
             var firstDateDay = new Date(year, month - 1, 1).getDay();
             firstDateDiv.style.gridColumnStart = firstDateDay + 1;
-            
+
+            let saturdayFirstDate = 7 - firstDateDay;
+            let saturdayDivs = datesContainerDiv.querySelectorAll(`.date.item:nth-child(7n+${saturdayFirstDate})`);
+            for (let saturdayDiv of saturdayDivs){
+                saturdayDiv.style.borderRight = "white";
+            }
+
             let sundayFirstDate = (8 - firstDateDay) % 7;
             let sundayDivs = datesContainerDiv.querySelectorAll(`.date.item:nth-child(7n+${sundayFirstDate})`);
             for(let sundayDiv of sundayDivs){
                 sundayDiv.style.color = "red";
             }
+
+            document.getElementById("yearSelect").value = year;
+            document.getElementById("monthSelect").value = month;
         }
 
         setCalendar(year, month);
 
-        // <: 이전달
-        const leftDiv = document.getElementsByClassName("left")[0];
-        leftDiv.onclick = () => { //onclick 함수x 시험에 나옴!
-            month--;
-            let prevMonth = new Date(year, month - 1);
-            year = prevMonth.getFullYear();
-            month = prevMonth.getMonth() + 1;
+        document.getElementById("yearSelect").addEventListener("change", (e) => {
+            year = parseInt(e.target.value);
             setCalendar(year, month);
-        } 
-        // leftDiv.addEventListener("click", () => console.log("이전달"));
+        });
 
-        // >: 이후달
-        let rightDiv = document.getElementsByClassName("right")[0];
-        rightDiv.onclick = () => {
-            month++;
-            if(month === 13){
-                year++;
-                month = 1;
+        document.getElementById("monthSelect").addEventListener("change", (e) => {
+            month = parseInt(e.target.value);
+            setCalendar(year, month);
+        });
+
+        const leftDiv = document.getElementsByClassName("left")[0];
+        leftDiv.onclick = () => {
+            if (month === 1) {
+                month = 12;
+                year--;
+            } else {
+                month--;
             }
             setCalendar(year, month);
-        };
+        }
+
+        let rightDiv = document.getElementsByClassName("right")[0];
+        rightDiv.onclick = () => {
+            if (month === 12) {
+                month = 1;
+                year++;
+            } else {
+                month++;
+            }
+            setCalendar(year, month);
+        }
 
     </script>
 
     
-    <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
+    <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
 
     <footer style=" padding: 20px 0;">
         <div class="footer-content" style="max-width:1320px; margin:0 auto; display:flex; justify-content: space-between; flex-wrap: wrap;">

@@ -8,8 +8,6 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; 화면 높이 전체를 사용하려면 이 줄을 추가하세요 */
-    /* background-color: #f0f0f0; 배경색은 필요에 따라 설정하세요 */
     z-index: 1;
     position: relative;
 }
@@ -23,13 +21,6 @@ body, html {
     align-items: center;
     text-align: center;
 }
-
-.slide_container2 .slide_item:nth-child(2),
-.slide_container2 .slide_item:nth-child(3) {
-    height: 821px; 
-    width: 1320px;
-}
-
 .sub-header{
     display: flex;
     justify-content: center;
@@ -53,7 +44,6 @@ body, html {
     text-align: center;
     background-color: #fff;
     color: #8E8E8E;
-    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,8 +56,7 @@ body, html {
 
 .sub-element {
     width: 1320px;
-    height: auto; /* 원하는 높이 설정 */
-    /* background-color: #fff; */
+    height: auto;
     margin: 0 auto;
     position: relative;
     display: flex;
@@ -83,8 +72,6 @@ select{
     border-bottom: 1px #000 solid;
     font-size: 1.5rem;
 }
-
-/******************************************************************/
 
 .calendarTitle{
     width: 1020px;
@@ -103,8 +90,8 @@ select{
 main{
     margin: 0 auto;
     margin-top: calc(44px + 160px);
-    width: calc(100% - 100px * 2);
-    max-width: 800px;
+    width: 1320px;
+    max-width: 100%;
 }
 
 .title.flex-container{
@@ -112,13 +99,19 @@ main{
     justify-content: center;    
     font-size: 2rem;
     column-gap: 40px;
-    margin-bottom: 40px;            /* 타이틀과 위크데이 사이 공간 주자 */
+    margin-bottom: 40px;            
 }
 
 .left,
 .right{
-    cursor: pointer; /* 마우스커서 손으로 바꿈 */
+    cursor: pointer; 
 } 
+
+.MandD{
+    padding: 0;
+    border: 2px #bababa solid;
+
+}
 
 .weekday.container{
     display: grid;
@@ -127,24 +120,18 @@ main{
     border-bottom: 1px black solid;
     padding: 10px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     background-color: #F2F2F2;
 }
 
 .dates.container{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    /* text-align: center; */
-    padding: 10px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .date.item{
-    aspect-ratio: 4/3;      /* 너비:높이 -> 1:1 비율 이거 시험에 나옴 */
-    /* display: grid;          글자 수평 수직 가운데로
-    place-items: center;    글자 수평 수직 가운데로 */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    aspect-ratio: 8/7;
+    padding: 10px;
+    border-right: 1px #aaa solid;
 }
-/* */
