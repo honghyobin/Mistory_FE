@@ -21,7 +21,8 @@ body, html {
     align-items: center;
     text-align: center;
 }
-.sub-header{
+
+.sub-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,11 +33,12 @@ body, html {
     transform: translateX(-50%);
 }
 
-.sub-header a{
+.sub-header a {
     margin: 0;
+    text-decoration: none;
 }
 
-.sub-header-title{
+.sub-header-title {
     width: 330px;
     height: 40px;
     padding: 20px;
@@ -47,10 +49,17 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.on{
-    background-color:  #028156;
+.sub-header-title:hover {
+    background-color: #028156;
+    color: #fff;
+}
+
+.on {
+    background-color: #028156;
     color: #fff;
 }
 
@@ -65,7 +74,7 @@ body, html {
     z-index: 5;
 }
 
-select{
+select {
     width: 250px;
     margin: 0;
     border: 0;
@@ -73,7 +82,7 @@ select{
     font-size: 1.5rem;
 }
 
-.calendarTitle{
+.calendarTitle {
     width: 1020px;
     height: 70px;
     position: absolute;
@@ -83,37 +92,36 @@ select{
     background-color: #fff;
     font-size: 25px;
     border-bottom: 1px #000 solid;
-    display: grid;      
+    display: grid;
     place-items: center;
 }
 
-main{
+main {
     margin: 0 auto;
     margin-top: calc(44px + 160px);
     width: 1320px;
     max-width: 100%;
 }
 
-.title.flex-container{
+.title.flex-container {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
     font-size: 2rem;
     column-gap: 40px;
-    margin-bottom: 40px;            
+    margin-bottom: 40px;
 }
 
 .left,
-.right{
-    cursor: pointer; 
-} 
-
-.MandD{
-    padding: 0;
-    border: 2px #bababa solid;
-
+.right {
+    cursor: pointer;
 }
 
-.weekday.container{
+.MandD {
+    padding: 0;
+    border: 2px #bababa solid;
+}
+
+.weekday.container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     border-top: 2px black solid;
@@ -124,14 +132,19 @@ main{
     background-color: #F2F2F2;
 }
 
-.dates.container{
+.dates.container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     font-size: 1.5rem;
 }
 
-.date.item{
+.date.item {
     aspect-ratio: 8/7;
     padding: 10px;
     border-right: 1px #aaa solid;
 }
+
+.footer-links h3 {
+    margin: 0;
+    font-size: 16px;
+  }
