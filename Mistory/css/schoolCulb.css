@@ -75,9 +75,17 @@ body, html {
     z-index: 5;
 }
 
+.clubSlide_img {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 102px;
+}
+
+
 .clubSlide {
     margin: 0 auto;
-    margin-top: 277px !important;
+    margin-top: 200px !important;
     width: 1320px;
     margin-bottom: 189px !important;
 }
@@ -146,3 +154,8 @@ body, html {
     transform: rotateY(180deg);
 } 
 
+.clubSlide2 {
+    top: 50%;
+    margin: 0 auto;
+    display: none;
+}
