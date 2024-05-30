@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Mistory/css/schoolCulb.css">
+    <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <title>미스토리</title>
+</head>
+<body>
+    <header>
+        <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
+        <div class="header_bottom" style="height:70px;">
+            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
+            <nav_menu>
+                <ul class="nav_list">
+                    <li><a href="#">학교소개</a></li>
+                    <li><a href="#">학과소개</a></li>
+                    <li><a href="#" style="color: #028156;">학교생활</a></li>
+                    <li><a href="#">입학상담 Q&amp;A</a></li>
+                </ul>
+            </nav_menu>
+            <i class="bi bi-list"></i>
+        </div>
+    </header>
+
+    <div class="slide_container">
+        <div class="slide_item">
+            <!-- 여긴 이미지 -->
+        </div>
+    </div>
+
+    <ul class="sub-header">
+        <a href="#"><li class="sub-header-title"><p>학사일정</p></li></a>
+        <a href="#"><li class="sub-header-title on"><p>동아리 활동</p></li></a>
+        <a href="#"><li class="sub-header-title"><p>미림 갤러리</p></li></a>
+    </ul>
+
+    <div class="clubSlide_img" style="width: 1320px; margin: 102px auto; text-align: center;">
+    <img id="changeClubImage" src="./img/clubSlide_on.png" alt="" style="float: right; cursor: pointer;">
+    <img id="changeArrayImage" src="./img/arraySlide_off.png" alt="" style="float: right; cursor: pointer;">
+</div>
+
+
+    <div class="clubSlide">
+        <div class="slide">
+            <div class="front">1</div>
+            <div class="back">Back 1</div>
+        </div>
+        <div class="slide">
+            <div class="front">2</div>
+            <div class="back">Back 2</div>
+        </div>
+        <div class="slide">
+            <div class="front">3</div>
+            <div class="back">Back 3</div>
+        </div>
+        <div class="slide">
+            <div class="front">4</div>
+            <div class="back">Back 4</div>
+        </div>
+        <div class="slide">
+            <div class="front">5</div>
+            <div class="back">Back 5</div>
+        </div>
+        <div class="slide">
+            <div class="front">6</div>
+            <div class="back">Back 6</div>
+        </div>
+        <div class="slide">
+            <div class="front">7</div>
+            <div class="back">Back 7</div>
+        </div>
+        <div class="slide">
+            <div class="front">8</div>
+            <div class="back">Back 8</div>
+        </div>
+        <div class="slide">
+            <div class="front">9</div>
+            <div class="back">Back 9</div>
+        </div>
+    </div>
+
+    <div class="clubSlide2" style="background-color: aqua; width: 1320px; height: 700px; text-align: center; margin-top: 160px;">
+        aaaaaaaaaaaaaaa
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+     //학사일정에서 다른곳을 호버하면 학사일정의 색이 없어짐
+     const subHeaderTitles = document.querySelectorAll('.sub-header-title');
+        const defaultActiveTitle = document.querySelector('.sub-header-title.on');
+
+        subHeaderTitles.forEach(title => {
+            title.addEventListener('mouseover', () => {
+                subHeaderTitles.forEach(t => t.classList.remove('on'));
+                title.classList.add('on');
+            });
+
+            title.addEventListener('mouseout', () => {
+                subHeaderTitles.forEach(t => t.classList.remove('on'));
+                defaultActiveTitle.classList.add('on');
+            });
+        });
+    $(document).ready(function(){
+        $('.clubSlide').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            initialSlide: 1,
+            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+            nextArrow: '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+        $('.slick-next').click(function() {
+            $('.clubSlide').slick('slickNext');
+        });
+
+        $('.slick-prev').click(function() {
+            $('.clubSlide').slick('slickPrev');
+        });
+        
+        $(document).ready(function(){
+    $('#changeArrayImage').click(function() {
+        // 배열 슬라이드 이미지 변경
+        if ($(this).attr('src') === './img/arraySlide_off.png') {
+            $(this).attr('src', './img/arraySlide_on.png');
+        } else {
+            $(this).attr('src', './img/arraySlide_off.png');
+        }
+
+        // 클럽 슬라이드 이미지 변경
+        $('#changeClubImage').attr('src', './img/clubSlide_off.png');
+
+        // clubSlide 숨기기
+        $('.clubSlide').hide();
+        // clubSlide2 보이기
+        $('.clubSlide2').show();
+    });
+
+    // 'clubSlide_on' 이미지를 클릭할 때
+    $('#changeClubImage').click(function() {
+        // 클럽 슬라이드 이미지 변경
+        if ($(this).attr('src') === './img/clubSlide_on.png') {
+            $(this).attr('src', './img/clubSlide_off.png');
+        } else {
+            $(this).attr('src', './img/clubSlide_on.png');
+        }
+
+        // 배열 슬라이드 이미지 변경
+        $('#changeArrayImage').attr('src', './img/arraySlide_off.png');
+
+        // clubSlide 보이기
+        $('.clubSlide').show();
+        // clubSlide2 숨기기
+        $('.clubSlide2').hide();
+    });
+});
+
+        
+
+    });
+    </script>
+
+    <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
+
+    <footer style="padding: 20px 0; background-color: #f9f9f9;">
+        <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
+            <div class="footer-info" style="flex: 1; min-width: 250px; padding: 10px;">
+                <div class="footer-top" style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 13px;">
+                    <h3 style="margin: 0;">개인정보보호방침</h3>|<h3 style="margin: 0;">학교정보공개</h3>|<h3 style="margin: 0;">배너모음</h3>
+                </div>
+                <p style="font-size: 14px; margin-bottom: 8px; margin-top: 0; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                <div class="footer-middle" style="display: flex; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                    <p style="margin: 0;"><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>개발채용</strong> 070-5099-8306</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>디자인채용</strong> 070-5099-8315</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>행정실</strong>  02-886-1812(Fax 02-878-2188)</p>
+                </div>                
+                <div class="footer-bottom" style="display: flex; gap: 15px; font-weight: bold; font-size: 15px; color: #565555;">
+                    <p style="margin: 0;">546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                    <p style="margin: 0;">MIRIM MEISTER SCHOOL</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
