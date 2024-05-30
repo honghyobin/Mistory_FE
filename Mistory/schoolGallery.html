@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Mistory/css/schoolGallery.css">
+    <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <title>미스토리</title>
+</head>
+<body>
+    <header>
+        <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
+        <div class="header_bottom" style="height:70px;">
+            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
+            <nav_menu>
+                <ul class="nav_list">
+                    <li><a href="#">학교소개</a></li>
+                    <li><a href="#">학과소개</a></li>
+                    <li><a href="#" style="color: #028156;">학교생활</a></li>
+                    <li><a href="#">입학상담 Q&amp;A</a></li>
+                    <li><a href="#">방명록</a></li>
+                </ul>
+            </nav_menu>
+            <i class="bi bi-list"></i>
+        </div>
+    </header>
+
+    <div class="slide_container">
+        <div class="slide_item">
+            <!-- 여긴 이미지 -->
+        </div>
+    </div>
+
+    <ul class="sub-header">
+        <a href="./schoolLife.html"><li class="sub-header-title"><p>학사일정</p></li></a>
+        <a href="./schoolClub.html"><li class="sub-header-title"><p>동아리 활동</p></li></a>
+        <a href="./schoolGallery.html"><li class="sub-header-title on"><p>미림 갤러리</p></li></a>
+    </ul>
+
+    <div class="galleryContainer">
+        <div class="galleryItem">Item 1</div>
+        <div class="galleryItem">Item 2</div>
+        <div class="galleryItem">Item 3</div>
+        <div class="galleryItem">Item 4</div>
+        <div class="galleryItem">Item 5</div>
+        <div class="galleryItem">Item 6</div>
+    </div>
+
+    <script>
+     //학사일정에서 다른곳을 호버하면 학사일정의 색이 없어짐
+     const subHeaderTitles = document.querySelectorAll('.sub-header-title');
+        const defaultActiveTitle = document.querySelector('.sub-header-title.on');
+
+        subHeaderTitles.forEach(title => {
+            title.addEventListener('mouseover', () => {
+                subHeaderTitles.forEach(t => t.classList.remove('on'));
+                title.classList.add('on');
+            });
+
+            title.addEventListener('mouseout', () => {
+                subHeaderTitles.forEach(t => t.classList.remove('on'));
+                defaultActiveTitle.classList.add('on');
+            });
+        });
+    </script>
+
+    <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
+
+    <footer style="padding: 20px 0; background-color: #f9f9f9;">
+        <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
+            <div class="footer-info" style="flex: 1; min-width: 250px; padding: 10px;">
+                <div class="footer-top" style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 13px;">
+                    <h3 style="margin: 0;">개인정보보호방침</h3>|<h3 style="margin: 0;">학교정보공개</h3>|<h3 style="margin: 0;">배너모음</h3>
+                </div>
+                <p style="font-size: 14px; margin-bottom: 8px; margin-top: 0; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                <div class="footer-middle" style="display: flex; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                    <p style="margin: 0;"><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>개발채용</strong> 070-5099-8306</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>디자인채용</strong> 070-5099-8315</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>행정실</strong>  02-886-1812(Fax 02-878-2188)</p>
+                </div>                
+                <div class="footer-bottom" style="display: flex; gap: 15px; font-weight: bold; font-size: 15px; color: #565555;">
+                    <p style="margin: 0;">546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                    <p style="margin: 0;">MIRIM MEISTER SCHOOL</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
