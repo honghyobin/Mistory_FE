@@ -124,6 +124,8 @@ main {
 .weekday.container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    height: 70px;
+    place-items: center;
     border-top: 2px black solid;
     border-bottom: 1px black solid;
     padding: 10px;
@@ -141,7 +143,7 @@ main {
 .date.item {
     aspect-ratio: 8/7;
     padding: 10px;
-    border-right: 1px #aaa solid;
+    border-left: 1px #aaa solid;
 }
 
 .footer-links h3 {

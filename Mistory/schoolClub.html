@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Mistory/css/schoolCulb.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="/Mistory/css/dark-mode.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -17,13 +18,15 @@
             <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
             <nav_menu>
                 <ul class="nav_list">
-                    <li><a href="#">학교소개</a></li>
-                    <li><a href="#">학과소개</a></li>
-                    <li><a href="#" style="color: #028156;">학교생활</a></li>
+                    <li><a href="index.html">학교소개</a></li>
+                    <li><a href="department.html">학과소개</a></li>
+                    <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
                     <li><a href="#">입학상담 Q&amp;A</a></li>
                 </ul>
             </nav_menu>
-            <i class="bi bi-list"></i>
+            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+            <!-- <i class="bi bi-moon-fill"></i> -->
+            <i class="bi bi-box-arrow-in-right"></i>
         </div>
     </header>
 
@@ -90,6 +93,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="/Mistory/js/dark-mood.js"></script>
     <script>
      //학사일정에서 다른곳을 호버하면 학사일정의 색이 없어짐
      const subHeaderTitles = document.querySelectorAll('.sub-header-title');
@@ -188,7 +192,7 @@
 
     <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
 
-    <footer style="padding: 20px 0; background-color: #f9f9f9;">
+    <footer style="padding: 20px 0; background-color: none;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
             <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
             <div class="footer-info" style="flex: 1; min-width: 250px; padding: 10px;">

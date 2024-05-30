@@ -1,0 +1,58 @@
+/* @media (prefers-color-scheme: dark) { */
+    *{
+        transition: background-color 0.3s, color 0.3s;
+
+    }
+
+    body {
+        background-color: #FAFAFA;
+        /* color: black; */
+    }
+
+    body.dark-mode {
+        background-color: #202124;
+        /* color: white; */
+    }
+
+    body.dark-mode header{
+        background-color: #383838;
+        color: white;
+    }
+    body.dark-mode header *{
+        color: #fff;
+    }
+    body.dark-mode header a{
+        color: #A4A4A4;
+    }
+
+    body.dark-mode .dates{
+        color: #fff;
+    }
+
+    body.dark-mode .weekday{
+        background-color: #131313;
+        color: #fff;
+    }
+
+    body.dark-mode .calendarTitle{
+        background-color: #202124;
+        color: #fff;
+    }
+
+    body.dark-mode .yearSelect,
+    body.dark-mode .monthSelect{
+        background-color: #202124;
+        color: #fff;
+    }
+
+    body.dark-mode .bi-chevron-right,
+    body.dark-mode .bi-chevron-left{
+        color: #fff;
+    }
+
+
+    body.dark-mode footer *{
+        /* background-color: #000; */
+        color: #fff;
+    }
+/* } */
