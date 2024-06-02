@@ -30,7 +30,7 @@
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
+            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
             <nav_menu>
                 <ul class="nav_list">
                     <li><a href="index.html">학교소개</a></li>
@@ -119,6 +119,7 @@
         var now = new Date();
         var year = now.getFullYear();
         var month = now.getMonth() + 1;
+        var day = now.getDate();
 
         const datesContainerDiv = document.getElementsByClassName("dates container")[0];
 
@@ -132,6 +133,11 @@
                 let dateItemDiv = document.createElement("div");
                 dateItemDiv.classList.add("date", "item");
                 dateItemDiv.innerHTML = date;
+
+                if (year === now.getFullYear() && month === (now.getMonth() + 1) && date === day) {
+                    dateItemDiv.classList.add("today");
+                }
+                
                 datesContainerDiv.appendChild(dateItemDiv);
             }
 
@@ -151,6 +157,8 @@
         }
 
         setCalendar(year, month);
+
+
 
         document.getElementById("yearSelect").addEventListener("change", (e) => {
             year = parseInt(e.target.value);

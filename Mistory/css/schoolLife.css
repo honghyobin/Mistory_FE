@@ -146,6 +146,10 @@ main {
     border-left: 1px #aaa solid;
 }
 
+.today{
+    background-color: #56caff91;
+}
+
 .footer-links h3 {
     margin: 0;
     font-size: 16px;
