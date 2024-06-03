@@ -33,15 +33,16 @@
             <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
             <nav_menu>
                 <ul class="nav_list">
-                    <li><a href="index.html">학교소개</a></li>
+                    <li><a href="index.html" style="color: #008156;">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
-                    <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
-                    <li><a href="#">입학상담 Q&amp;A</a></li>
+                    <li><a href="schoolLife.html">학교생활</a></li>
+                    <li><a href="#">입학상담 Q&A</a></li>
+                    <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
             <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
             <!-- <i class="bi bi-moon-fill"></i> -->
-            <i class="bi bi-box-arrow-in-right"></i>
+            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
         </div>
     </header>
 
@@ -52,9 +53,15 @@
     </div>
 
     <ul class="sub-header">
+<<<<<<< HEAD
         <a href="schoolLife.html"><li class="sub-header-title on"><p>학사일정</p></li></a>
         <a href="schoolClub.html"><li class="sub-header-title"><p>동아리 활동</p></li></a>
         <a href="#"><li class="sub-header-title"><p>미림 갤러리</p></li></a>
+=======
+        <a href="./schoolLife.html"><li class="sub-header-title on"><p>학사일정</p></li></a>
+        <a href="./schoolClub.html"><li class="sub-header-title"><p>동아리 활동</p></li></a>
+        <a href="./schoolGallery.html"><li class="sub-header-title"><p>미림 갤러리</p></li></a>
+>>>>>>> 95e7c17b16f3004142fd99409a371b8441445c53
     </ul>    
     <div class="sub-element">
         <div class="calendarTitle">캘린더 보기</div>
@@ -137,7 +144,7 @@
                 if (year === now.getFullYear() && month === (now.getMonth() + 1) && date === day) {
                     dateItemDiv.classList.add("today");
                 }
-                
+
                 datesContainerDiv.appendChild(dateItemDiv);
             }
 

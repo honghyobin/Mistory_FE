@@ -65,14 +65,15 @@ hr{
   font-size: 18px;
   color: #fff;
 }
-.slide_item>hr{
+.slide_item>hr, .slide_item>.img>hr {
   margin-left: 102px;
   margin-top: 9px;
   width: 336px;
 }
-.slide_item>h1{
+.slide_item>h1, .slide_item>.img>h1{
   margin-left: 102px;
   margin-top: 25px;
+  text-shadow: 7px 7px 5px rgba(255, 255, 255, 0.5);
 }
 
 .S, .W, .D, .line,button {
