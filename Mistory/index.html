@@ -13,40 +13,25 @@
     <title>미스토리</title>
 
     <style>
-        /* .slide_item {
+        .slide_item {
             width: 1320px;
             height: 651px;
-        } */
+            background-size: cover; 
+            background-position: center; 
+        }
+        .slide_container .slide_item:nth-child(2) {
+            background-image: url('./img/slideBackground.png'); /* 첫 번째 슬라이드 배경 이미지 */
+        }
 
-        .slide_item {
-        width: 1320px;
-        height: 651px;
-        background-size: cover; /* 배경 이미지의 크기를 슬라이드 항목에 맞춤 */
-        background-position: center; /* 배경 이미지를 중앙에 배치 */
-    }
-
-    /* 각 슬라이드 항목에 고유한 배경 이미지를 설정하는 예시 */
-    .slide_container .slide_item:nth-child(2) {
-        background-image: url('./img/Rectangle\ 14.png'); /* 첫 번째 슬라이드 배경 이미지 */
-    }
-
-    .slide_container .slide_item:nth-child(3) {
-        background-image: url('./img/Rectangle\ 14.png'); /* 두 번째 슬라이드 배경 이미지 */
-    }
+        .slide_container .slide_item:nth-child(3) {
+            background-image: url('./img/slideBackground.png'); /* 두 번째 슬라이드 배경 이미지 */
+        }
        
         .slide_container2 .slide_item:nth-child(2), .slide_container2 .slide_item:nth-child(3) {
             height: 821px; 
             width: 1320px;
         }
-        
-        .temporary_image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-            z-index: 10;
-        }
+
     </style>
 
 </head>
@@ -87,14 +72,18 @@
             <button class="lesson_D_button">자세히보기</button>
             <img class="scroll" src="./img/scroll.png" alt="">
         </div>
-        <div class="slide_item" >
+        <div class="slide_item">
             <div class="img">
-                <p class="lesson">학과소개</p> <hr>
+                <p class="lesson">학과소개</p>
+                <hr>
                 <h1 style="font-size: 42px; color:#fff;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
                     교육문화의 장을 만들어가겠습니다.</h1>
-                <img src="./img/손바닥.webp" alt="Temporary Image" class="temporary_image" id="temporary_image" style="width:1320px; height:651px">
+                <div class="temporary_image_container">
+                    <img src="./img/손바닥.webp" alt="Temporary Image" class="temporary_image" id="temporary_image">
+                </div>
             </div>
         </div>
+        
     </div>
 
     <!-- 첫 번째 슬라이드의 이전/다음 버튼 -->
@@ -135,8 +124,6 @@
         </div>
     </div>
 
-    
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/Mistory/js/dark-mood.js"></script>
@@ -167,11 +154,25 @@
 
             function showTemporaryImage() {
                 var currentSlide = $('.slide_container').slick('slickCurrentSlide');
-                var currentSlide = $('.slide_container').slick('slickCurrentSlide');
                 if (currentSlide === 1) { // 두 번째 슬라이드일 때
-                    $('#temporary_image').delay(230).fadeOut(70);
+                    setTimeout(function() {
+                        $('#temporary_image').fadeIn(10, function() {
+                            setTimeout(function() {
+                                $('#temporary_image').fadeOut(50);
+                            }, 500); // 1초 후 이미지 숨기기
+                        });
+                    }, 2000); // 2초 후 이미지 표시
                 }
             }
+
+            function resetTemporaryImage() {
+                $('#temporary_image').hide();
+            }
+
+            // 슬라이드 변경 시 호출되는 이벤트 핸들러
+            $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+                resetTemporaryImage();
+            });
 
             // 첫 번째 슬라이드 이전/다음 버튼
             $('.previous_button').click(function() {
@@ -207,8 +208,5 @@
             </div>
         </div>
     </footer>
-    
-    
 </body>
 </html>
-
