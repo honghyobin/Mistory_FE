@@ -42,20 +42,20 @@
 
     <div class="galleryContainer">
         <div class="gallery1">
-            <div class="item"><img src="./img/gallery/1.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/2.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/3.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/4.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/5.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/6.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/1.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/2.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/3.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/4.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/5.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/6.png" alt=""></div>
         </div>
         <div class="gallery2" style="display: none;">
-            <div class="item"><img src="./img/gallery/7.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/8.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/9.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/10.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/11.png" alt="" srcset=""></div>
-            <div class="item"><img src="./img/gallery/12.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/7.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/8.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/9.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/10.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/11.png" alt=""></div>
+            <div class="item"><img src="./img/gallery/12.png" alt=""></div>
         </div>
     </div>
     <div class="numIcon">
@@ -82,38 +82,37 @@
 
         // 클릭된 아이콘에 해당하는 갤러리 표시
         function showGallery(index) {
-            const icons = document.querySelectorAll('.icon');
-            const galleries = document.querySelectorAll('.gallery');
+    const icons = document.querySelectorAll('.icon');
+    const galleries = document.querySelectorAll('.gallery');
 
-            icons.forEach(i => i.classList.remove('active'));
-            galleries.forEach(gallery => gallery.style.display = 'none');
+    icons.forEach(i => i.classList.remove('active'));
+    galleries.forEach(gallery => gallery.style.display = 'none');
 
-            const selectedIcon = document.querySelector(`.icon:nth-child(${index})`);
-            const selectedGallery = document.querySelector(`.gallery${index}`);
+    const selectedIcon = document.querySelector(`.icon:nth-child(${index})`);
+    const selectedGallery = document.querySelector(`.gallery${index}`);
 
-            selectedIcon.classList.add('active');
-            selectedGallery.style.display = 'grid';
+    selectedIcon.classList.add('active');
+    selectedGallery.style.display = 'grid';
 
-            // 갤러리 표시 후 아이콘 2를 클릭했을 때 갤러리 1 숨기기
-            if (index === 2) {
-                document.querySelector('.gallery1').style.display = 'none';
-            }
+    // 갤러리 표시 후 아이콘 2를 클릭했을 때 갤러리 1 숨기기
+    if (index === 2) {
+        document.querySelector('.gallery1').style.display = 'none';
+    }
 
-            // 갤러리 표시 후 아이콘 1를 클릭했을 때 갤러리 2 숨기기
-            if (index === 1) {
-                document.querySelector('.gallery2').style.display = 'none';
-            }
-        }
+    // 갤러리 표시 후 아이콘 1를 클릭했을 때 갤러리 2 숨기기
+    if (index === 1) {
+        document.querySelector('.gallery2').style.display = 'none';
+    }
+}
 
-        // 페이지 로드 시 초기 설정
-        window.onload = function() {
-            // 처음에 아이콘 1을 선택하고 갤러리 1을 표시
-            showGallery(1);
+// 페이지 로드 시 초기 설정
+window.onload = function() {
+    // 처음에 아이콘 1을 선택하고 갤러리 1을 표시
+    showGallery(1);
 
-            // 아이콘 1에 active 클래스 추가
-            document.querySelector('.icon:nth-child(1)').classList.add('active');
-        };
-
+    // 아이콘 1에 active 클래스 추가
+    document.querySelector('.icon:nth-child(1)').classList.add('active');
+};
     </script>
     <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
 
