@@ -12,16 +12,40 @@
     <title>미스토리</title>
 
     <style>
-        .slide_item {
+        /* .slide_item {
             width: 1320px;
             height: 651px;
-        }
+        } */
+
+        .slide_item {
+        width: 1320px;
+        height: 651px;
+        background-size: cover; /* 배경 이미지의 크기를 슬라이드 항목에 맞춤 */
+        background-position: center; /* 배경 이미지를 중앙에 배치 */
+    }
+
+    /* 각 슬라이드 항목에 고유한 배경 이미지를 설정하는 예시 */
+    .slide_container .slide_item:nth-child(2) {
+        background-image: url('./img/Rectangle\ 14.png'); /* 첫 번째 슬라이드 배경 이미지 */
+    }
+
+    .slide_container .slide_item:nth-child(3) {
+        background-image: url('./img/Rectangle\ 14.png'); /* 두 번째 슬라이드 배경 이미지 */
+    }
        
-        .slide_container2 .slide_item:nth-child(2),.slide_container2 .slide_item:nth-child(3) {
+        .slide_container2 .slide_item:nth-child(2), .slide_container2 .slide_item:nth-child(3) {
             height: 821px; 
             width: 1320px;
         }
         
+        .temporary_image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 10;
+        }
     </style>
 
 </head>
@@ -34,8 +58,9 @@
                <ul class="nav_list">
                    <li><a href="#">학교소개</a></li>
                    <li><a href="department.html">학과소개</a></li>
-                   <li><a href="shcoolLife.html">학교생활</a></li>
+                   <li><a href="schoolLife.html">학교생활</a></li>
                    <li><a href="#">입학상담 Q&A</a></li>
+                   <li><a href="#">방명록</a></li>
                </ul>
            </nav_menu>
            <i class="bi bi-list"></i>
@@ -59,18 +84,21 @@
             <img class="scroll" src="./img/scroll.png" alt="">
         </div>
         <div class="slide_item" >
-            <p class="lesson">학과소개</p> <hr>
-            <h1 style="font-size: 42px;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
-                교육문화의 장을 만들어가겠습니다.</h1>
+            <div class="img">
+                <p class="lesson">학과소개</p> <hr>
+                <h1 style="font-size: 42px; color:#fff;">‘인재대본 육영보국’의 건학정신을 바탕으로 <br>
+                    교육문화의 장을 만들어가겠습니다.</h1>
+                <img src="./img/손바닥.webp" alt="Temporary Image" class="temporary_image" id="temporary_image" style="width:1320px; height:651px">
             </div>
         </div>
+    </div>
 
     <!-- 첫 번째 슬라이드의 이전/다음 버튼 -->
     <button class="previous_button"><i class="bi bi-chevron-left"></i></button>
     <button class="next_button"><i class="bi bi-chevron-right"></i></button>
         
     <div class="slide_container2">
-        <div class="slide_item" style="background-color: #F3F3F3;">
+        <div class="slide_item" style="background-color: #F3F3F3; height: 850px;">
             <h1 class="admissions" style="font-size:50px;">입학안내</h1>
             <p class="admissions_explanation" style="font-size: 16px;">지식과 기술을 바탕으로,장인의 열정과 도전정신으로 세계로 우뚝 서는 미림마이스터고입니다.</p>
             <img class="admissions_img" src="img/admissions_img.png" alt="">
@@ -101,26 +129,17 @@
                 </div>
             </div>
         </div>
-        <div class="slide_item">
-            학사일정
-        </div>
-        <div class="slide_item">
-            동아리활동
-        </div>
     </div>
 
-    <button class="previous_button2"><i class="bi bi-chevron-left"></i></button>
-    <button class="next_button2"><i class="bi bi-chevron-right"></i></button>
-
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-
-        //화면 로딩
+        // 화면 로딩
         $(function(){
             $('html').removeClass('no-js');
         });
-
 
         $(document).ready(function(){
             $('.slide_container').slick({
@@ -139,33 +158,29 @@
                 speed: 500,
                 slidesToShow: 1,
                 slidesToScroll: 1
-                
             });
 
-            
+            function showTemporaryImage() {
+                var currentSlide = $('.slide_container').slick('slickCurrentSlide');
+                var currentSlide = $('.slide_container').slick('slickCurrentSlide');
+                if (currentSlide === 1) { // 두 번째 슬라이드일 때
+                    $('#temporary_image').delay(230).fadeOut(70);
+                }
+            }
 
             // 첫 번째 슬라이드 이전/다음 버튼
             $('.previous_button').click(function() {
                 $('.slide_container').slick('slickPrev');
                 $('.slide_container2').slick('slickPrev');
+                showTemporaryImage();
             });
 
             $('.next_button').click(function() {
                 $('.slide_container').slick('slickNext');
                 $('.slide_container2').slick('slickNext');
-            });
-
-            // 두 번째 슬라이드 이전/다음 버튼
-            $('.previous_button2').click(function() {
-                $('.slide_container2').slick('slickPrev');
-            });
-
-            $('.next_button2').click(function() {
-                $('.slide_container2').slick('slickNext');
+                showTemporaryImage();
             });
         });
-
-        
     </script>
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
 
@@ -191,3 +206,4 @@
     
 </body>
 </html>
+
