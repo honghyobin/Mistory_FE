@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/Mistory/css/nav.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>미스토리</title>
 </head>
 <body>
@@ -18,9 +18,9 @@
             <nav_menu>
                 <ul class="nav_list">
                     <li><a href="#">학교소개</a></li>
-                    <li><a href="#">학과소개</a></li>
-                    <li><a href="#" style="color: #028156;">학교생활</a></li>
-                    <li><a href="#">입학상담 Q&amp;A</a></li>
+                    <li><a href="department.html">학과소개</a></li>
+                    <li><a href="schoolLife.html" style="color: #028156;">학교생활</a></li>
+                    <li><a href="schoolQ&A.html">입학상담 Q&amp;A</a></li>
                     <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
@@ -41,17 +41,31 @@
     </ul>
 
     <div class="galleryContainer">
-        <div class="galleryItem">Item 1</div>
-        <div class="galleryItem">Item 2</div>
-        <div class="galleryItem">Item 3</div>
-        <div class="galleryItem">Item 4</div>
-        <div class="galleryItem">Item 5</div>
-        <div class="galleryItem">Item 6</div>
+        <div class="gallery1">
+            <div class="item"><img src="./img/gallery/1.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/2.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/3.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/4.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/5.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/6.png" alt="" srcset=""></div>
+        </div>
+        <div class="gallery2" style="display: none;">
+            <div class="item"><img src="./img/gallery/7.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/8.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/9.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/10.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/11.png" alt="" srcset=""></div>
+            <div class="item"><img src="./img/gallery/12.png" alt="" srcset=""></div>
+        </div>
     </div>
-
+    <div class="numIcon">
+        <div class="icon" onclick="showGallery(1)">1</div>
+        <div class="icon" onclick="showGallery(2)">2</div>
+    </div>
+        
     <script>
-     //학사일정에서 다른곳을 호버하면 학사일정의 색이 없어짐
-     const subHeaderTitles = document.querySelectorAll('.sub-header-title');
+        // 학사일정에서 다른 곳을 호버하면 학사일정의 색이 없어짐
+        const subHeaderTitles = document.querySelectorAll('.sub-header-title');
         const defaultActiveTitle = document.querySelector('.sub-header-title.on');
 
         subHeaderTitles.forEach(title => {
@@ -65,8 +79,42 @@
                 defaultActiveTitle.classList.add('on');
             });
         });
-    </script>
 
+        // 클릭된 아이콘에 해당하는 갤러리 표시
+        function showGallery(index) {
+            const icons = document.querySelectorAll('.icon');
+            const galleries = document.querySelectorAll('.gallery');
+
+            icons.forEach(i => i.classList.remove('active'));
+            galleries.forEach(gallery => gallery.style.display = 'none');
+
+            const selectedIcon = document.querySelector(`.icon:nth-child(${index})`);
+            const selectedGallery = document.querySelector(`.gallery${index}`);
+
+            selectedIcon.classList.add('active');
+            selectedGallery.style.display = 'grid';
+
+            // 갤러리 표시 후 아이콘 2를 클릭했을 때 갤러리 1 숨기기
+            if (index === 2) {
+                document.querySelector('.gallery1').style.display = 'none';
+            }
+
+            // 갤러리 표시 후 아이콘 1를 클릭했을 때 갤러리 2 숨기기
+            if (index === 1) {
+                document.querySelector('.gallery2').style.display = 'none';
+            }
+        }
+
+        // 페이지 로드 시 초기 설정
+        window.onload = function() {
+            // 처음에 아이콘 1을 선택하고 갤러리 1을 표시
+            showGallery(1);
+
+            // 아이콘 1에 active 클래스 추가
+            document.querySelector('.icon:nth-child(1)').classList.add('active');
+        };
+
+    </script>
     <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
 
     <footer style="padding: 20px 0; background-color: #f9f9f9;">
