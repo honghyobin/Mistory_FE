@@ -27,7 +27,13 @@ a {
 .header_bottom>img{
     position: absolute; /*메뉴 가운데 정렬시 로고 이미지를 무시*/
 }
-.bi-list{
-    font-size: 30px;
+
+.bi-moon{
+    margin-right: 10px;
+}
+
+.bi-moon,
+.bi-box-arrow-in-right{
+    font-size: 25px;
     color: #000;
 }
