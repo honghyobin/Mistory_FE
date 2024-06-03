@@ -1,0 +1,81 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.slide_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+
+.slide_item {
+    width: 1320px;
+    height: 651px;
+    background-color: #8E8E8E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 710px;
+    z-index: 6;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: -16px;
+}
+
+.sub-header a {
+    margin: 0;
+    text-decoration: none;
+}
+
+.sub-header-title {
+    width: 330px;
+    height: 40px;
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
+    background-color: #fff;
+    color: #8E8E8E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sub-header-title:hover {
+    background-color: #028156;
+    color: #fff;
+}
+
+.on {
+    background-color: #028156;
+    color: #fff;
+}
+
+.sub-element {
+    width: 1320px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.footer-links h3 {
+    margin: 0;
+    font-size: 16px;
+}
