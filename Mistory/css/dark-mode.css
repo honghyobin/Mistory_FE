@@ -50,6 +50,9 @@
         color: #fff;
     }
 
+    body.dark-mode .container p{
+        color: #fff;
+    }
 
     body.dark-mode footer *{
         /* background-color: #000; */

@@ -60,27 +60,27 @@
                     <p class="i2">SW 개발분야의 영마이스터!</p>
                 </div>
             </div>
-            <div class="softwareIntroduction">
+            <div class="softwareIntroduction" style="background-color: #0D8059; color: #fff;">
                 <dl>
                     <p style="font-size: 25px;">학과특성</p>
                     <p>소프트웨어 개발 및 IT분야의 핵심 기술인 스마트기기 앱,<br/>
-                        웹서버 프로그래밍, 플리케이션, DB, 빅데이터, IoT,<br/>
-                        VR,AI에 관한 특화된 교육과정 운영</p><br/>
+                        웹서버 프로그래밍, 애플리케이션, DB, 빅데이터, IoT,<br/>
+                        VR, AI에 관한 특화된 교육과정 운영</p><br/>
                     <p style="font-size: 25px;">교육내용</p>
                     <p>SW개발을 위한 프로그래밍 언어<br/>
-                        - Java, C, C++, Spring, JSP, PHP, jquery<br/>
+                        - Java, C, C++, Spring, JSP, PHP, jQuery<br/>
                         - Android<br/>
-                        - Data Structure&amp;Algorithm OS, Linux<br/>
-                        - Database 모델링, Database 설계 및 구축(Oracle, Mysql)<br/>
+                        - Data Structure&amp;Algorithm, OS, Linux<br/>
+                        - Database 모델링, Database 설계 및 구축(Oracle, MySQL)<br/>
                     </p><br/>
                     <p style="font-size: 25px;">취득자격증</p>
-                    <p>정보처리기능사ㆍITQ, OCJPㆍMCPㆍCompTIA A+ 등<br/>
+                    <p>정보처리기능사, ITQ, OCJP, MCP, CompTIA A+ 등<br/>
                         국제자격증, 인터랙티브미디어 마이스터 인증</p>
                 </dl>
             </div>
         </div>
         <div class="element">
-            <div class="wepSolutionIntroduction">
+            <div class="wepSolutionIntroduction" style="background-color: #F0C04C;">
                 <dl>
                     <p style="font-size: 25px;">학과특성</p>
                     <p>차세대 뉴미디어 분야의 선두주자인 IPTV, 스마트TV,<br/>
@@ -89,11 +89,11 @@
                     <p style="font-size: 25px;">교육내용</p>
                     <p>웹·앱 개발을 위한 프로그래밍 언어<br/>
                         - Java, Python, Django Framework, Spring Framework<br/>
-                        - JavaScript, CSS3, Html5, Node.js, JSP, jQuery, UI/UX디자인<br/>
-                        - Linux 서버구축, Data, Structure&amp;Algorithm<br/>
+                        - JavaScript, CSS3, HTML5, Node.js, JSP, jQuery, UI/UX 디자인<br/>
+                        - Linux 서버 구축, Data, Structure&amp;Algorithm<br/>
                     </p><br/>
                     <p style="font-size: 25px;">취득자격증</p>
-                    <p>정보처리기능사ㆍITQ, OCJPㆍMCPㆍCompTIA A+ 등<br/>
+                    <p>정보처리기능사, ITQ, OCJP, MCP, CompTIA A+ 등<br/>
                         국제자격증</p>
                 </dl>
             </div>
@@ -104,7 +104,6 @@
                     <p class="i2">스마트 애플리케이션 분야의 미래 영마이스터!</p>
                 </div>
             </div>
-            
         </div>
         <div class="element">
             <div class="design e">
@@ -114,27 +113,57 @@
                     <p class="i2">뉴미디어 디자인 분야의 영마이스터!</p>
                 </div>        
             </div>
-            <div class="designIntroduction">
+            <div class="designIntroduction" style="background-color: #B83B66; color:#fff;">
                 <dl>
                     <p style="font-size: 25px;">학과특성</p>
                     <p>차세대 뉴미디어 분야의 선두주자인 IPTV, 스마트TV,<br/>
                         스마트폰에 관한 특화된 교육과정을 운영하여 모바일 웹,<br/>
                         앱 개발 전문가를 양성</p><br/>
                     <p style="font-size: 25px;">교육내용</p>
-                    <p>디자인의 기본 원리 및 UI/UX디자인, 웹디자인<br/>
+                    <p>디자인의 기본 원리 및 UI/UX 디자인, 웹디자인<br/>
                         - 미술사, 조형, 페인팅, 드로잉, 투시도법, 기초제도, 시각디자인<br/>
                         - 타이포그래피, 색채, 디자인사, 시각디자인, 광고콘텐츠 제작, 사진, 편집디자인<br/>
-                        - UIUX엔지니어링, 서비스경험디자인, 스마트문화앱콘텐츠 제작<br/>
-                        - 웹디자인, 인터랙션디자인, 디지털디자인<br/>
+                        - UI/UX 엔지니어링, 서비스 경험 디자인, 스마트 문화 앱 콘텐츠 제작<br/>
+                        - 웹디자인, 인터랙션 디자인, 디지털 디자인<br/>
                     </p><br/>
                     <p style="font-size: 25px;">취득자격증</p>
-                    <p>컴퓨터그래픽스운용기능사ㆍITQ, Adobe ACA 등<br/>
+                    <p>컴퓨터그래픽스운용기능사, ITQ, Adobe ACA 등<br/>
                         국제자격증, 뉴미디어디자인 마이스터 인증</p>
-                </dl>
+                    </dl>
+                </div>
             </div>
-
         </div>
-    </div>
+        
+        <div id="circle"></div>
+    
+    
+
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            var circle = document.getElementById('circle');
+            var circleWidth = circle.offsetWidth;
+            var circleHeight = circle.offsetHeight;
+            
+            var leftPosition = e.pageX - circleWidth / 2;
+            var topPosition = e.pageY - circleHeight / 2;
+
+            // 화면의 크기를 고려하여 서클이 화면 밖으로 나가지 않도록 제한
+            if (leftPosition < 0) {
+                leftPosition = 0;
+            } else if (leftPosition + circleWidth > window.innerWidth) {
+                leftPosition = window.innerWidth - circleWidth;
+            }
+
+            if (topPosition < 0) {
+                topPosition = 0;
+            } else if (topPosition + circleHeight > window.innerHeight) {
+                topPosition = window.innerHeight - circleHeight;
+            }
+
+            circle.style.left = leftPosition + 'px';
+            circle.style.top = topPosition + 'px';
+        });
+    </script>
 
     <hr style="color:#BBBBBB; margin: 150px auto 0; width: 1320px;">
 

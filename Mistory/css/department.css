@@ -2,6 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .slide_container {
@@ -79,6 +80,7 @@ p{
     color: #fff;
     display: flex;
     align-items: center;
+    background-image: url(/Mistory/img/bg_department01.jpg);
 }
 
 .titleDiv{
@@ -118,6 +120,7 @@ p{
     color: #fff;
     display: flex;
     align-items: center;
+    background-image: url(/Mistory/img/bg_department02.jpg);
 }
 
 .wepSolution > .titleDiv{
@@ -129,6 +132,7 @@ p{
     color: #fff;
     display: flex;
     align-items: center;
+    background-image: url(/Mistory/img/bg_department03.jpg);
 }
 
 .e{
@@ -137,8 +141,8 @@ p{
     height: 650px;
     background-color: #fff;
     z-index: 6;
-    background-image: linear-gradient(90deg, #505050, #8f8f8f);
-
+    /* background-image: linear-gradient(90deg, #505050, #8f8f8f); */
+    
 }
 
 .softwareIntroduction:hover,
@@ -151,4 +155,37 @@ p{
 .footer-top h3 {
     margin: 0;
     font-size: 16px;
+}
+
+/* ?????????????????????????????????????????????????????????????? */
+a,
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+#circle {
+    width: 300px; /* 초기 크기 */
+    height: 300px; /* 초기 크기 */
+    background: radial-gradient(circle at center, rgba(247, 202, 24, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
+    border-radius: 50%;
+    position: absolute;
+    mix-blend-mode: difference;
+    pointer-events: none; /* 서클이 마우스 이벤트를 방해하지 않도록 함 */
+    animation: pulse 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        width: 300px;
+        height: 300px;
+    }
+    100% {
+        width: 330px;
+        height: 330px;
+    }
+}
+
+.elements {
+    position: relative;
 }
