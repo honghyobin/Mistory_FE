@@ -34,21 +34,40 @@
     <div class="container">
         <p style="font-size: 50px;">미스토리 방명록</p>
         <div class="registrationDiv">
-            <p style="font-size: 40px; margin-top: 60px;">방명록 작성하기</p>
-            <p style="font-size: 30px; color: #797979; margin-top: 30px;">MISTORY</p>
+            <p style="font-size: 40px; margin: 100px 0 0 0;">방명록 작성하기</p>
+            <p style="font-size: 30px; color: #797979; margin: 20px 0 80px 0;">MISTORY</p>
             <div class="department">
                 <p>과 선택</p>
-                <input type="radio" name="department" value="department1"/> 소프트웨어과
-                <input type="radio" name="department" value="department2"/> 웹솔루션과
-                <input type="radio" name="department" value="department3"/> 디자인과
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="department" value="department1" 
+                        style="background: url(./img/software.png) no-repeat;" checked/>
+                        <p>소프트웨어과</p>
+                    </label>
+                    <label>
+                        <input type="radio" name="department" value="department2"
+                        style="background: url(./img/web_solution.png) no-repeat;"/>
+                        <p>웹솔루션과</p>
+                    </label>
+                    <label>
+                        <input type="radio" name="department" value="department3"
+                        style="background: url(./img/design.png) no-repeat;"/>
+                        <p>디자인과</p>
+                    </label>
+                    <label>
+                        <input type="radio" name="department" value="exception"
+                        style="background: url(./img/exception.png) no-repeat;"/>
+                        <p>기타</p>
+                    </label>
+                </div>
             </div>
             <div class="nameInput">
                 <p>이름</p>
-                <input type="text" id="nameInput" />
+                <input type="text" id="nameInput" placeholder="이름을 작성해주세요"/>
             </div>
             <div class="contentInput">
                 <p>내용</p>
-                <textarea type="text" id="contentInput"></textarea>
+                <textarea type="text" id="contentInput" placeholder="방문 소감을 작성해주세요! (최대 170자)" maxlength="170"></textarea>
             </div>
             <button class="registrationBtn" onclick="addComment()">등록하기</button>
         </div>
@@ -58,85 +77,100 @@
         </div>
     </div>
 
+    <script src="/Mistory/js/dark-mood.js"></script>
     <script>
 
+    function getImageForDepartment(department) {
+            switch(department) {
+                case 'department1':
+                    return './img/software.png'; // 소프트웨어과 이미지
+                case 'department2':
+                    return './img/web_solution.png'; // 웹솔루션과 이미지
+                case 'department3':
+                    return './img/design.png'; // 디자인과 이미지
+                default:
+                    return './img/exception.png'; // 기본 이미지
+            }
+        }
+
         function addComment() {
-                // 첫 번째 "comments" 클래스를 가진 요소를 가져옵니다.
-                const comments = document.getElementsByClassName("comments")[0];
+            const comments = document.getElementsByClassName("comments")[0];
+            const comment = document.createElement("div");
+            comment.className = "comment";
 
-                // 새로운 div 요소를 생성하고 "comment" 클래스를 추가합니다.
-                const comment = document.createElement("div");
-                comment.className = "comment";
+            const name = document.getElementById("nameInput").value;
+            const content = document.getElementById("contentInput").value;
 
-                // 새로운 "comments" 클래스를 가진 div 요소를 생성합니다.
-                const newComments = document.createElement("div");
-                newComments.className = "comments";
+            const departmentElements = document.getElementsByName("department");
+            let selectedDepartment;
+            for (let i = 0; i < departmentElements.length; i++) {
+                if (departmentElements[i].checked) {
+                    selectedDepartment = departmentElements[i].value;
+                    break;
+                }
+            }
 
-                // 입력된 이름과 내용을 가져옵니다.
-                const name = document.getElementById("nameInput").value;
-                const content = document.getElementById("contentInput").value;
+            const imageSrc = getImageForDepartment(selectedDepartment);
+            const imgElement = document.createElement("img");
+            imgElement.src = imageSrc;
+            imgElement.className = "profile-image";
 
-                // 현재 날짜와 시간을 가져옵니다.
-                const now = new Date();
-                const month = String(now.getMonth() + 1).padStart(2, '0');
-                const day = String(now.getDate()).padStart(2, '0');
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const dateTime = `${month}.${day}.${hours}:${minutes}`;
-                dateTime.className = "date";
+            const now = new Date();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const dateTime = `${month}.${day}.${hours}:${minutes}`;
 
-                // 이름, 내용, 날짜와 시간을 새로운 comment div에 추가합니다.
-                const nameElement = document.createElement("p");
-                nameElement.className = name;
-                nameElement.textContent = name;
-                nameElement.style.fontSize = "40px"
+            const nameElement = document.createElement("p");
+            nameElement.className = "name";
+            nameElement.textContent = name;
 
-                const contentElement = document.createElement("p");
-                contentElement.className = content;
-                contentElement.textContent = content;
-                contentElement.style.fontSize = "36px";
+            const dateTimeElement = document.createElement("p");
+            dateTimeElement.className = "dateTime";
+            dateTimeElement.textContent = dateTime;
 
-                
+            const contentElement = document.createElement("p");
+            contentElement.className = "content";
+            contentElement.textContent = content;
 
-                const dateTimeElement = document.createElement("p");
-                dateTimeElement.textContent = dateTime;
-                dateTimeElement.style.fontSize = "30px";
-                dateTimeElement.style.color = "#9c9c9c";
+            const detailsDiv = document.createElement("div");
+            detailsDiv.className = "details";
+            detailsDiv.appendChild(nameElement);
+            detailsDiv.appendChild(dateTimeElement);
 
+            const plusImgDiv = document.createElement("div");
+            plusImgDiv.className = "plusImgDiv";
+            plusImgDiv.appendChild(imgElement);
+            plusImgDiv.appendChild(detailsDiv);
 
-                comment.appendChild(nameElement);
-                comment.appendChild(dateTimeElement);
-                comment.appendChild(contentElement);
+            comment.appendChild(plusImgDiv);
+            comment.appendChild(contentElement);
 
-                // 새로운 "comments" div를 "comment" div 안에 추가합니다.
-                comment.appendChild(newComments);
+            comments.appendChild(comment);
 
-                // "comment" div를 기존 "comments" 요소 안에 추가합니다.
-                comments.appendChild(comment);
-
-                // 입력 필드를 초기화합니다.
-                document.getElementById("nameInput").value = "";
-                document.getElementById("contentInput").value = "";
+            document.getElementById("nameInput").value = "";
+            document.getElementById("contentInput").value = "";
         }
 
     </script>
 
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
 
-    <footer style="padding: 20px 0;">
+    <footer style="padding: 20px 0; background-color: none;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
             <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
             <div class="footer-info" style="flex: 1; min-width: 250px; padding: 10px;">
                 <div class="footer-top" style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 13px;">
-                    <h3>개인정보보호방침</h3>|<h3>학교정보공개</h3>|<h3>배너모음</h3>
+                    <h3 style="margin: 0;">개인정보보호방침</h3>|<h3 style="margin: 0;">학교정보공개</h3>|<h3 style="margin: 0;">배너모음</h3>
                 </div>
-                <p style="font-size: 14px; margin-bottom: 8px; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
-                <div class="footer-middle" style="display: flex; gap: 5px; font-size: 14px; margin-bottom: 16px; color: #565555;">
-                    <p><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p>|<p><strong>개발채용</strong> 070-5099-8306</p>|<p><strong>디자인채용</strong> 070-5099-8315</p>|<p><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p>|<p><strong>행정실</strong>  02-886-1812(Fax 02-878-2188</p>
-                </div>
+                <p style="font-size: 14px; margin-bottom: 8px; margin-top: 0; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                <div class="footer-middle" style="display: flex; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                    <p style="margin: 0;"><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>개발채용</strong> 070-5099-8306</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>디자인채용</strong> 070-5099-8315</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>행정실</strong>  02-886-1812(Fax 02-878-2188)</p>
+                </div>                
                 <div class="footer-bottom" style="display: flex; gap: 15px; font-weight: bold; font-size: 15px; color: #565555;">
-                    <p>546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
-                    <p>MIRIM MEISTER SCHOOL</p>
+                    <p style="margin: 0;">546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                    <p style="margin: 0;">MIRIM MEISTER SCHOOL</p>
                 </div>
             </div>
         </div>
