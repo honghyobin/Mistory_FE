@@ -49,33 +49,38 @@
             let id = document.getElementById("id").value;
             let password = document.getElementById("password").value;
             const loginContainer = document.getElementsByClassName("login")[0];
-            
-            if (id === "MIRIM2024" && password === "Who_am_i_?") {
 
+            // 기존 메시지와 힌트 버튼 제거
+            const existingMessageContainer = document.getElementById("message-container");
+            if (existingMessageContainer) {
+                existingMessageContainer.remove();
+            }
+
+            if (id === "MIRIM2024" && password === "Who_am_i_?") {
                 alert("로그인 성공!");
                 location.href = "http://127.0.0.1:5501/Mistory/ranking.html";
-    
             } else {
                 // 아이디와 비밀번호가 틀릴 시 나오는 문구
                 const fail = document.createElement("p");
-                fail.id = "fail-message"; // 나중에 쉽게 찾기 위해 ID 추가
+                fail.id = "fail-message";
                 fail.innerHTML = `아이디 또는 비밀번호를 잘못 입력했습니다. <br/> 입력하신 내용을 다시 확인해주세요.`;
                 fail.style.color = "red";
                 fail.style.fontSize = "17px";
                 fail.style.marginRight = "10px"; // 버튼과 약간의 간격 추가
 
                 const hintBtn = document.createElement("button");
-                hintBtn.id = "hint-button"; // ID 추가
+                hintBtn.id = "hint-button";
                 hintBtn.innerHTML = "힌트 찾으러가기";
                 hintBtn.style.width = "160px";
                 hintBtn.style.height = "50px";
                 hintBtn.style.backgroundColor = "#fff";
-                hintBtn.style.fontSize = "17px"
+                hintBtn.style.fontSize = "17px";
 
                 const loginBtn = document.getElementsByClassName("loginBtn")[0];
 
                 // 새로운 div 생성해서 p 태그와 버튼을 담음
                 const messageContainer = document.createElement("div");
+                messageContainer.id = "message-container";
                 messageContainer.style.display = "flex";
                 messageContainer.style.alignItems = "center";
                 messageContainer.style.justifyContent = "space-between";
