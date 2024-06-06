@@ -14,17 +14,19 @@
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:40px">
+            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
             <nav_menu>
                 <ul class="nav_list">
-                    <li><a href="#">학교소개</a></li>
+                    <li><a href="index.html">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
-                    <li><a href="schoolLife.html" style="color: #028156;">학교생활</a></li>
+                    <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
                     <li><a href="schoolQ&A.html">입학상담 Q&amp;A</a></li>
                     <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
-            <i class="bi bi-list"></i>
+            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+            <!-- <i class="bi bi-moon-fill"></i> -->
+            <i class="bi bi-box-arrow-in-right"></i>
         </div>
     </header>
 
@@ -101,7 +103,7 @@
     </div>
         
     <script>
-        // 학사일정에서 다른 곳을 호버하면 학사일정의 색이 없어짐
+        // 미림갤러리에서 다른 곳을 호버하면 학사일정의 색이 없어짐
         const subHeaderTitles = document.querySelectorAll('.sub-header-title');
         const defaultActiveTitle = document.querySelector('.sub-header-title.on');
 
