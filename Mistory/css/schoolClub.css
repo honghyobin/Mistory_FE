@@ -30,8 +30,8 @@ body, html {
     top: 710px;
     z-index: 6;
     left: 50%;
+    padding-left: 0;
     transform: translateX(-50%);
-    margin-left: -16px;
 }
 
 .sub-header a {
