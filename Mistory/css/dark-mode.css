@@ -54,6 +54,18 @@
         color: #fff;
     }
 
+    body.dark-mode .registrationDiv p{
+        color: #000;
+    }
+
+    body.dark-mode .comment p {
+        color: #000;
+    }
+
+    body.dark-mode .login p{
+        color: #000;
+    }
+
     body.dark-mode footer *{
         /* background-color: #000; */
         color: #fff;

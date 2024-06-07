@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/Mistory/css/all.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
     <link rel="stylesheet" href="/Mistory/css/dark-mode.css">
     <link rel="stylesheet" href="/Mistory/css/login.css">
@@ -16,12 +17,7 @@
         <div class="header_bottom" style="height:70px;">
             <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
             <nav_menu>
-                <ul class="nav_list">
-                    <li><a href="index.html" style="color: #008156;">학교소개</a></li>
-                    <li><a href="department.html">학과소개</a></li>
-                    <li><a href="schoolLife.html">학교생활</a></li>
-                    <li><a href="#">입학상담 Q&amp;A</a></li>
-                </ul>
+                
             </nav_menu>
             <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
             <!-- <i class="bi bi-moon-fill"></i> -->
@@ -53,33 +49,38 @@
             let id = document.getElementById("id").value;
             let password = document.getElementById("password").value;
             const loginContainer = document.getElementsByClassName("login")[0];
-            
-            if (id === "MIRIM2024" && password === "Who_am_i_?") {
 
+            // 기존 메시지와 힌트 버튼 제거
+            const existingMessageContainer = document.getElementById("message-container");
+            if (existingMessageContainer) {
+                existingMessageContainer.remove();
+            }
+
+            if (id === "MIRIM2024" && password === "Who_am_i_?") {
                 alert("로그인 성공!");
                 location.href = "http://127.0.0.1:5501/Mistory/ranking.html";
-    
             } else {
                 // 아이디와 비밀번호가 틀릴 시 나오는 문구
                 const fail = document.createElement("p");
-                fail.id = "fail-message"; // 나중에 쉽게 찾기 위해 ID 추가
+                fail.id = "fail-message";
                 fail.innerHTML = `아이디 또는 비밀번호를 잘못 입력했습니다. <br/> 입력하신 내용을 다시 확인해주세요.`;
                 fail.style.color = "red";
                 fail.style.fontSize = "17px";
                 fail.style.marginRight = "10px"; // 버튼과 약간의 간격 추가
 
                 const hintBtn = document.createElement("button");
-                hintBtn.id = "hint-button"; // ID 추가
+                hintBtn.id = "hint-button";
                 hintBtn.innerHTML = "힌트 찾으러가기";
                 hintBtn.style.width = "160px";
                 hintBtn.style.height = "50px";
                 hintBtn.style.backgroundColor = "#fff";
-                hintBtn.style.fontSize = "17px"
+                hintBtn.style.fontSize = "17px";
 
                 const loginBtn = document.getElementsByClassName("loginBtn")[0];
 
                 // 새로운 div 생성해서 p 태그와 버튼을 담음
                 const messageContainer = document.createElement("div");
+                messageContainer.id = "message-container";
                 messageContainer.style.display = "flex";
                 messageContainer.style.alignItems = "center";
                 messageContainer.style.justifyContent = "space-between";
@@ -103,20 +104,20 @@
 
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
 
-    <footer style="padding: 20px 0;">
+    <footer style="padding: 20px 0; background-color: none;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
             <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
             <div class="footer-info" style="flex: 1; min-width: 250px; padding: 10px;">
                 <div class="footer-top" style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 13px;">
-                    <h3>개인정보보호방침</h3>|<h3>학교정보공개</h3>|<h3>배너모음</h3>
+                    <h3 style="margin: 0;">개인정보보호방침</h3>|<h3 style="margin: 0;">학교정보공개</h3>|<h3 style="margin: 0;">배너모음</h3>
                 </div>
-                <p style="font-size: 14px; margin-bottom: 8px; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
-                <div class="footer-middle" style="display: flex; gap: 5px; font-size: 14px; margin-bottom: 16px; color: #565555;">
-                    <p><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p>|<p><strong>개발채용</strong> 070-5099-8306</p>|<p><strong>디자인채용</strong> 070-5099-8315</p>|<p><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p>|<p><strong>행정실</strong>  02-886-1812(Fax 02-878-2188</p>
-                </div>
+                <p style="font-size: 14px; margin-bottom: 8px; margin-top: 0; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                <div class="footer-middle" style="display: flex; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                    <p style="margin: 0;"><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>개발채용</strong> 070-5099-8306</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>디자인채용</strong> 070-5099-8315</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>행정실</strong>  02-886-1812(Fax 02-878-2188)</p>
+                </div>                
                 <div class="footer-bottom" style="display: flex; gap: 15px; font-weight: bold; font-size: 15px; color: #565555;">
-                    <p>546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
-                    <p>MIRIM MEISTER SCHOOL</p>
+                    <p style="margin: 0;">546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                    <p style="margin: 0;">MIRIM MEISTER SCHOOL</p>
                 </div>
             </div>
         </div>
