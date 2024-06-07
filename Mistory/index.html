@@ -123,7 +123,12 @@
                 </div>
             </div>
         </div>
+        <div class="slide_item">
+            학사일정
+        </div>
     </div>
+    <button class="previous_button2"><i class="bi bi-chevron-left"></i></button>
+    <button class="next_button2"><i class="bi bi-chevron-right"></i></button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -178,15 +183,23 @@
             // 첫 번째 슬라이드 이전/다음 버튼
             $('.previous_button').click(function() {
                 $('.slide_container').slick('slickPrev');
-                $('.slide_container2').slick('slickPrev');
                 showTemporaryImage();
             });
 
             $('.next_button').click(function() {
                 $('.slide_container').slick('slickNext');
-                $('.slide_container2').slick('slickNext');
                 showTemporaryImage();
             });
+            
+            // 두 번째 슬라이드 이전/다음 버튼
+            $('.previous_button2').click(function() {
+                $('.slide_container2').slick('slickPrev');
+            });
+
+            $('.next_button2').click(function() {
+                $('.slide_container2').slick('slickNext');
+            });
+
         });
     </script>
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
