@@ -22,12 +22,13 @@
                     <li><a href="index.html">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
-                    <li><a href="#">입학상담 Q&A</a></li>
+                    <li><a href="schoolQ&A.html">입학상담 Q&amp;A</a></li>
                     <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
             <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
             <!-- <i class="bi bi-moon-fill"></i> -->
+            <i class="bi bi-box-arrow-in-right"></i>
             <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
         </div>
     </header>
@@ -106,12 +107,13 @@
         
     <script src="/Mistory/js/dark-mood.js"></script>
     <script>
-
+        
         $(function(){
             $('html').removeClass('no-js');
         });
         
-        // 학사일정에서 다른 곳을 호버하면 학사일정의 색이 없어짐
+        
+        // 미림갤러리에서 다른 곳을 호버하면 학사일정의 색이 없어짐
         const subHeaderTitles = document.querySelectorAll('.sub-header-title');
         const defaultActiveTitle = document.querySelector('.sub-header-title.on');
 
