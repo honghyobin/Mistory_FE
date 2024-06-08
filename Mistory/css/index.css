@@ -303,3 +303,10 @@ margin-right: 28px;
   width: 100%;
   height: 100%;
 }
+
+.customoverlay{
+  width: 100px;
+  margin-bottom: 60px;
+  text-align: center;
+  color: rgba(0,0,0,0.4);
+}
