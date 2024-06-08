@@ -23,6 +23,7 @@
     position: absolute;
     top: 710px;
     z-index: 6;
+    padding-left: 0;
     left: 50%;
     transform: translateX(-50%);
 }

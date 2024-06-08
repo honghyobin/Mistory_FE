@@ -13,6 +13,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <title>미스토리</title>
 </head>
+<style>
+    .clubSlide2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .clubSlide2 .slide {
+        margin: 0;
+        margin-top: 20px;
+        height: 538px !important;
+        flex-basis: calc(33.33% - 10px);
+        font-size: 28px;
+    }
+
+    .clubSlide2 img {
+        margin: 10px;
+        
+    }
+    /* 슬라이드 내용을 중앙에 정렬 */
+    .clubSlide2 .slide .clubContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 30px;
+    }
+    .clubSlide2 .back {
+        margin-top: 50px;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+
+</style>
+
+
 <body>
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
@@ -198,15 +234,158 @@
         </div>
     </div>
 
-    <div class="clubSlide2" style="background-color: aqua; width: 1320px; height: 700px; text-align: center; margin-top: 160px;">
-        aaaaaaaaaaaaaaa
+    <div class="clubSlide2" style="width: 1320px; text-align: center; margin-top: 140px; margin-bottom: 120px; display: none;">
+        <div class="slide">
+            <div class="front" style="text-align: center;">
+                <div class="clubContainer">    
+                    <div class="clubName">도서반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/book class.png" alt="" style="margin-top:63px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">도서반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>교내 행사 방송 관련 업무 <br>진행을 주로 하며, 음악 방송, <br>토크쇼 등 방송콘텐츠를 <br>기획하고 운영하는 동아리</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">1인크리에이터반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/creator class.png" alt="" style="margin-top:63px; margin-left: 30px;">
+                </div>
+            </div>  
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">1인크리에이터반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>1인 크리에이터(유튜버) <br> 창작물을 같이 감상하고 <br>분석하는 동아리</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">?</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/question.png" alt="" style="margin-top:25px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">?</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>???_??_?_?</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">라이브뮤직반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/live class.png" alt="" style="margin-top:51px; margin-left: 10px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">라이브뮤직반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>노래 부르는 것을 좋아하는 <br>사람들의 동아리</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">창작공방반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/creative class.png" alt="" style="margin-top:98px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">창작공방반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>제과제빵, 요리, 수공예 등 <br>무엇이든 내 손으로 만드는 <br>창작동아리</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">배드민턴반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/badminton class.png" alt="" style="margin-top:38px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">배드민턴반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>생활체육으로서 배드민턴 <br>운동의 즐거움과 건강의 <br>소중함을 직접 체험하는 동아리</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">3D 아트워크반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/3D class.png" alt="" style="margin-top:63px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">3D 아트워크반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>3D 프로그램으로 아트워크를 <br>제작하는 동아리 공모전에 <br>참가하고, 그동안 제작한 <br>아트워크를 굿즈로 제작하여 <br>동아리 발표회에 선보임</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">영화감상반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/movie class.png" alt="" style="margin-top:77px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">영화감상반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>다양한 영화를 감상하며 여러 <br>문화를 간접 체험하고 다양한 <br>시점으로 상황에 대해 생각할 <br>수 있는 시간을 가지는 동아리</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="front">
+                <div class="clubContainer">    
+                    <div class="clubName">방송반</div>
+                    <img src="./img/club/Rectangle 132.png" alt="">
+                    <img src="./img/club/broadcast class.png" alt="" style="margin-top:108px;">
+                </div>
+            </div>
+            <div class="back">
+                <div class="clubContainer">    
+                    <div class="clubName">방송반</div>
+                    <img src="./img/club/Rectangle 77.png" alt="">
+                    <p>교내 행사 방송 관련 업무 <br>진행을 주로 하며, 음악 방송, <br>토크쇼 등 방송콘텐츠를 <br>기획하고 운영하는 동아리</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/Mistory/js/dark-mood.js"></script>
     <script>
-     //학사일정에서 다른곳을 호버하면 학사일정의 색이 없어짐
+     //동아리활동에서 다른곳을 호버하면 학사일정의 색이 없어짐
      const subHeaderTitles = document.querySelectorAll('.sub-header-title');
         const defaultActiveTitle = document.querySelector('.sub-header-title.on');
 
@@ -293,6 +472,13 @@
         $('.clubSlide').show();
         // clubSlide2 숨기기
         $('.clubSlide2').hide();
+        });
+    });
+    $(document).ready(function(){
+    // 클럽 슬라이드 2 내의 각 슬라이드에 대한 클릭 이벤트 처리
+    $('.clubSlide2 .slide').click(function() {
+        // 클릭된 슬라이드 내의 front와 back 클래스를 토글하여 전환
+        $(this).find('.front, .back').toggleClass('front back');
     });
 });
 
@@ -301,7 +487,7 @@
     });
     </script>
 
-    <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
+    <hr style="color:#BBBBBB; margin: 0px auto; width: 1320px;">
 
     <footer style="padding: 20px 0; background-color: none;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">

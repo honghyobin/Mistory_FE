@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+.Container {
+    width: 1320px;
+    height: 1000px;
+    margin: 350px auto 300px auto;
+}
+
+.Container_top {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.section_1,
+.section_2,
+.section_3 {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.section_1 {
+    width: 762px;
+    height: 538px;
+}
+
+.section_2 {
+    width: 538px;
+    height: 538px;
+    padding-right: 40px;
+}
+
+.section_1,
+.section_2,
+.section_3 {
+    transition: width 0.3s, height 0.3s;
+}
+
+.section_3>.QPart,
+.section_3>.APart {
+    padding: 60px 0 30px 40px !important;
+    transition: padding 0.3s ease;
+}
+
+.Container_bottom {
+    display: flex;
+    gap: 20px;
+}
+
+.Container_bottom .section_3 {
+    width: 426px;
+    height: 363px;
+    margin-top: 60px;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.QPart,
+.APart {
+    display: flex;
+    align-items: baseline;
+    padding: 63px 0 0 90px;
+}
+
+.Q,
+.A {
+    font-size: 60px;
+}
+
+.QTitle,
+.ATitle {
+    font-size: 32px;
+    margin-left: 46px;
+}
+
+.section_1>.ditailQ,
+.section_2>.ditailQ {
+    margin-left: 181px;
+    margin-top: 47px;
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.A {
+    margin-top: 70px;
+}
+
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    padding-left: 0;
+    transform: translateX(-50%);
+    width: 1000px;
+    margin-top: 180px;
+}
+
+.category a {
+    margin: 0;
+    text-decoration: none;
+}
+
+.category-title {
+    width: 343.5px;
+    height: 63px;
+    padding: 10px;
+    font-size: 28px;
+    text-align: center;
+    background-color: #fff;
+    color: #8E8E8E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-title:hover {
+    background-color: #028156;
+    color: #fff;
+}
+
+.on {
+    background-color: #028156;
+    color: #fff;
+}
+
+.section_3>.QPart>.QTitle,
+.section_3>.APart>.ATitle {
+    font-size: 27px;
+    margin-left: 24px;
+    padding-right: 20px;
+}
+
+.section_3>.ditailQ {
+    padding-left: 110px !important;
+    font-style: 22px;
+    padding-right: 40px;
+    opacity: 0.6;
+}
+
+.section_3>.QPart>.Q,
+.section_3>.APart>.A {
+    font-size: 50px;
+}
+
+.QPart>.QTitle,
+.APart>.ATitle {
+    margin-left: 26px;
+}
+
+.section_3 .APart {
+    display: none;
+    position: relative; /* 변경: absolute에서 relative로 */
+    top: -79px; /* 변경: 초기에 위에 숨겨둠 */
+    transition: top 0.9s ease; /* 추가: 부드러운 애니메이션 효과 */
+}
+
+.section_3:hover .APart {
+    display: flex;
+    top: 0; /* 추가: 호버 시 내려오도록 설정 */
+}
+
+
+.section_3:hover {
+    width: 426px;
+    height: 606px;
+}

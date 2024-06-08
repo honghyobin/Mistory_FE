@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Mistory/css/schoolQ&A.css">
+    <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>미스토리</title>
+</head>
+<body>
+    <header>
+        <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
+        <div class="header_bottom" style="height:70px;">
+            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <nav_menu>
+                <ul class="nav_list">
+                    <li><a href="index.html" style="color: #008156;">학교소개</a></li>
+                    <li><a href="department.html">학과소개</a></li>
+                    <li><a href="schoolLife.html">학교생활</a></li>
+                    <li><a href="schoolQ&A.html">미림 Q&A</a></li>
+                    <li><a href="#">방명록</a></li>
+                </ul>
+            </nav_menu>
+            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+            <!-- <i class="bi bi-moon-fill"></i> -->
+            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+        </div>
+    </header>
+
+    <ul class="category">
+        <li class="category-title on"><p>학교생활</p></li>
+        <li class="category-title"><p>입시 설명회</p></li>
+        <li class="category-title"><p>취업</p></li>
+        <li class="category-title"><p>기숙사</p></li>
+    </ul>
+
+    <div class="Container">
+        <div class="Container_top">
+            <div id="section_1" class="section_1">
+                <div class="QPart">
+                    <p class="Q">Q</p><p class="QTitle">입학 전형으로는 무것이 있나요?</p>
+                </div>
+                <p class="ditailQ">aaaaa</p>
+                <div class="APart">
+                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
+                </div>
+            </div>
+            <div id="section_2" class="section_2">
+                <div class="QPart" style="padding-left: 40px;">
+                    <p class="Q">Q</p><p class="QTitle">성적 많이 보나요?</p>
+                </div>
+                <p class="ditailQ">aaaaa</p>
+                <div class="APart" style="padding-left: 40px;">
+                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Container_bottom">
+            <div class="section_3">
+                <div class="QPart">
+                    <p class="Q">Q</p><p class="QTitle">특별전형</p>
+                </div>
+                <p class="ditailQ">무슨 자격증을 따면 특별전형으로 입학이 가능하다고 들었는데요, 정확히 어떤 자격증 인가요??</p>
+                <div class="APart">
+                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
+                </div>
+    
+            </div>
+            <div class="section_3">
+                <div class="QPart">
+                    <p class="Q">Q</p><p class="QTitle">특별전형</p>
+                </div>
+                <p class="ditailQ">무슨 자격증을 따면 특별전형으로 입학이 가능하다고 들었는데요, 정확히 어떤 자격증 인가요??</p>
+                <div class="APart">
+                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
+                </div>
+    
+            </div>
+            <div class="section_3">
+                <div class="QPart">
+                    <p class="Q">Q</p><p class="QTitle">특별전형</p>
+                </div>
+                <p class="ditailQ">무슨 자격증을 따면 특별전형으로 입학이 가능하다고 들었는데요, 정확히 어떤 자격증 인가요??</p>
+                <div class="APart">
+                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 카테고리에서 다른 곳을 호버하면 학사일정의 색이 없어짐
+        const categoryTitles = document.querySelectorAll('.category-title');
+        const defaultActiveTitle = document.querySelector('.category-title.on');
+
+        categoryTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                categoryTitles.forEach(t => t.classList.remove('on'));
+                title.classList.add('on');
+            });
+        });
+
+        const section1 = document.querySelector('.section_1');
+        const section2 = document.querySelector('.section_2');
+
+        section1.addEventListener('mouseover', () => {
+            section1.style.width = '864px';
+            section1.style.height = '596px';
+            section2.style.width
+            section2.style.height = '596px';
+        });
+
+        section1.addEventListener('mouseout', () => {
+            section1.style.width = '762px';
+            section1.style.height = '538px';
+            section2.style.width = '538px';
+            section2.style.height = '538px';
+        });
+
+        section2.addEventListener('mouseover', () => {
+            section2.style.width = '609px';
+            section2.style.height = '596px';
+            section1.style.width = '690px';
+            section1.style.height = '596px';
+        });
+
+        section2.addEventListener('mouseout', () => {
+            section2.style.width = '538px';
+            section2.style.height = '538px';
+            section1.style.width = '762px';
+            section1.style.height = '538px';
+        });  
+    </script>
+
+    <hr style="color:#BBBBBB; margin: 0 auto ; width: 1320px;"> <!--margin-top: 50-->
+    <footer style="padding: 20px 0; background-color: #f9f9f9;">
+        <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+                <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
+                <div class="footer-info" style="flex: 1; min-width: 250px; padding: 10px;">
+                    <div class="footer-top" style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 13px;">
+                        <h3 style="margin: 0;">개인정보보호방침</h3>|<h3 style="margin: 0;">학교정보공개</h3>|<h3 style="margin: 0;">배너모음</h3>
+                    </div>
+                    <p style="font-size: 14px; margin-bottom: 8px; margin-top: 0; color: #565555;">(08821) 서울시 관악구 호암로 546 (신림동)</p>
+                    <div class="footer-middle" style="display: flex; font-size: 14px; margin-bottom: 16px; color: #565555;">
+                        <p style="margin: 0;"><strong>교무실</strong> 02-872-4071 (Fax 02-887-0856)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>개발채용</strong> 070-5099-8306</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>디자인채용</strong> 070-5099-8315</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>취업지원부</strong> 02-888-8350(Fax 02-875-2092)</p><span style="margin-left: 5px; margin-right: 5px;">|</span><p style="margin: 0;"><strong>행정실</strong>  02-886-1812(Fax 02-878-2188)</p>
+                    </div>                
+                    <div class="footer-bottom" style="display: flex; gap: 15px; font-weight: bold; font-size: 15px; color: #565555;">
+                        <p style="margin: 0;">546Hoam-ro,Gwank-gu, Seoul,08821 Korea</p>
+                        <p style="margin: 0;">MIRIM MEISTER SCHOOL</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+    </html>

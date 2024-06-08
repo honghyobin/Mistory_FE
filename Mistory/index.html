@@ -48,7 +48,7 @@
                     <li><a href="index.html" style="color: #008156;">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
-                    <li><a href="#">입학상담 Q&A</a></li>
+                    <li><a href="schoolQ&A.html">입학상담 Q&A</a></li>
                    <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
@@ -130,6 +130,8 @@
             <div id="map" style="width:100%;height:850px"></div>
         </div>
     </div>
+    <button class="previous_button2"><i class="bi bi-chevron-left"></i></button>
+    <button class="next_button2"><i class="bi bi-chevron-right"></i></button>
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20da09bdcb3b3b63cda9948b4166b0a4"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -198,6 +200,7 @@
                 isOverlayVisible = !isOverlayVisible;
             });
 
+<<<<<<< HEAD
         // 다른 스크립트 초기화
         $('.slide_container').slick({
             dots: true,
@@ -206,6 +209,28 @@
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1
+=======
+            // 첫 번째 슬라이드 이전/다음 버튼
+            $('.previous_button').click(function() {
+                $('.slide_container').slick('slickPrev');
+                showTemporaryImage();
+            });
+
+            $('.next_button').click(function() {
+                $('.slide_container').slick('slickNext');
+                showTemporaryImage();
+            });
+            
+            // 두 번째 슬라이드 이전/다음 버튼
+            $('.previous_button2').click(function() {
+                $('.slide_container2').slick('slickPrev');
+            });
+
+            $('.next_button2').click(function() {
+                $('.slide_container2').slick('slickNext');
+            });
+
+>>>>>>> a2249b11ab340c0be49a0911be8451b68b86ac2a
         });
 
         $('.slide_container2').slick({
