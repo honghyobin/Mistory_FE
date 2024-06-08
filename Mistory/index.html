@@ -200,16 +200,46 @@
                 isOverlayVisible = !isOverlayVisible;
             });
 
-<<<<<<< HEAD
-        // 다른 스크립트 초기화
-        $('.slide_container').slick({
-            dots: true,
-            arrows: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-=======
+            $('.slide_container').slick({
+                dots: true,
+                arrows: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+
+            $('.slide_container2').slick({
+                dots: true,
+                arrows: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+
+            function showTemporaryImage() {
+                var currentSlide = $('.slide_container').slick('slickCurrentSlide');
+                if (currentSlide === 1) { // 두 번째 슬라이드일 때
+                    setTimeout(function() {
+                        $('#temporary_image').fadeIn(10, function() {
+                            setTimeout(function() {
+                                $('#temporary_image').fadeOut(50);
+                            }, 500); // 1초 후 이미지 숨기기
+                        });
+                    }, 2000); // 2초 후 이미지 표시
+                }
+            }
+
+            function resetTemporaryImage() {
+                $('#temporary_image').hide();
+            }
+
+            // 슬라이드 변경 시 호출되는 이벤트 핸들러
+            $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+                resetTemporaryImage();
+            });
+
             // 첫 번째 슬라이드 이전/다음 버튼
             $('.previous_button').click(function() {
                 $('.slide_container').slick('slickPrev');
@@ -230,53 +260,6 @@
                 $('.slide_container2').slick('slickNext');
             });
 
->>>>>>> a2249b11ab340c0be49a0911be8451b68b86ac2a
-        });
-
-        $('.slide_container2').slick({
-            dots: true,
-            arrows: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        });
-
-        // 슬라이드 이미지 표시 관련 코드
-        function showTemporaryImage() {
-            var currentSlide = $('.slide_container').slick('slickCurrentSlide');
-            if (currentSlide === 1) { // 두 번째 슬라이드일 때
-                setTimeout(function() {
-                    $('#temporary_image').fadeIn(10, function() {
-                        setTimeout(function() {
-                            $('#temporary_image').fadeOut(50);
-                        }, 500); // 1초 후 이미지 숨기기
-                    });
-                }, 2000); // 2초 후 이미지 표시
-            }
-        }
-
-        function resetTemporaryImage() {
-            $('#temporary_image').hide();
-        }
-
-        // 슬라이드 변경 시 호출되는 이벤트 핸들러
-        $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-            resetTemporaryImage();
-        });
-
-        // 첫 번째 슬라이드 이전/다음 버튼
-        $('.previous_button').click(function() {
-            $('.slide_container').slick('slickPrev');
-            $('.slide_container2').slick('slickPrev');
-            showTemporaryImage();
-        });
-
-        $('.next_button').click(function() {
-            $('.slide_container').slick('slickNext');
-            $('.slide_container2').slick('slickNext');
-            showTemporaryImage();
-        });
     });
     </script>
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
