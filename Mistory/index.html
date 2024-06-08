@@ -87,6 +87,8 @@
         
     </div>
 
+    
+
     <!-- 첫 번째 슬라이드의 이전/다음 버튼 -->
     <button class="previous_button"><i class="bi bi-chevron-left"></i></button>
     <button class="next_button"><i class="bi bi-chevron-right"></i></button>
@@ -123,13 +125,15 @@
                 </div>
             </div>
         </div>
-        <div class="slide_item">
-            학사일정
+        <div class="slide_item" style="background-color: #FAFAFA;">
+            <p style="text-align: center; font-size: 40px; margin: 0 0 10px 0;">오시는 길</p>
+            <div id="map" style="width:100%;height:850px"></div>
         </div>
     </div>
     <button class="previous_button2"><i class="bi bi-chevron-left"></i></button>
     <button class="next_button2"><i class="bi bi-chevron-right"></i></button>
 
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20da09bdcb3b3b63cda9948b4166b0a4"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/Mistory/js/dark-mood.js"></script>
@@ -140,46 +144,72 @@
         });
 
         $(document).ready(function(){
-            $('.slide_container').slick({
-                dots: true,
-                arrows: false,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                    center: new kakao.maps.LatLng(37.467, 126.9325), // 지도의 중심좌표
+                    level: 2 // 지도의 확대 레벨
+                };
+
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            var imageSrc = './img/marker.png', // 마커이미지의 주소    
+                imageSize = new kakao.maps.Size(290, 69), // 마커이미지의 크기
+                imageOption = {offset: new kakao.maps.Point(140, 69)}; // 마커의 좌표와 일치시킬 이미지 안에서의 좌표
+
+            // 마커의 이미지정보를 가지고 있는 마커이미지를 생성
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+                markerPosition = new kakao.maps.LatLng(37.46652, 126.93288); // 마커가 표시될 위치
+
+            // 마커를 생성
+            var marker = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage // 마커이미지 설정 
             });
 
-            $('.slide_container2').slick({
-                dots: true,
-                arrows: false,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1
+            // 마커가 지도 위에 표시되도록 설정
+            marker.setMap(map);  
+
+            // 커스텀 오버레이에 표출될 내용
+            var content = '<div class="customoverlay">' +
+                '    <span class="title">Who</span>' +
+                '</div>';
+
+            // 커스텀 오버레이가 표시될 위치
+            var position = new kakao.maps.LatLng(37.46652, 126.93288);  
+
+            // 커스텀 오버레이를 생성
+            var customOverlay = new kakao.maps.CustomOverlay({
+                position: position,
+                content: content,
+                yAnchor: 1 
             });
 
-            function showTemporaryImage() {
-                var currentSlide = $('.slide_container').slick('slickCurrentSlide');
-                if (currentSlide === 1) { // 두 번째 슬라이드일 때
-                    setTimeout(function() {
-                        $('#temporary_image').fadeIn(10, function() {
-                            setTimeout(function() {
-                                $('#temporary_image').fadeOut(50);
-                            }, 500); // 1초 후 이미지 숨기기
-                        });
-                    }, 2000); // 2초 후 이미지 표시
+            // 오버레이 초기 상태를 숨김으로 설정
+            customOverlay.setMap(null);
+
+            // 토글 상태를 저장할 변수
+            var isOverlayVisible = false;
+
+            // 마커 클릭 이벤트
+            kakao.maps.event.addListener(marker, 'click', function() {
+                if (isOverlayVisible) {
+                    customOverlay.setMap(null);
+                } else {
+                    customOverlay.setMap(map);
                 }
-            }
-
-            function resetTemporaryImage() {
-                $('#temporary_image').hide();
-            }
-
-            // 슬라이드 변경 시 호출되는 이벤트 핸들러
-            $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-                resetTemporaryImage();
+                isOverlayVisible = !isOverlayVisible;
             });
 
+<<<<<<< HEAD
+        // 다른 스크립트 초기화
+        $('.slide_container').slick({
+            dots: true,
+            arrows: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+=======
             // 첫 번째 슬라이드 이전/다음 버튼
             $('.previous_button').click(function() {
                 $('.slide_container').slick('slickPrev');
@@ -200,7 +230,54 @@
                 $('.slide_container2').slick('slickNext');
             });
 
+>>>>>>> a2249b11ab340c0be49a0911be8451b68b86ac2a
         });
+
+        $('.slide_container2').slick({
+            dots: true,
+            arrows: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+
+        // 슬라이드 이미지 표시 관련 코드
+        function showTemporaryImage() {
+            var currentSlide = $('.slide_container').slick('slickCurrentSlide');
+            if (currentSlide === 1) { // 두 번째 슬라이드일 때
+                setTimeout(function() {
+                    $('#temporary_image').fadeIn(10, function() {
+                        setTimeout(function() {
+                            $('#temporary_image').fadeOut(50);
+                        }, 500); // 1초 후 이미지 숨기기
+                    });
+                }, 2000); // 2초 후 이미지 표시
+            }
+        }
+
+        function resetTemporaryImage() {
+            $('#temporary_image').hide();
+        }
+
+        // 슬라이드 변경 시 호출되는 이벤트 핸들러
+        $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+            resetTemporaryImage();
+        });
+
+        // 첫 번째 슬라이드 이전/다음 버튼
+        $('.previous_button').click(function() {
+            $('.slide_container').slick('slickPrev');
+            $('.slide_container2').slick('slickPrev');
+            showTemporaryImage();
+        });
+
+        $('.next_button').click(function() {
+            $('.slide_container').slick('slickNext');
+            $('.slide_container2').slick('slickNext');
+            showTemporaryImage();
+        });
+    });
     </script>
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
 
