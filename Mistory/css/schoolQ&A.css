@@ -9,7 +9,7 @@ body {
 .Container {
     width: 1320px;
     height: 1000px;
-    margin: 450px auto 300px auto;
+    margin: 350px auto 300px auto;
 }
 
 .Container_top {
@@ -93,9 +93,7 @@ body {
 }
 
 .category {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
