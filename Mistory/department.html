@@ -24,10 +24,37 @@
             height: 821px; 
             width: 1320px;
         }
+
+
+a,
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#circle {
+  width: 300px; /* Initial size */
+  height: 300px; /* Initial size */
+  background: radial-gradient(circle at center, rgba(247, 202, 24, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
+  border-radius: 50%;
+  position: absolute;
+  mix-blend-mode: difference;
+  animation: pulse 10s ease-in-out infinite alternate,
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
     </style>
     <!-- 테스트 커밋 -->
 </head>
-<body>
+<body style="overflow-x: hidden">
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
@@ -49,7 +76,7 @@
 
     <div class="slide_container">
         <div class="slide_item">
-            <!-- 여긴 이미지 -->
+            <img src="./img/정원.jpg" alt="" style="width:1320px; height:651px">
         </div>
     </div>
 
@@ -135,40 +162,13 @@
                 </div>
             </div>
         </div>
-        
         <div id="circle"></div>
-    
-    
-
-    <script>
-        document.addEventListener('mousemove', function(e) {
-            var circle = document.getElementById('circle');
-            var circleWidth = circle.offsetWidth;
-            var circleHeight = circle.offsetHeight;
-            
-            var leftPosition = e.pageX - circleWidth / 2;
-            var topPosition = e.pageY - circleHeight / 2;
-
-            // 화면의 크기를 고려하여 서클이 화면 밖으로 나가지 않도록 제한
-            if (leftPosition < 0) {
-                leftPosition = 0;
-            } else if (leftPosition + circleWidth > window.innerWidth) {
-                leftPosition = window.innerWidth - circleWidth;
-            }
-
-            if (topPosition < 0) {
-                topPosition = 0;
-            } else if (topPosition + circleHeight > window.innerHeight) {
-                topPosition = window.innerHeight - circleHeight;
-            }
-
-            circle.style.left = leftPosition + 'px';
-            circle.style.top = topPosition + 'px';
-        });
-    </script>
+        
 
     <hr style="color:#BBBBBB; margin: 150px auto 0; width: 1320px;">
 
+        
+    
     <footer style="padding: 20px 0;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
             <img src="./img/footer_logo.png" alt="" style="width: 91px; height: 76px; margin-right: 20px;">
@@ -188,6 +188,13 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("mousemove", function (event) {
+        var circle = document.getElementById("circle");
+        circle.style.left = event.pageX - circle.offsetWidth / 2 + "px";
+        circle.style.top = event.pageY - circle.offsetHeight / 2 + "px";
+        });
+    </script>
     <script src="/Mistory/js/dark-mood.js"></script>
 </body>
 </html>
