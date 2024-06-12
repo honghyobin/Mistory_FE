@@ -26,31 +26,6 @@
         }
 
 
-a,
-a:visited {
-  color: black;
-  text-decoration: none;
-}
-
-#circle {
-  width: 300px; /* Initial size */
-  height: 300px; /* Initial size */
-  background: radial-gradient(circle at center, rgba(247, 202, 24, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
-  border-radius: 50%;
-  position: absolute;
-  mix-blend-mode: difference;
-  animation: pulse 10s ease-in-out infinite alternate,
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
     </style>
     <!-- 테스트 커밋 -->
 </head>
@@ -58,7 +33,9 @@ a:visited {
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <a href="index.html">
+                <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            </a>
             <nav_menu>
                 <ul class="nav_list">
                     <li><a href="index.html">학교소개</a></li>
@@ -68,9 +45,11 @@ a:visited {
                     <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
-            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-            <!-- <i class="bi bi-moon-fill"></i> -->
-            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            <div class="icon_nav">
+                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
+                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            </div>
         </div>
     </header>
 
@@ -188,13 +167,7 @@ a:visited {
         </div>
     </footer>
 
-    <script>
-        document.addEventListener("mousemove", function (event) {
-        var circle = document.getElementById("circle");
-        circle.style.left = event.pageX - circle.offsetWidth / 2 + "px";
-        circle.style.top = event.pageY - circle.offsetHeight / 2 + "px";
-        });
-    </script>
-    <script src="/Mistory/js/dark-mood.js"></script>
+
+    <script src="/Mistory/js/dark-mood department.js"></script>
 </body>
 </html>
