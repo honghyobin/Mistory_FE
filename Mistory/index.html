@@ -25,7 +25,7 @@
         }
 
         .slide_container .slide_item:nth-child(3) {
-            background-image: url('./img/slideBackground.png'); /* 두 번째 슬라이드 배경 이미지 */
+            background-image: url('./img/정원.jpg'); /* 두 번째 슬라이드 배경 이미지 */
         }
        
         .slide_container2 .slide_item:nth-child(2), .slide_container2 .slide_item:nth-child(3) {
@@ -42,19 +42,23 @@
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <a href="index.html" >
+                <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            </a>
             <nav_menu>
                 <ul class="nav_list">
-                    <li><a href="index.html" style="color: #008156;">학교소개</a></li>
+                    <li><a href="index.html"  style="color: #008156;">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
                     <li><a href="schoolQ&A.html">미림 Q&A</a></li>
-                   <li><a href="#">방명록</a></li>
+                    <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
-            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-            <!-- <i class="bi bi-moon-fill"></i> -->
-            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            <div class="icon_nav">
+                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
+                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a> 
+            </div>
         </div>
     </header>
 
@@ -223,9 +227,20 @@
                 if (currentSlide === 1) { // 두 번째 슬라이드일 때
                     setTimeout(function() {
                         $('#temporary_image').fadeIn(10, function() {
+                            // 오디오 파일 재생
+                            var audio = new Audio('/mp3/비명.mp3');
+                            audio.currentTime = 0.3; // 재생 시작 시간을 1초로 설정
+                            audio.play();
+                            // 오디오 파일을 변수에 저장
+                            $('#temporary_image').data('audio', audio);
+
                             setTimeout(function() {
-                                $('#temporary_image').fadeOut(50);
-                            }, 500); // 1초 후 이미지 숨기기
+                                $('#temporary_image').fadeOut(50, function() {
+                                    // 오디오 파일 중지
+                                    audio.pause();
+                                    audio.currentTime = 0; // 재생 위치를 처음으로 되돌림
+                                });
+                            }, 950); // 0.5초 후 이미지 숨기기
                         });
                     }, 2000); // 2초 후 이미지 표시
                 }
@@ -233,7 +248,15 @@
 
             function resetTemporaryImage() {
                 $('#temporary_image').hide();
+                // 오디오 파일 중지
+                var audio = $('#temporary_image').data('audio');
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0; // 재생 위치를 처음으로 되돌림
+                }
             }
+
+
 
             // 슬라이드 변경 시 호출되는 이벤트 핸들러
             $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
