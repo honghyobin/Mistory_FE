@@ -7,9 +7,7 @@
 }
 
 .slide_item {
-    width: 1320px;
-    height: 651px;
-    background-color: #8E8E8E;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +28,6 @@ p{
 .element {
     max-width: 1320px;
     height: 830px; 
-    /* background-color: #aaa; */
     margin: 70px 0;
     position: relative; 
     display: flex;
@@ -166,6 +163,7 @@ a:visited {
     mix-blend-mode: difference;
     pointer-events: none; /* 서클이 마우스 이벤트를 방해하지 않도록 함 */
     animation: pulse 10s ease-in-out infinite alternate;
+    display: none; /* Initially hidden */
 }
 
 @keyframes pulse {
@@ -178,6 +176,7 @@ a:visited {
         height: 330px;
     }
 }
+
 
 .elements {
     position: relative;

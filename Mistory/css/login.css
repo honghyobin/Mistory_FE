@@ -36,7 +36,8 @@
 }
 
 .login input {
-    width: 520px;
+    width: 500px;
+    padding-left: 20px;
     height: 75px;
     margin: 15px;
     font-size: 23px;
@@ -49,5 +50,5 @@
     color: #fff;
     background-color: #008156;
     border: 0;
-    /* margin-top: 20px; */
+    margin-top: 20px;
 }
