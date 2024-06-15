@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Mistory/css/all.css">
     <link rel="stylesheet" href="/Mistory/css/schoolLife.css">
+    <link rel="stylesheet" href="/Mistory/css/notepad.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
     <link rel="stylesheet" href="/Mistory/css/dark-mode.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
@@ -100,6 +101,14 @@
     </style>
 </head>
 <body>
+    <!-- 메모장 -->
+    <div id="memoContainer" class="memo-container">
+        <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
+        <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/notepad.js"></script>
+    <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">

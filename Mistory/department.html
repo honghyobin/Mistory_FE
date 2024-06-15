@@ -2,9 +2,10 @@
 <html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="wiph=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Mistory/css/all.css">
     <link rel="stylesheet" href="/Mistory/css/department.css">
+    <link rel="stylesheet" href="/Mistory/css/notepad.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
     <link rel="stylesheet" href="/Mistory/css/dark-mode.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
@@ -14,22 +15,55 @@
     <title>미스토리</title>
 
     <style>
-        .slide_item {
-            width: 1320px;
-            height: 651px;
-            background-color: gray;
-        }
-
         .slide_container2 .slide_item:nth-child(2),.slide_container2 .slide_item:nth-child(3) {
             height: 821px; 
             width: 1320px;
         }
+        #text {
+            display: grid;
+            gap: 4rem;
+            grid-template-columns: 1fr;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
 
+        .a,
+        .a:visited {
+            color: black;
+            text-decoration: none;
+        }
 
+        #fullscreen-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1890px;
+            height: 1062px;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #fullscreen-image img {
+            max-width: 1890px;
+            max-height: 1062px;
+        }
     </style>
     <!-- 테스트 커밋 -->
 </head>
 <body style="overflow-x: hidden">
+
+    <!-- 메모장 -->
+    <div id="memoContainer" class="memo-container">
+        <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
+        <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/notepad.js"></script>
+    <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
@@ -55,7 +89,7 @@
 
     <div class="slide_container">
         <div class="slide_item">
-            <img src="./img/정원.jpg" alt="" style="width:1320px; height:651px;">
+            <img src="./img/Frame 156.png" alt="" style="width:1320px; height:430x;">
         </div>
     </div>
 
@@ -87,6 +121,15 @@
                 </dl>
             </div>
         </div>
+        
+        <div id="text">
+            <div class="a"> 나 누구게??</div>
+        </div>
+
+        <div id="fullscreen-image">
+            <img src="./img/귀신.png" alt="">
+        </div>
+
         <div class="element">
             <div class="wepSolutionIntroduction" style="background-color: #F0C04C;">
                 <dl>
@@ -167,7 +210,46 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const textElement = document.getElementById("text");
+            const fullscreenImage = document.getElementById("fullscreen-image");
+            const audio = new Audio('/mp3//공포가 사라져 가는.mp3');
+        
+            // #text 클릭 이벤트 처리
+            textElement.addEventListener("click", function() {
+                fullscreenImage.style.display = "flex";
+                fullscreenImage.querySelector("img").src = "./img/귀신.png";
+        
+                // 오디오 재생을 위한 설정
+                audio.currentTime = 0;  // 오디오 시간을 처음으로 되돌림
+                audio.volume = 1;  
+                audio.play();
 
+                setTimeout(function() {
+                    const fadeOutDuration = 600; 
+                    const fadeOutInterval = 100; 
+                    const fadeOutSteps = fadeOutDuration / fadeOutInterval;
+                    let fadeOutStep = 0;
+        
+                    const fadeOut = setInterval(function() {
+                        fadeOutStep++;
+                        audio.volume = Math.max(0, 1 - (fadeOutStep / fadeOutSteps));
+                        if (audio.volume === 0) {
+                            clearInterval(fadeOut);
+                            audio.pause();
+                            audio.currentTime = 0;  // 오디오 시간을 처음으로 되돌림
+                        }
+                    }, fadeOutInterval);
+        
+                    fullscreenImage.style.display = "none";
+                }, 1000);
+            });
+        });
+    </script>
+    
+    
+    
     <script src="/Mistory/js/dark-mood department.js"></script>
 </body>
 </html>
