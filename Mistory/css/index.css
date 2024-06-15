@@ -128,18 +128,18 @@ margin-right: 28px;
 .lesson_S_button, .lesson_W_button, .lesson_D_button {
   display: inline-block;
   margin-top: 201px;
-  margin-left: -128px;
+  margin-left: -121px;
   width: 92px; height: 40px;
   background-color: #028156;
   color: #fff;
   border: none;
 }
 .lesson_W_button{
-  margin-left: -100px;
+  margin-left: -92px;
   background-color: #EFB11D;
 }
 .lesson_D_button{
-  margin-left: -87px;
+  margin-left: -80px;
   background-color: #E7477E;
 }
 
