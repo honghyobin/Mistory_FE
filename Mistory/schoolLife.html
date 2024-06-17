@@ -108,6 +108,10 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/notepad.js"></script>
+    <!-- 치지직 소리 -->
+    <audio id="glitchSound">
+        <source src="/mp3/치지직.mp3" type="audio/mpeg">
+    </audio>
     <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
@@ -196,6 +200,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/Mistory/js/dark-mood.js"></script>
+
+
+    <script>
+        $(function() {
+            const glitchElement = document.querySelector('.glitch');
+            const glitchSound = document.getElementById('glitchSound');
+
+            glitchSound.volume = 0.5;
+
+            glitchElement.addEventListener('mouseover', function() {
+                glitchElement.classList.add('hovered');
+                glitchSound.currentTime = 0; // Rewind to start (in case it's already playing)
+                glitchSound.play();
+            });
+
+            glitchElement.addEventListener('mouseout', function() {
+                glitchElement.classList.remove('hovered');
+                glitchSound.pause();
+            });
+        });
+
+    </script>
+    
 
     <script>
         //화면 로딩
@@ -296,10 +323,10 @@
 
         const glitchElement = document.querySelector('.glitch');
 
-glitchElement.addEventListener('mouseover', function handleHover() {
-    glitchElement.classList.add('hovered');
-    glitchElement.removeEventListener('mouseover', handleHover);
-});
+        glitchElement.addEventListener('mouseover', function handleHover() {
+            glitchElement.classList.add('hovered');
+            glitchElement.removeEventListener('mouseover', handleHover);
+        });
 
     </script>
     
