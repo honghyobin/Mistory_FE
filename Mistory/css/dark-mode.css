@@ -66,6 +66,10 @@
         color: #000;
     }
 
+    body.dark-mode .gb li{
+        color: #A4A4A4;
+    }
+
     body.dark-mode footer *{
         /* background-color: #000; */
         color: #fff;
