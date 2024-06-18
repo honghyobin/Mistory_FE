@@ -12,16 +12,21 @@
 </head>
 <body>
 
+    <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <a href="index.html">
+                <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            </a>
             <nav_menu>
                 
             </nav_menu>
-            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-            <!-- <i class="bi bi-moon-fill"></i> -->
-            <i class="bi bi-box-arrow-in-right"></i>
+            <div class="icon_nav">
+                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
+                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            </div>
         </div>
     </header>
 
@@ -33,100 +38,64 @@
     <div class="container">
         <div class="login">
             <div class="logoImg"><img src="img/logo.png"/></div>
-            <p class="message">발견한 단어를 조합해서 <br/> 로그인 해주세요</p>
-            <form action="http://localhost:8080/login" method="POST">
-                <input type="text" name="username" placeholder="아이디" id="username"/>
-                <input type="password" name="password" placeholder="비밀번호" id="password" />
-                <button type="submit" class="loginBtn">로그인</button>
+            <p class="message">발견한 단어를 조합하여 <br/> 로그인 해주세요</p>
+            <form action="http://43.203.128.248:3000/login" method="POST">
+                <input type="text" value="" placeholder="아이디" id="username" name="username"/>
+                <input type="password" value="" placeholder="비밀번호" id="password" name="password"/>
+                <button id="loginForm" class="loginBtn" type="submit">로그인</button>
             </form>
         </div>
     </div>
 
 
     <script src="/Mistory/js/dark-mood.js"></script>
+
+
     <script>
 
-        //화면 로딩
-        $(function(){
-            $('html').removeClass('no-js');
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.classList.remove('no-js');
+            checkLoginError();
         });
 
-        function handleLogin(){
-            let id = document.getElementById("id").value;
-            let password = document.getElementById("password").value;
-            const loginContainer = document.getElementsByClassName("login")[0];
-
-            // 기존 메시지와 힌트 버튼 제거
-            const existingMessageContainer = document.getElementById("message-container");
-            if (existingMessageContainer) {
-                existingMessageContainer.remove();
+        function checkLoginError() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('fail') == 'true') {
+                alert("비밀번호가 잘못되었습니다. 다시 시도해주세요.");
             }
-
+        }
 
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 기본 폼 제출 동작 방지
 
             var formData = new FormData(this);
 
-            fetch("/login", {
+            fetch(this.action, {
                 method: "POST",
                 body: formData
             })
             .then(response => {
-                if (response.status === 401) {
-                    // 401 상태 코드일 경우 에러 메시지 표시
-                    const messageContainer = document.getElementById('message-container');
-                    messageContainer.innerHTML = ''; // 기존 메시지 초기화
-
-                    // 아이디와 비밀번호가 틀릴 시 나오는 문구
-                    const fail = document.createElement("p");
-                    fail.id = "fail-message";
-                    fail.innerHTML = `아이디 또는 비밀번호를 잘못 입력했습니다. <br/> 입력하신 내용을 다시 확인해주세요.`;
-                    fail.style.color = "red";
-                    fail.style.fontSize = "17px";
-                    fail.style.marginRight = "10px"; // 버튼과 약간의 간격 추가
-
-                    const hintBtn = document.createElement("button");
-                    hintBtn.id = "hint-button";
-                    hintBtn.innerHTML = "힌트 찾으러가기";
-                    hintBtn.style.width = "160px";
-                    hintBtn.style.height = "50px";
-                    hintBtn.style.backgroundColor = "#fff";
-                    hintBtn.style.fontSize = "17px";
-                        
-                    messageContainer.appendChild(fail);
-                    messageContainer.appendChild(hintBtn);
-
-                    messageContainer.style.display = "flex"; // 메시지 컨테이너 표시
-
-                    // 입력 필드 값 초기화
-                    document.getElementById("username").value = "";
-                    document.getElementById("password").value = "";
-                    throw new Error("Unauthorized");
-                }
-                return response.json();
+                // if (response.status === 401) {
+                //     // 로그인 실패 시 URL에 fail 파라미터 추가
+                //     window.location.href = "login.html?fail=true";
+                //     throw new Error("Unauthorized");
+                // }
+                // return response.json();
             })
             .then(data => {
                 // 로그인 성공 시 처리
                 alert("로그인 성공!");
-                location.href = "http://127.0.0.1:5501/Mistory/ranking.html";
                 console.log("Login successful:", data);
             })
             .catch(error => {
-                if (error.message !== "Unauthorized") {
-                    console.error("Error:", error);
-                }
+                // if (error.message !== "Unauthorized") {
+                //     console.error("Error:", error);
+                // }
             });
         });
-
-
-        }
-
-
-
     </script>
 
-    <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
+    <hr style="color:#BBBBBB; margin: 100px auto 0; width: 1320px;">
 
     <footer style="padding: 20px 0; background-color: none;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
@@ -149,3 +118,50 @@
     
 </body>
 </html>
+
+<!-- // 기존 메시지와 힌트 버튼 제거
+const existingMessageContainer = document.getElementById("message-container");
+if (existingMessageContainer) {
+    existingMessageContainer.remove();
+}
+const nickname = localStorage.getItem('nickname');
+console.log(nickname);
+
+// 걸린 시간 가져오기
+// 타이머 종료 및 걸린 시간 계산
+const now = new Date().getTime();
+const endTime = parseInt(localStorage.getItem('timerEndTime'), 10);
+const startTime = endTime - (5 * 60 * 1000);
+const elapsedTime = now - startTime;
+
+const elapsedMinutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+const elapsedSeconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+const time = `00:${String(elapsedMinutes).padStart(2, '0')}:${String(elapsedSeconds).padStart(2, '0')}`;
+console.log(time);
+
+fetch("http://localhost:8080/rank", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ nickname, time })
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Parsed JSON data:', data);
+    if (data && Array.isArray(data)) {
+        
+    } else {
+        console.error('Invalid data format:', data);
+    }
+})
+.catch(error => console.error('Error fetching rank data:', error));
+
+
+window.location.href = 'ranking.html'; -->

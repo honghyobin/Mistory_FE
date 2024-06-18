@@ -98,6 +98,14 @@
             display: block; /* 호버 시 보여줌 */
             animation: animate 0.3s infinite;
         }
+
+        .gb{
+            text-decoration: none;
+            outline: none;
+            margin: 0 0 0 16px;
+            font-size: 18px;
+            color: #000;
+        }
     </style>
 </head>
 <body>
@@ -108,10 +116,12 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/notepad.js"></script>
+    
     <!-- 치지직 소리 -->
     <audio id="glitchSound">
         <source src="/mp3/치지직.mp3" type="audio/mpeg">
     </audio>
+
     <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
@@ -125,7 +135,7 @@
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
                     <li><a href="schoolQ&A.html">미림 Q&A</a></li>
-                    <li><a href="#">방명록</a></li>
+                    <div onclick="goGuestBook()" class="gb"><li>방명록</li></div>
                 </ul>
             </nav_menu>
             <div class="icon_nav">

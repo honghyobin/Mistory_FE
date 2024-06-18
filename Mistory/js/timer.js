@@ -56,3 +56,12 @@ window.onload = function () {
         setInterval(updateTimer, 1000);
     }
 };
+
+function goGuestBook() {
+    var userResponse = confirm("탈출을 포기하고 방명록을 작성하시겠습니까?");
+    if (userResponse) {
+        window.location.href = 'guestBook.html';
+    } else {
+        return false;
+    }
+}
