@@ -89,23 +89,32 @@
         <div class="comments" id="commentsContainer">
 
         </div>
+
+        <button class="homeBtn" onclick="goHome()">홈으로 돌아가기</button>
     </div>
 
     <script src="/Mistory/js/dark-mood.js"></script>
     <script>
 
-function getImageForDepartment(major) {
-    // major에 따라 이미지 경로를 반환하는 함수
-    const imageMap = {
-        'SOFTWARE': './img/software.png',
-        'WEBSOLUTION': './img/web_solution.png',
-        'DESIGN': './img/design.png'
-        // 필요한 다른 major와 이미지 경로를 추가하세요
-    };
+        function goHome(){
+            location.href = "http://127.0.0.1:5501/Mistory/index.html";
+            localStorage.removeItem('timerEndTime');
+            localStorage.removeItem('nickname');
+            localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
+        }
 
-    // major에 해당하는 이미지 경로를 반환하고, 없으면 기본 이미지를 반환
-    return imageMap[major] || './img/exception.png';
-}
+        function getImageForDepartment(major) {
+            // major에 따라 이미지 경로를 반환하는 함수
+            const imageMap = {
+                'SOFTWARE': './img/software.png',
+                'WEBSOLUTION': './img/web_solution.png',
+                'DESIGN': './img/design.png'
+                // 필요한 다른 major와 이미지 경로를 추가하세요
+            };
+
+            // major에 해당하는 이미지 경로를 반환하고, 없으면 기본 이미지를 반환
+            return imageMap[major] || './img/exception.png';
+        }
 
         async function addComment() {
             const name = document.getElementById("nameInput").value;
@@ -154,70 +163,70 @@ function getImageForDepartment(major) {
         }
 
         function fetchComments() {
-    console.log('Fetching comments...');
-    fetch('http://localhost:8080/guestbooks', { method: 'GET' }) // GET 메서드 명시
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('댓글 조회에 실패했습니다.');
+            console.log('Fetching comments...');
+            fetch('http://localhost:8080/guestbooks', { method: 'GET' }) // GET 메서드 명시
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('댓글 조회에 실패했습니다.');
+                    }
+                    return response.json(); // json 변환은 이곳에서 해야 함
+                })
+                .then(data => {
+                    console.log('Fetched data:', data);
+                    displayComments(data);
+                })
+                .catch(error => console.error('Error fetching posts:', error));
+        }
+
+        function displayComments(comments) {
+            const commentsContainer = document.getElementById("commentsContainer");
+            if (!commentsContainer) {
+                console.error('댓글 컨테이너 요소를 찾을 수 없습니다.');
+                return;
             }
-            return response.json(); // json 변환은 이곳에서 해야 함
-        })
-        .then(data => {
-            console.log('Fetched data:', data);
-            displayComments(data);
-        })
-        .catch(error => console.error('Error fetching posts:', error));
-}
 
-function displayComments(comments) {
-    const commentsContainer = document.getElementById("commentsContainer");
-    if (!commentsContainer) {
-        console.error('댓글 컨테이너 요소를 찾을 수 없습니다.');
-        return;
-    }
+            console.log('commentsContainer:', commentsContainer);
+            commentsContainer.innerHTML = ''; // 기존 댓글 초기화
 
-    console.log('commentsContainer:', commentsContainer);
-    commentsContainer.innerHTML = ''; // 기존 댓글 초기화
+            comments.forEach(comment => {
+                const commentElement = document.createElement("div");
+                commentElement.className = "comment";
 
-    comments.forEach(comment => {
-        const commentElement = document.createElement("div");
-        commentElement.className = "comment";
+                const imageSrc = getImageForDepartment(comment.major);
+                console.log(comment.major);
+                const imgElement = document.createElement("img");
+                imgElement.src = imageSrc;
+                imgElement.className = "profile-image";
 
-        const imageSrc = getImageForDepartment(comment.major);
-        console.log(comment.major);
-        const imgElement = document.createElement("img");
-        imgElement.src = imageSrc;
-        imgElement.className = "profile-image";
+                const nameElement = document.createElement("p");
+                nameElement.className = "name";
+                nameElement.textContent = comment.name;
 
-        const nameElement = document.createElement("p");
-        nameElement.className = "name";
-        nameElement.textContent = comment.name;
+                const dateTimeElement = document.createElement("p");
+                dateTimeElement.className = "dateTime";
+                dateTimeElement.textContent = comment.createdAt;
 
-        const dateTimeElement = document.createElement("p");
-        dateTimeElement.className = "dateTime";
-        dateTimeElement.textContent = comment.createdAt;
+                const contentElement = document.createElement("p");
+                contentElement.className = "content";
+                contentElement.textContent = comment.content;
 
-        const contentElement = document.createElement("p");
-        contentElement.className = "content";
-        contentElement.textContent = comment.content;
+                const detailsDiv = document.createElement("div");
+                detailsDiv.className = "details";
+                detailsDiv.appendChild(nameElement);
+                detailsDiv.appendChild(dateTimeElement);
 
-        const detailsDiv = document.createElement("div");
-        detailsDiv.className = "details";
-        detailsDiv.appendChild(nameElement);
-        detailsDiv.appendChild(dateTimeElement);
+                const plusImgDiv = document.createElement("div");
+                plusImgDiv.className = "plusImgDiv";
+                plusImgDiv.appendChild(imgElement);
+                plusImgDiv.appendChild(detailsDiv);
 
-        const plusImgDiv = document.createElement("div");
-        plusImgDiv.className = "plusImgDiv";
-        plusImgDiv.appendChild(imgElement);
-        plusImgDiv.appendChild(detailsDiv);
+                commentElement.appendChild(plusImgDiv);
+                commentElement.appendChild(contentElement);
 
-        commentElement.appendChild(plusImgDiv);
-        commentElement.appendChild(contentElement);
+                commentsContainer.appendChild(commentElement);
 
-        commentsContainer.appendChild(commentElement);
-
-    });
-}
+            });
+        }
 
 
         // 페이지 로드 시 댓글을 조회하는 예시
@@ -225,47 +234,47 @@ function displayComments(comments) {
             fetchComments();
         });
 
-        function timer(){
-            let timer;
-            const timerElement = document.getElementById('timer');
-            const duration = 5 * 60 * 1000; // 5분을 밀리초로 환산
-            localStorage.removeItem('timerEndTime');
-            localStorage.removeItem('timerStartTime');
+        // function timer(){
+        //     let timer;
+        //     const timerElement = document.getElementById('timer');
+        //     const duration = 5 * 60 * 1000; // 5분을 밀리초로 환산
+        //     localStorage.removeItem('timerEndTime');
+        //     localStorage.removeItem('timerStartTime');
 
-            function startTimer() {
-                const now = new Date().getTime();
-                const endTime = now + duration;
+        //     function startTimer() {
+        //         const now = new Date().getTime();
+        //         const endTime = now + duration;
 
-                localStorage.setItem('timerEndTime', endTime);
-                localStorage.setItem('timerStartTime', now);
+        //         localStorage.setItem('timerEndTime', endTime);
+        //         localStorage.setItem('timerStartTime', now);
 
-                updateTimer();
-            }
+        //         updateTimer();
+        //     }
 
-            function updateTimer() {
-                const now = new Date().getTime();
-                const endTime = localStorage.getItem('timerEndTime');
-                const distance = endTime - now;
+        //     function updateTimer() {
+        //         const now = new Date().getTime();
+        //         const endTime = localStorage.getItem('timerEndTime');
+        //         const distance = endTime - now;
 
-                if (distance <= 0) {
-                    clearInterval(timer);
-                    timerElement.textContent = "00:00";
-                    localStorage.removeItem('timerEndTime');
-                    localStorage.removeItem('timerStartTime');
-                } else {
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                }
-            }
+        //         if (distance <= 0) {
+        //             clearInterval(timer);
+        //             timerElement.textContent = "00:00";
+        //             localStorage.removeItem('timerEndTime');
+        //             localStorage.removeItem('timerStartTime');
+        //         } else {
+        //             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        //             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        //             timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        //         }
+        //     }
 
-            startTimer();
-            timer = setInterval(updateTimer, 1000);
-        }
+        //     startTimer();
+        //     timer = setInterval(updateTimer, 1000);
+        // }
 
     </script>
 
-    <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
+    <hr style="color:#BBBBBB; margin: 100px auto 0; width: 1320px;">
 
     <footer style="padding: 20px 0; background-color: none;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
