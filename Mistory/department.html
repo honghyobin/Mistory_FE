@@ -51,6 +51,18 @@
             max-width: 1890px;
             max-height: 1062px;
         }
+
+        .timer {
+            font-size: 2em;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000; /* 모든 요소 위에 있게 설정 */
+        }
     </style>
     <!-- 테스트 커밋 -->
 </head>
@@ -86,6 +98,11 @@
             </div>
         </div>
     </header>
+
+    
+    <div class="timer" id="timer">05:00</div>
+    <script src="/Mistory/js/timer.js"></script>
+
 
     <div class="slide_container">
         <div class="slide_item">

@@ -34,6 +34,51 @@
             width: 1320px;
         }
 
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .clickable-div {
+            position: relative;
+            z-index: 1010; 
+            background-color: white;
+            width: 1320px;
+            height: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            font-size: 30px;
+            align-items: center;
+        }
+
+        .nickname{
+            width: 500px;
+            height: 60px;
+            font-size: 20px;
+        }
+
+        .close-button {
+            position: absolute;
+            bottom: 20px;
+            background-color: #008156;
+            color: white;
+            border: none;
+            width: 300px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 30px;
+        }
+
     </style>
 </head>
 <body>
@@ -42,6 +87,27 @@
         <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
         <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
     </div>
+
+    <div class="overlay" id="overlay">
+        <div class="clickable-div">
+
+            <h1>게임 설명</h1>
+
+            <p>1. 태블릿에 나와있는 게임 설명을 봐주세요!</p>
+
+            <p>2. 본 게임의 제한 시간은 5분입니다. </p>
+
+            <p>3. 키보드 M키를 누르면 힌트를 메모할 수 있는 메모장이 나타납니다.</p>
+
+            <input type="text" class="nickname" placeholder="닉네임을 입력해주세요!" >
+
+            <button class="close-button" onclick="closeOverlay()">게임시작!</button>
+        </div>
+    </div>
+
+    <div class="timer" id="timer">05:00</div>
+    <!-- <script src="/Mistory/js/timer.js"></script> -->
+
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/notepad.js"></script>
@@ -292,6 +358,74 @@
             });
 
     });
+
+    function closeOverlay() {
+    var nicknameInput = document.querySelector('.nickname');
+    if (nicknameInput.value.trim() === '') {
+        alert('닉네임을 입력해주세요!');
+        return; // 함수 실행 중단
+    }
+
+    var nickname = nicknameInput.value;
+    console.log(nickname);
+
+    // 닉네임을 localStorage에 저장
+    localStorage.setItem('nickname', nickname);
+
+    // 오버레이 상태를 localStorage에 저장
+    localStorage.setItem('overlayClosed', 'true');
+
+    var overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    startTimer();
+}
+
+function startTimer() {
+    const duration = 5 * 60 * 1000; // 5분을 밀리초로 환산
+    const now = new Date().getTime();
+    const endTime = now + duration;
+
+    localStorage.setItem('timerEndTime', endTime);
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const endTime = localStorage.getItem('timerEndTime');
+    const distance = endTime - now;
+
+    if (distance <= 0) {
+        document.getElementById('timer').textContent = "00:00";
+        localStorage.removeItem('timerEndTime');
+        localStorage.removeItem('nickname');
+        localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
+    } else {
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('timer').textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+}
+
+window.onload = function () {
+    // 페이지가 로드될 때 오버레이 상태 복원
+    if (localStorage.getItem('overlayClosed') === 'true') {
+        var overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        document.body.style.overflowY = 'auto';
+        document.body.style.overflowX = 'none';
+    }
+
+    // 타이머가 실행 중이면 타이머를 업데이트
+    if (localStorage.getItem('timerEndTime')) {
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+};
+
+    
     </script>
     
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">

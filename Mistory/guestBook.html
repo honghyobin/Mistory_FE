@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="/Mistory/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <title>미스토리</title>
+
+    <style>
+        .timer {
+            font-size: 2em;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000; /* 모든 요소 위에 있게 설정 */
+        }
+    </style>
 </head>
 <body>
 
@@ -21,7 +35,11 @@
                     <li><a href="index.html">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
+<<<<<<< HEAD
+                    <li><a href="schoolQ&A.html">미림 Q&A</a></li>
+=======
                     <li><a href="#">미림 Q&A</a></li>
+>>>>>>> cf1a994dbbae7177a6a3d47ee33804e6ef0692ca
                    <li><a href="#"  style="color: #008156;">방명록</a></li>
                 </ul>
             </nav_menu>
@@ -40,22 +58,22 @@
                 <p>과 선택</p>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="department" value="department1" 
+                        <input type="radio" name="department" value="SOFTWARE" 
                         style="background: url(./img/software.png) no-repeat;" checked/>
                         <p>소프트웨어과</p>
                     </label>
                     <label>
-                        <input type="radio" name="department" value="department2"
+                        <input type="radio" name="department" value="WEBSOLUTION"
                         style="background: url(./img/web_solution.png) no-repeat;"/>
                         <p>웹솔루션과</p>
                     </label>
                     <label>
-                        <input type="radio" name="department" value="department3"
+                        <input type="radio" name="department" value="DESIGN"
                         style="background: url(./img/design.png) no-repeat;"/>
                         <p>디자인과</p>
                     </label>
                     <label>
-                        <input type="radio" name="department" value="exception"
+                        <input type="radio" name="department" value="OTHER"
                         style="background: url(./img/exception.png) no-repeat;"/>
                         <p>기타</p>
                     </label>
@@ -72,32 +90,28 @@
             <button class="registrationBtn" onclick="addComment()">등록하기</button>
         </div>
 
-        <div class="comments">
-            <!-- <div class="comment"></div> -->
+        <div class="comments" id="commentsContainer">
+
         </div>
     </div>
 
     <script src="/Mistory/js/dark-mood.js"></script>
     <script>
 
-    function getImageForDepartment(department) {
-            switch(department) {
-                case 'department1':
-                    return './img/software.png'; // 소프트웨어과 이미지
-                case 'department2':
-                    return './img/web_solution.png'; // 웹솔루션과 이미지
-                case 'department3':
-                    return './img/design.png'; // 디자인과 이미지
-                default:
-                    return './img/exception.png'; // 기본 이미지
-            }
-        }
+function getImageForDepartment(major) {
+    // major에 따라 이미지 경로를 반환하는 함수
+    const imageMap = {
+        'SOFTWARE': './img/software.png',
+        'WEBSOLUTION': './img/web_solution.png',
+        'DESIGN': './img/design.png'
+        // 필요한 다른 major와 이미지 경로를 추가하세요
+    };
 
-        function addComment() {
-            const comments = document.getElementsByClassName("comments")[0];
-            const comment = document.createElement("div");
-            comment.className = "comment";
+    // major에 해당하는 이미지 경로를 반환하고, 없으면 기본 이미지를 반환
+    return imageMap[major] || './img/exception.png';
+}
 
+        async function addComment() {
             const name = document.getElementById("nameInput").value;
             const content = document.getElementById("contentInput").value;
 
@@ -106,51 +120,151 @@
             for (let i = 0; i < departmentElements.length; i++) {
                 if (departmentElements[i].checked) {
                     selectedDepartment = departmentElements[i].value;
+                    console.log(selectedDepartment);
                     break;
                 }
             }
 
-            const imageSrc = getImageForDepartment(selectedDepartment);
-            const imgElement = document.createElement("img");
-            imgElement.src = imageSrc;
-            imgElement.className = "profile-image";
+            const dateTime = new Date().toLocaleString();
 
-            const now = new Date();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const dateTime = `${month}.${day}.${hours}:${minutes}`;
+            try {
+                const response = await fetch('http://localhost:8080/guestbooks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        content: content,
+                        major: selectedDepartment,
+                        createdAt: dateTime
+                    })
+                });
 
-            const nameElement = document.createElement("p");
-            nameElement.className = "name";
-            nameElement.textContent = name;
+                if (!response.ok) {
+                    throw new Error('댓글 추가에 실패했습니다.');
+                }
 
-            const dateTimeElement = document.createElement("p");
-            dateTimeElement.className = "dateTime";
-            dateTimeElement.textContent = dateTime;
+                const data = await response.json();
+                console.log(data.message);
+                fetchComments();
+            } catch (error) {
+                console.error('Error:', error);
+            }
 
-            const contentElement = document.createElement("p");
-            contentElement.className = "content";
-            contentElement.textContent = content;
-
-            const detailsDiv = document.createElement("div");
-            detailsDiv.className = "details";
-            detailsDiv.appendChild(nameElement);
-            detailsDiv.appendChild(dateTimeElement);
-
-            const plusImgDiv = document.createElement("div");
-            plusImgDiv.className = "plusImgDiv";
-            plusImgDiv.appendChild(imgElement);
-            plusImgDiv.appendChild(detailsDiv);
-
-            comment.appendChild(plusImgDiv);
-            comment.appendChild(contentElement);
-
-            comments.appendChild(comment);
-
+            
             document.getElementById("nameInput").value = "";
             document.getElementById("contentInput").value = "";
+        }
+
+        function fetchComments() {
+    console.log('Fetching comments...');
+    fetch('http://localhost:8080/guestbooks', { method: 'GET' }) // GET 메서드 명시
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('댓글 조회에 실패했습니다.');
+            }
+            return response.json(); // json 변환은 이곳에서 해야 함
+        })
+        .then(data => {
+            console.log('Fetched data:', data);
+            displayComments(data);
+        })
+        .catch(error => console.error('Error fetching posts:', error));
+}
+
+function displayComments(comments) {
+    const commentsContainer = document.getElementById("commentsContainer");
+    if (!commentsContainer) {
+        console.error('댓글 컨테이너 요소를 찾을 수 없습니다.');
+        return;
+    }
+
+    console.log('commentsContainer:', commentsContainer);
+    commentsContainer.innerHTML = ''; // 기존 댓글 초기화
+
+    comments.forEach(comment => {
+        const commentElement = document.createElement("div");
+        commentElement.className = "comment";
+
+        const imageSrc = getImageForDepartment(comment.major);
+        console.log(comment.major);
+        const imgElement = document.createElement("img");
+        imgElement.src = imageSrc;
+        imgElement.className = "profile-image";
+
+        const nameElement = document.createElement("p");
+        nameElement.className = "name";
+        nameElement.textContent = comment.name;
+
+        const dateTimeElement = document.createElement("p");
+        dateTimeElement.className = "dateTime";
+        dateTimeElement.textContent = comment.createdAt;
+
+        const contentElement = document.createElement("p");
+        contentElement.className = "content";
+        contentElement.textContent = comment.content;
+
+        const detailsDiv = document.createElement("div");
+        detailsDiv.className = "details";
+        detailsDiv.appendChild(nameElement);
+        detailsDiv.appendChild(dateTimeElement);
+
+        const plusImgDiv = document.createElement("div");
+        plusImgDiv.className = "plusImgDiv";
+        plusImgDiv.appendChild(imgElement);
+        plusImgDiv.appendChild(detailsDiv);
+
+        commentElement.appendChild(plusImgDiv);
+        commentElement.appendChild(contentElement);
+
+        commentsContainer.appendChild(commentElement);
+
+    });
+}
+
+
+        // 페이지 로드 시 댓글을 조회하는 예시
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchComments();
+        });
+
+        function timer(){
+            let timer;
+            const timerElement = document.getElementById('timer');
+            const duration = 5 * 60 * 1000; // 5분을 밀리초로 환산
+            localStorage.removeItem('timerEndTime');
+            localStorage.removeItem('timerStartTime');
+
+            function startTimer() {
+                const now = new Date().getTime();
+                const endTime = now + duration;
+
+                localStorage.setItem('timerEndTime', endTime);
+                localStorage.setItem('timerStartTime', now);
+
+                updateTimer();
+            }
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const endTime = localStorage.getItem('timerEndTime');
+                const distance = endTime - now;
+
+                if (distance <= 0) {
+                    clearInterval(timer);
+                    timerElement.textContent = "00:00";
+                    localStorage.removeItem('timerEndTime');
+                    localStorage.removeItem('timerStartTime');
+                } else {
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                }
+            }
+
+            startTimer();
+            timer = setInterval(updateTimer, 1000);
         }
 
     </script>

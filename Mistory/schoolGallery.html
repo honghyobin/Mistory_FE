@@ -24,17 +24,19 @@
                     <li><a href="index.html">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
-                    <li><a href="schoolQ&A.html">미림 Q&A</a></li>
+                    <li><a href="schoolQ&A.html">미림 Q&amp;A</a></li>
                     <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
-            <div class="icon_nav">
-                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-                <!-- <i class="bi bi-moon-fill"></i> -->
-                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
-            </div>
+            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+            <!-- <i class="bi bi-moon-fill"></i> -->
+            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
         </div>
     </header>
+
+    <div class="timer" id="timer">05:00</div>
+    <script src="/Mistory/js/timer.js"></script>
+
 
     <div class="slide_container">
         <div class="slide_item">
@@ -165,6 +167,7 @@ window.onload = function() {
     // 아이콘 1에 active 클래스 추가
     document.querySelector('.icon:nth-child(1)').classList.add('active');
 };
+
     </script>
     <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
 

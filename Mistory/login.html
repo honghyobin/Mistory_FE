@@ -25,14 +25,20 @@
         </div>
     </header>
 
+    <div class="timer" id="timer">05:00</div>
+    <script src="/Mistory/js/timer.js"></script>
+
+
 
     <div class="container">
         <div class="login">
             <div class="logoImg"><img src="img/logo.png"/></div>
             <p class="message">발견한 단어를 조합해서 <br/> 로그인 해주세요</p>
-            <input type="text" value="" placeholder="아이디" id="id"/>
-            <input type="password" value="" placeholder="비밀번호" id="password"/>
-            <button class="loginBtn" onclick="handleLogin()">로그인</button>
+            <form action="http://localhost:8080/login" method="POST">
+                <input type="text" name="username" placeholder="아이디" id="username"/>
+                <input type="password" name="password" placeholder="비밀번호" id="password" />
+                <button type="submit" class="loginBtn">로그인</button>
+            </form>
         </div>
     </div>
 
@@ -56,10 +62,31 @@
                 existingMessageContainer.remove();
             }
 
-            if (id === "MIRIM2024" && password === "Who_am_i_?") {
+            document.getElementsByClassName('loginBtn').addEventListener('submit', function(event) {
+            event.preventDefault(); // 기본 폼 제출 방지
+
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: this.method,
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errorData => {
+                        throw new Error('아이디 또는 비밀번호를 잘못 입력했습니다.');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
                 alert("로그인 성공!");
                 location.href = "http://127.0.0.1:5501/Mistory/ranking.html";
-            } else {
+            })
+            .catch(error => {
+                const messageContainer = document.getElementById('message-container');
+                messageContainer.innerHTML = ''; // 기존 메시지 초기화
+
                 // 아이디와 비밀번호가 틀릴 시 나오는 문구
                 const fail = document.createElement("p");
                 fail.id = "fail-message";
@@ -76,26 +103,17 @@
                 hintBtn.style.backgroundColor = "#fff";
                 hintBtn.style.fontSize = "17px";
 
-                const loginBtn = document.getElementsByClassName("loginBtn")[0];
-
-                // 새로운 div 생성해서 p 태그와 버튼을 담음
-                const messageContainer = document.createElement("div");
-                messageContainer.id = "message-container";
-                messageContainer.style.display = "flex";
-                messageContainer.style.alignItems = "center";
-                messageContainer.style.justifyContent = "space-between";
-                messageContainer.style.width = "520px";
-                messageContainer.style.marginBottom = "20px"; // 로그인 버튼과 약간의 간격 추가
-
                 messageContainer.appendChild(fail);
                 messageContainer.appendChild(hintBtn);
 
-                loginContainer.insertBefore(messageContainer, loginBtn);
+                messageContainer.style.display = "flex"; // 메시지 컨테이너 표시
 
                 // 입력 필드 값 초기화
-                document.getElementById("id").value = "";
+                document.getElementById("username").value = "";
                 document.getElementById("password").value = "";
-            }
+            });
+        });
+
         }
 
 
