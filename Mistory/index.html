@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/Mistory/css/all.css">
     <link rel="stylesheet" href="/Mistory/css/index.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
+    <link rel="stylesheet" href="/Mistory/css/notepad.css">
     <link rel="stylesheet" href="/Mistory/css/dark-mode.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
@@ -25,7 +26,7 @@
         }
 
         .slide_container .slide_item:nth-child(3) {
-            background-image: url('./img/slideBackground.png'); /* 두 번째 슬라이드 배경 이미지 */
+            background-image: url('./img/정원.jpg'); /* 두 번째 슬라이드 배경 이미지 */
         }
        
         .slide_container2 .slide_item:nth-child(2), .slide_container2 .slide_item:nth-child(3) {
@@ -33,28 +34,105 @@
             width: 1320px;
         }
 
-    </style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .clickable-div {
+            position: relative;
+            z-index: 1010; 
+            background-color: white;
+            width: 1320px;
+            height: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            font-size: 30px;
+            align-items: center;
+        }
 
+        .nickname{
+            width: 500px;
+            height: 60px;
+            font-size: 20px;
+        }
+
+        .close-button {
+            position: absolute;
+            bottom: 20px;
+            background-color: #008156;
+            color: white;
+            border: none;
+            width: 300px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 30px;
+        }
+
+    </style>
 </head>
 <body>
+    <!-- 메모장 -->
+    <div id="memoContainer" class="memo-container">
+        <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
+        <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="clickable-div">
+
+            <h1>게임 설명</h1>
+
+            <p>1. 태블릿에 나와있는 게임 설명을 봐주세요!</p>
+
+            <p>2. 본 게임의 제한 시간은 5분입니다. </p>
+
+            <p>3. 키보드 M키를 누르면 힌트를 메모할 수 있는 메모장이 나타납니다.</p>
+
+            <input type="text" class="nickname" placeholder="닉네임을 입력해주세요!" >
+
+            <button class="close-button" onclick="closeOverlay()">게임시작!</button>
+        </div>
+    </div>
+
+    <div class="timer" id="timer">05:00</div>
+    <!-- <script src="/Mistory/js/timer.js"></script> -->
+
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/notepad.js"></script>
     
+    <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <a href="index.html" >
+                <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            </a>
             <nav_menu>
                 <ul class="nav_list">
-                    <li><a href="index.html" style="color: #008156;">학교소개</a></li>
+                    <li><a href="index.html"  style="color: #008156;">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
-                    <li><a href="schoolQ&A.html">입학상담 Q&A</a></li>
-                   <li><a href="#">방명록</a></li>
+                    <li><a href="schoolQ&A.html">미림 Q&A</a></li>
+                    <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
-            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-            <!-- <i class="bi bi-moon-fill"></i> -->
-            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            <div class="icon_nav">
+                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
+                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a> 
+            </div>
         </div>
     </header>
 
@@ -223,9 +301,20 @@
                 if (currentSlide === 1) { // 두 번째 슬라이드일 때
                     setTimeout(function() {
                         $('#temporary_image').fadeIn(10, function() {
+                            // 오디오 파일 재생
+                            var audio = new Audio('/mp3/비명.mp3');
+                            audio.currentTime = 0.3; // 재생 시작 시간을 1초로 설정
+                            audio.play();
+                            // 오디오 파일을 변수에 저장
+                            $('#temporary_image').data('audio', audio);
+
                             setTimeout(function() {
-                                $('#temporary_image').fadeOut(50);
-                            }, 500); // 1초 후 이미지 숨기기
+                                $('#temporary_image').fadeOut(50, function() {
+                                    // 오디오 파일 중지
+                                    audio.pause();
+                                    audio.currentTime = 0; // 재생 위치를 처음으로 되돌림
+                                });
+                            }, 950); // 0.5초 후 이미지 숨기기
                         });
                     }, 2000); // 2초 후 이미지 표시
                 }
@@ -233,7 +322,15 @@
 
             function resetTemporaryImage() {
                 $('#temporary_image').hide();
+                // 오디오 파일 중지
+                var audio = $('#temporary_image').data('audio');
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0; // 재생 위치를 처음으로 되돌림
+                }
             }
+
+
 
             // 슬라이드 변경 시 호출되는 이벤트 핸들러
             $('.slide_container').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
@@ -261,7 +358,76 @@
             });
 
     });
+
+    function closeOverlay() {
+    var nicknameInput = document.querySelector('.nickname');
+    if (nicknameInput.value.trim() === '') {
+        alert('닉네임을 입력해주세요!');
+        return; // 함수 실행 중단
+    }
+
+    var nickname = nicknameInput.value;
+    console.log(nickname);
+
+    // 닉네임을 localStorage에 저장
+    localStorage.setItem('nickname', nickname);
+
+    // 오버레이 상태를 localStorage에 저장
+    localStorage.setItem('overlayClosed', 'true');
+
+    var overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    startTimer();
+}
+
+function startTimer() {
+    const duration = 5 * 60 * 1000; // 5분을 밀리초로 환산
+    const now = new Date().getTime();
+    const endTime = now + duration;
+
+    localStorage.setItem('timerEndTime', endTime);
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const endTime = localStorage.getItem('timerEndTime');
+    const distance = endTime - now;
+
+    if (distance <= 0) {
+        document.getElementById('timer').textContent = "00:00";
+        localStorage.removeItem('timerEndTime');
+        localStorage.removeItem('nickname');
+        localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
+    } else {
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('timer').textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+}
+
+window.onload = function () {
+    // 페이지가 로드될 때 오버레이 상태 복원
+    if (localStorage.getItem('overlayClosed') === 'true') {
+        var overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        document.body.style.overflowY = 'auto';
+        document.body.style.overflowX = 'none';
+    }
+
+    // 타이머가 실행 중이면 타이머를 업데이트
+    if (localStorage.getItem('timerEndTime')) {
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+};
+
+    
     </script>
+    
     <hr style="color:#BBBBBB; margin: 250px auto 0; width: 1320px;">
 
     <footer style="padding: 20px 0; background-color: none;">

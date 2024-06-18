@@ -66,25 +66,26 @@ body {
 .APart {
     display: flex;
     align-items: baseline;
-    padding: 63px 0 0 90px;
+    padding: 30px 0 0 90px;
 }
 
 .Q,
 .A {
-    font-size: 60px;
+    font-size: 40px;
 }
 
 .QTitle,
 .ATitle {
-    font-size: 32px;
+    font-size: 28px;
     margin-left: 46px;
+    margin-right: 30px;
 }
 
-.section_1>.ditailQ,
-.section_2>.ditailQ {
-    margin-left: 181px;
+.detailQ{
+    margin-left: 120px;
     margin-top: 47px;
-    font-size: 24px;
+    margin-right: 30px;
+    font-size: 22px;
     opacity: 0.6;
 }
 
@@ -141,7 +142,7 @@ body {
     padding-right: 20px;
 }
 
-.section_3>.ditailQ {
+.section_3>.detailQ {
     padding-left: 110px !important;
     font-style: 22px;
     padding-right: 40px;
@@ -175,3 +176,31 @@ body {
     width: 426px;
     height: 606px;
 }
+
+
+
+
+
+.section_2>.detailQ {
+    width: 25ch;
+    animation: typing 2s steps(22), blink .7s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 2em;
+    padding-right: 20px;
+    margin-left: 130px;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0
+    }
+  }
+      
+  @keyframes blink {
+    50% {
+      border-color: transparent
+    }
+  }

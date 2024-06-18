@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Mistory/css/all.css">
     <link rel="stylesheet" href="/Mistory/css/schoolLife.css">
+    <link rel="stylesheet" href="/Mistory/css/notepad.css">
     <link rel="stylesheet" href="/Mistory/css/nav.css">
     <link rel="stylesheet" href="/Mistory/css/dark-mode.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
@@ -20,36 +21,124 @@
             background-color: gray;
         }
 
-        .slide_container2 .slide_item:nth-child(2),.slide_container2 .slide_item:nth-child(3) {
+        .slide_container2 .slide_item:nth-child(2), .slide_container2 .slide_item:nth-child(3) {
             height: 821px; 
             width: 1320px;
         }
+
+        @keyframes animate {
+            0% {
+                background-position: 0 0;
+                filter: hue-rotate(0deg);
+            }
+            10% {
+                background-position: 4px 0;
+            }
+            20% {
+                background-position: -4px 0;
+            }
+            30% {
+                background-position: 12px 0;
+            }
+            40% {
+                background-position: -16px 0;
+            }
+            50% {
+                background-position: -24px 0;
+            }
+            50% {
+                background-position: -52px 0;
+            }
+            60% {
+                background-position: 0 22px;
+            }
+            70% {
+                background-position: -40px -10px;
+            }
+            80% {
+                background-position: -24px 0;
+            }
+            90% {
+                background-position: -24px 0;
+            }
+            100% {
+                background-position: 0 0;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .glitch {
+            position: relative;
+            height: 651px; /* 이미지 높이와 맞춤 */
+            width: 1320px; /* 이미지 너비와 맞춤 */
+            overflow: hidden;
+        }
+
+        .glitch img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/정원.jpg');
+            background-size: cover;
+            background-position: 7px 0;
+            opacity: 0.7;
+            display: none; /* 초기 상태에서 숨김 */
+        }
+
+        .glitch:hover:before {
+            display: block; /* 호버 시 보여줌 */
+            animation: animate 0.3s infinite;
+        }
     </style>
-    <!-- 테스트 커밋 -->
 </head>
 <body>
+    <!-- 메모장 -->
+    <div id="memoContainer" class="memo-container">
+        <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
+        <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/notepad.js"></script>
+    <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <a href="index.html">
+                <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            </a>
             <nav_menu>
                 <ul class="nav_list">
                     <li><a href="index.html">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
-                    <li><a href="schoolLife.html">학교생활</a></li>
-                    <li><a href="schoolQ&A.html">입학상담 Q&A</a></li>
+                    <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
+                    <li><a href="schoolQ&A.html">미림 Q&A</a></li>
                     <li><a href="#">방명록</a></li>
                 </ul>
             </nav_menu>
-            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-            <!-- <i class="bi bi-moon-fill"></i> -->
-            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            <div class="icon_nav">
+                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
+                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            </div>
         </div>
     </header>
 
+    <div class="timer" id="timer">05:00</div>
+    <script src="/Mistory/js/timer.js"></script>
+
+
     <div class="slide_container">
-        <div class="slide_item">
-            <!-- 여긴 이미지 -->
+        <div class="glitch">
+            <img src="./img/정원.jpg" alt="" >
         </div>
     </div>
 
@@ -208,6 +297,15 @@
                 defaultActiveTitle.classList.add('on');
             });
         });
+
+        const glitchElement = document.querySelector('.glitch');
+
+glitchElement.addEventListener('mouseover', function handleHover() {
+    glitchElement.classList.add('hovered');
+    glitchElement.removeEventListener('mouseover', handleHover);
+});
+
+       
     </script>
     
     <hr style="color:#BBBBBB; margin: 50px auto 0; width: 1320px;">
@@ -230,9 +328,5 @@
             </div>
         </div>
     </footer>
-    
-
-
-
 </body>
 </html>

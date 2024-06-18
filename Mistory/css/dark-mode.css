@@ -70,4 +70,9 @@
         /* background-color: #000; */
         color: #fff;
     }
-/* } */
+    body.dark-mode .footer-info>p{
+        color: #fff !important;
+    }
+    body.dark-mode  footer{
+        background-color: #202124 !important;
+    }   
