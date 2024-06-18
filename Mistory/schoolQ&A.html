@@ -14,12 +14,22 @@
     <title>미스토리</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
 </head>
+<style>
+    #bloodimg {
+        position: absolute;
+        z-index: 1000;
+        display: none; /* Initially hide the image */
+    }
+</style>
 <body>
     <!-- 메모장 -->
     <div id="memoContainer" class="memo-container">
         <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
         <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
     </div>
+    <!-- 피 이미지 -->
+    <div id="bloodimg" style="position: absolute; z-index: 1000;"><img src="./img/blood.png" alt="" style="width: 1920px;height: 1154px;"></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/notepad.js"></script>
     <!-- 헤더 -->
@@ -40,6 +50,7 @@
             </nav_menu>
             <div class="icon_nav">
                 <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
                 <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
             </div>
         </div>
@@ -72,7 +83,7 @@
                 <!-- <div class="QPart" style="padding-left: 40px;">
                     <p class="Q">Q</p><p class="QTitle">성적 많이 보나요?</p>
                 </div>
-                <p class="detailQ">타이핑 효과를 넣어봤어요..</p>
+                <p class="ditailQ">타이핑 효과를 넣어봤어요..</p>
                 <div class="APart" style="padding-left: 40px;">
                     <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
                 </div> -->
@@ -127,9 +138,11 @@
         //     });
         // });
 
-        const section1 = document.querySelector('.section_1');
-        const section2 = document.querySelector('.section_2');
+        
+    </script>
+    <script src="./js/Q&A.js"></script>
 
+    <script>
         function displayPosts(posts) {
             const section1 = document.getElementById('section_1');
             const section2 = document.getElementById('section_2');
@@ -370,9 +383,6 @@
             renderCanvas();
         });
 
-    </script>
-
-<script>
     // 문서가 로드될 때 실행될 함수를 정의합니다.
     document.addEventListener('DOMContentLoaded', function() {
         // 오디오 요소를 생성합니다.
@@ -393,10 +403,27 @@
         }, 2000); // 3000 milliseconds = 3 seconds
     });
 </script>
+    
+    <!-- 피 보여주기 -->
+    <audio id="bloodSound" src="/mp3/피 튀기는 소리.mp3"></audio>
+    <script>
+        window.onload = function() {
+            const imgContainer = document.getElementById('bloodimg');
+            const sound = document.getElementById('bloodSound'); 
+    
+            imgContainer.style.display = 'none';
+            setTimeout(() => {
+                imgContainer.style.display = 'block';
+                sound.play(); // 피 튀기는 소리 재생
+                setTimeout(() => {
+                    imgContainer.style.display = 'none';
+                    sound.pause(); // 소리 정지
+                }, 1000); // 1초 동안 보여짐
+            }, 3500); // 3.5초 뒤에 보여짐
+        };
+    </script>
 
-
-
-
+        
     <hr style="color:#BBBBBB; margin: 0 auto ; width: 1320px;">
     <footer style="padding: 20px 0; background-color: #f9f9f9;">
         <div class="footer-content" style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">

@@ -181,7 +181,7 @@ body {
 
 
 
-.section_2>.detailQ {
+.section_2>.ditailQ {
     width: 25ch;
     animation: typing 2s steps(22), blink .7s step-end infinite alternate;
     white-space: nowrap;
