@@ -15,13 +15,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
 </head>
 <style>
-    #bloodimg {
+    /* #bloodimg {
         position: absolute;
         z-index: 1000;
-        display: none; /* Initially hide the image */
-    }
+        display: none;
+        overflow-x: hidden;
+    } */
+
+    #fullscreen-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(0, 0, 0, 0.9); */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #fullscreen-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .gb{
+            text-decoration: none;
+            outline: none;
+            margin: 0 0 0 16px;
+            font-size: 18px;
+            color: #000;
+        }
 </style>
 <body>
+
+    
+    <div class="timer" id="timer">05:00</div>
+    <script src="./js/timer.js"></script>
+
     <!-- 메모장 -->
     <div id="memoContainer" class="memo-container">
         <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
@@ -29,11 +61,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/notepad.js"></script>
-
-
-    <!-- 피 이미지 -->
-    <div id="bloodimg" style="position: absolute; z-index: 1000;"><img src="./img/blood.png" alt="" style="width: 1920px;height: 1154px;"></div>
-
+    
     <!-- 헤더 -->
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
@@ -47,7 +75,7 @@
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
                     <li><a href="schoolQ&A.html" style="color: #008156;">미림 Q&A</a></li>
-                    <li><a href="guestBook.html">방명록</a></li>
+                    <div onclick="goGuestBook()" class="gb"><li>방명록</li></div>
                 </ul>
             </nav_menu>
             <div class="icon_nav">
@@ -58,9 +86,12 @@
         </div>
     </header>
 
-    <div class="timer" id="timer">05:00</div>
-    <script src="/Mistory/js/timer.js"></script>
 
+    <div id="fullscreen-image">
+        
+    <!-- 피 이미지 -->
+    <img src="./img/blood.png" alt=""">
+    </div>
 
     <ul class="category">
         <li class="category-title on" data-category="SCHOOL"><p>학교생활</p></li>
@@ -73,56 +104,15 @@
     <div class="Container">
         <div class="Container_top">
             <div id="section_1" class="section_1">
-                <!-- <div class="QPart">
-                    <p class="Q">Q</p><p class="QTitle">입학 전형으로는 무것이 있나요?</p>
-                </div>
-                <p class="detailQ">aaaaa</p>
-                <div class="APart">
-                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
-                </div> -->
+                
             </div>
             <div id="section_2" class="section_2">
-                <!-- <div class="QPart" style="padding-left: 40px;">
-                    <p class="Q">Q</p><p class="QTitle">성적 많이 보나요?</p>
-                </div>
-                <p class="detailQ">타이핑 효과를 넣어봤어요..</p>
-                <div class="APart" style="padding-left: 40px;">
-                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
-                </div> -->
+               
             </div>
         </div>
         
         <div class="Container_bottom">
-            <!-- <div class="section_3">
-                <div class="QPart">
-                    <p class="Q">Q</p><p class="QTitle">특별전형</p>
-                </div>
-                <p class="detailQ">무슨 자격증을 따면 특별전형으로 입학이 가능하다고 들었는데요, 정확히 어떤 자격증 인가요??</p>
-                <div class="APart">
-                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
-                </div>
-    
-            </div>
-            <div class="section_3">
-                <div class="QPart">
-                    <p class="Q">Q</p><p class="QTitle">특별전형</p>
-                </div>
-                <p class="detailQ">무슨 자격증을 따면 특별전형으로 입학이 가능하다고 들었는데요, 정확히 어떤 자격증 인가요??</p>
-                <div class="APart">
-                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
-                </div>
-    
-            </div>
-            <div class="section_3">
-                <div class="QPart">
-                    <p class="Q">Q</p><p class="QTitle">특별전형</p>
-                </div>
-                <p class="detailQ">무슨 자격증을 따면 특별전형으로 입학이 가능하다고 들었는데요, 정확히 어떤 자격증 인가요??</p>
-                <div class="APart">
-                    <p class="A">A</p><p class="ATitle">입학 전형으로는 무것이 있나요?</p>
-                </div>
-    
-            </div> -->
+           
         </div>
 
     </div>
@@ -153,16 +143,6 @@
 
 
     <script>
-        // 카테고리에서 다른 곳을 호버하면 학사일정의 색이 없어짐
-        // const categoryTitles = document.querySelectorAll('.category-title');
-        // const defaultActiveTitle = document.querySelector('.category-title.on');
-
-        // categoryTitles.forEach(title => {
-        //     title.addEventListener('click', () => {
-        //         categoryTitles.forEach(t => t.classList.remove('on'));
-        //         title.classList.add('on');
-        //     });
-        // });
 
         const section1 = document.querySelector('.section_1');
         const section2 = document.querySelector('.section_2');
@@ -195,6 +175,11 @@
                     section1.appendChild(postElement);
                 } else if (index === 1) {
                     section2.appendChild(postElement);
+
+                     // section2에 있는 detailQ 요소에만 타이핑 효과 적용
+                    const detailQElement = postElement.querySelector('.detailQ');
+                    splitWords(detailQElement);
+                    typeEffect(detailQElement, 50); // 타이핑 속도 설정
                 } else {
                     const sectionIndex = index - 2; // section_3부터 시작
                     let section = document.getElementById(`section_${sectionIndex + 3}`);
@@ -281,16 +266,29 @@
                 .catch(error => console.error('Error fetching posts:', error));
         }
 
+        function typeEffect(element, speed) {
+            const text = element.textContent;
+            element.textContent = "";
+            element.style.visibility = "visible";
 
-        // 타이핑 효과
-        const splitWords = () => {
-            const textNode = document.querySelector(".text");
+            let i = 0;
+            const timer = setInterval(function() {
+                if (i < text.length) {
+                    element.append(text.charAt(i));
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        function splitWords(textNode) {
             const text = textNode.textContent;
             const newDomElements = text.split(" ").map((text) => {
                 return `<span class="word">${text}</span>`;
             });
-            textNode.innerHTML = newDomElements.join("");
-        };
+            textNode.innerHTML = newDomElements.join(" ");
+        }
 
         const renderCanvas = () => {
             const Engine = Matter.Engine;
@@ -431,21 +429,23 @@
         });
     </script>
 
-    <script src="./js/Q&A.js"></script>
+    <!-- <script src="./js/Q&A.js"></script> -->
         
     <!-- 피 보여주기 -->
     <audio id="bloodSound" src="/mp3/피 튀기는 소리.mp3"></audio>
     <script>
         window.onload = function() {
-            const imgContainer = document.getElementById('bloodimg');
+            const imgContainer = document.getElementById('fullscreen-image');
             const sound = document.getElementById('bloodSound'); 
 
             imgContainer.style.display = 'none';
             setTimeout(() => {
                 imgContainer.style.display = 'block';
+                document.body.style.overflow = 'hidden';
                 sound.play(); // 피 튀기는 소리 재생
                 setTimeout(() => {
                     imgContainer.style.display = 'none';
+                    document.body.style.overflow = 'auto';
                     sound.pause(); // 소리 정지
                 }, 1000); // 1초 동안 보여짐
             }, 3500); // 3.5초 뒤에 보여짐

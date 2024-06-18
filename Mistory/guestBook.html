@@ -26,22 +26,27 @@
 </head>
 <body>
 
-    <header>
+    <!-- 헤더 -->
+    <header style="pointer-events: none;">
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
-            <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            <a href="index.html">
+                <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
+            </a>
             <nav_menu>
                 <ul class="nav_list">
                     <li><a href="index.html">학교소개</a></li>
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
                     <li><a href="schoolQ&A.html">미림 Q&A</a></li>
-                   <li><a href="#"  style="color: #008156;">방명록</a></li>
+                    <li><a href="guestBook.html" style="color: #008156;">방명록</a></li>
                 </ul>
             </nav_menu>
-            <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
-            <!-- <i class="bi bi-moon-fill"></i> -->
-            <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            <div class="icon_nav">
+                <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>
+                <!-- <i class="bi bi-moon-fill"></i> -->
+                <a href="login.html"><i class="bi bi-box-arrow-in-right"></i></a>
+            </div>
         </div>
     </header>
 
@@ -97,7 +102,7 @@
     <script>
 
         function goHome(){
-            location.href = "http://127.0.0.1:5501/Mistory/index.html";
+            window.location.href = 'index.html';
             localStorage.removeItem('timerEndTime');
             localStorage.removeItem('nickname');
             localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
@@ -120,6 +125,16 @@
             const name = document.getElementById("nameInput").value;
             const content = document.getElementById("contentInput").value;
 
+            if (name.trim() === '') {
+                alert('이름을 입력해주세요!');
+                return; // 함수 실행 중단
+            }
+
+            if (content.trim() === '') {
+                alert('방문 소감을 입력해주세요!');
+                return; // 함수 실행 중단
+            }
+
             const departmentElements = document.getElementsByName("department");
             let selectedDepartment;
             for (let i = 0; i < departmentElements.length; i++) {
@@ -133,7 +148,7 @@
             const dateTime = new Date().toLocaleString();
 
             try {
-                const response = await fetch('http://localhost:8080/guestbooks', {
+                const response = await fetch('http://43.203.128.248:3000/guestbooks', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -164,7 +179,7 @@
 
         function fetchComments() {
             console.log('Fetching comments...');
-            fetch('http://localhost:8080/guestbooks', { method: 'GET' }) // GET 메서드 명시
+            fetch('http://43.203.128.248:3000/guestbooks', { method: 'GET' }) // GET 메서드 명시
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('댓글 조회에 실패했습니다.');

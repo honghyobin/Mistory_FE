@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>미스토리</title>
 </head>
+<style>
+    .gb{
+            text-decoration: none;
+            outline: none;
+            margin: 0 0 0 16px;
+            font-size: 18px;
+            color: #000;
+        }
+</style>
 <body>
     <header>
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
@@ -25,7 +34,7 @@
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html" style="color: #008156;">학교생활</a></li>
                     <li><a href="schoolQ&A.html">미림 Q&amp;A</a></li>
-                    <li><a href="#">방명록</a></li>
+                    <div onclick="goGuestBook()" class="gb"><li>방명록</li></div>
                 </ul>
             </nav_menu>
             <div id="toggleDarkMode"><i class="bi bi-moon"></i></div>

@@ -50,14 +50,15 @@
             position: relative;
             z-index: 1010; 
             background-color: white;
-            width: 1320px;
-            height: 1000px;
+            width: 1000px;
+            height: 750px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             font-size: 30px;
             align-items: center;
+            padding-top: 80px;
         }
 
         .nickname{
@@ -68,7 +69,7 @@
 
         .close-button {
             position: absolute;
-            bottom: 20px;
+            bottom: 90px;
             background-color: #008156;
             color: white;
             border: none;
@@ -77,6 +78,14 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 30px;
+        }
+
+        .gb{
+            text-decoration: none;
+            outline: none;
+            margin: 0 0 0 16px;
+            font-size: 18px;
+            color: #000;
         }
 
     </style>
@@ -93,13 +102,13 @@
 
             <h1>게임 설명</h1>
 
-            <p>1. 태블릿에 나와있는 게임 설명을 봐주세요!</p>
+            <p>1. 태블릿에 나와있는 힌트 설명을 봐주세요!</p>
 
             <p>2. 본 게임의 제한 시간은 5분입니다. </p>
 
             <p>3. 키보드 M키를 누르면 힌트를 메모할 수 있는 메모장이 나타납니다.</p>
 
-            <input type="text" class="nickname" placeholder="닉네임을 입력해주세요!" >
+            <input type="text" class="nickname" placeholder="닉네임을 입력해주세요!" style="margin-top: 10px;">
 
             <button class="close-button" onclick="closeOverlay()">게임시작!</button>
         </div>
@@ -125,7 +134,7 @@
                     <li><a href="department.html">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
                     <li><a href="schoolQ&A.html">미림 Q&A</a></li>
-                    <li><a href="#">방명록</a></li>
+                    <div onclick="goGuestBook()" class="gb"><li>방명록</li></div>
                 </ul>
             </nav_menu>
             <div class="icon_nav">
@@ -220,6 +229,15 @@
         $(function(){
             $('html').removeClass('no-js');
         });
+
+        function goGuestBook() {
+    var userResponse = confirm("탈출을 포기하고 방명록을 작성하시겠습니까?");
+    if (userResponse) {
+        window.location.href = 'guestBook.html';
+    } else {
+        return false;
+    }
+} 
 
         $(document).ready(function(){
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

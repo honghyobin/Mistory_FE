@@ -75,8 +75,7 @@ td{
 }
 
 tr:first-child{
-    background-color: #008156;    
-    /* position: fixed; */
+    background-color: #008156;
 }
 
 th{
@@ -86,10 +85,12 @@ th{
     font-size: 40px;
     background-color: #008156;
     color: #fff;
+    padding-left: 20px;
 }
 
 td{
     font-size: 35px;
+    padding-left: 20px;
 }
 
 tr:nth-child(2) > td:nth-child(1),

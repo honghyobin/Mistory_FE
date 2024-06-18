@@ -63,6 +63,13 @@
             border-radius: 5px;
             z-index: 1000; /* 모든 요소 위에 있게 설정 */
         }
+        .gb{
+            text-decoration: none;
+            outline: none;
+            margin: 0 0 0 16px;
+            font-size: 18px;
+            color: #000;
+        }
     </style>
     <!-- 테스트 커밋 -->
 </head>
@@ -73,6 +80,7 @@
         <textarea id="memoTextarea" class="memo-textarea" placeholder="메모를 작성하세요..."></textarea>
         <button id="closeMemoBtn" class="close-memo-btn">닫기</button>
     </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/notepad.js"></script>
     <!-- 헤더 -->
@@ -88,7 +96,7 @@
                     <li><a href="department.html" style="color: #008156;">학과소개</a></li>
                     <li><a href="schoolLife.html">학교생활</a></li>
                     <li><a href="schoolQ&A.html">미림 Q&A</a></li>
-                    <li><a href="#">방명록</a></li>
+                    <div onclick="goGuestBook()" class="gb"><li>방명록</li></div>
                 </ul>
             </nav_menu>
             <div class="icon_nav">

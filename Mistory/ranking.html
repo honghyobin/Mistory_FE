@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <header>
+    <header style="pointer-events: none;">
         <div class="header_top" style="height:30px; width: auto; background-color: #008156"></div>
         <div class="header_bottom" style="height:70px;">
             <img src="/Mistory/img/logo.png" alt="" style="width:203px; height:auto">
@@ -43,16 +43,16 @@
                 <p>MIRIM</p>
             </div>
             <div class="idPw">
-                <p>아이디 | MIRIM2024</p>
+                <p>아이디 &nbsp;&nbsp;&nbsp;| MIRIM2024</p>
                 <p>비밀번호 | **********</p>
-                <div>프로필 수정</div>
+                <div style="margin-top: 30px;">프로필 수정</div>
             </div>
         </div>
         <hr style="border: 0.5px #999 solid; width: 1320px; margin-top: 50px;">
         <div style="width: 1320px;">
             <p style="font-size: 30px; float: left;">내가 쓴 댓글</p>
             <hr style="border: 0.5px #999 solid; width: 1320px;">
-            <div style="display: flex; justify-content: space-between; padding: 30px 20px;">
+            <div id="commentDiv" style="display: flex; justify-content: space-between; padding: 30px 20px;">
                 <p style="font-size: 27px;">여기는 무서운 댓글이............................</p>
                 <img src="img/lock.png" style="align-self: start;">
             </div>
@@ -70,12 +70,6 @@
                 <th>TIMER</th>
                 <th>DATE</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>나니모</td>
-                <td>00:03:30</td>
-                <td>2024-05-30 <br/> 11:30</td>
-            </tr>
            
         </table>
 
@@ -85,34 +79,91 @@
     <script src="/Mistory/js/dark-mood.js"></script>
     <script>
         //화면 로딩
-        $(function(){
-            $('html').removeClass('no-js');
-        });
+        // $(function(){
+        //     $('html').removeClass('no-js');
+        // });
 
-        //랭킹       
-        function addRow() {
-            let rank = 2;
-            const table = document.getElementById("rankTable");
+        const commentDiv = document.getElementById("commentDiv");
 
-            // 현재 행의 수가 10개 이하일 때만 새 행을 추가
-            if (table.rows.length <= 10) {  // 헤더 포함 11개가 되도록 조정
-                const newRow = table.insertRow();
+        function comment() {
 
-                const rankCell = newRow.insertCell(0);
-                const nameCell = newRow.insertCell(1);
-                const timerCell = newRow.insertCell(2);
-                const dateCell = newRow.insertCell(3);
+            fetch("http://localhost:8080/comments", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(comment => {
+                console.log('Parsed JSON data:', comment);
+                if (data && Array.isArray(comment)) {
+                } else {
+                    console.error('Invalid data format:', comment);
+                }
+            })
+            .catch(error => console.error('Error fetching rank data:', error));
 
-                rankCell.textContent = rank;
-                nameCell.textContent = "새 이름";
-                timerCell.textContent = "00:02:00";
-                const now = new Date();
-                dateCell.innerHTML = now.toISOString().slice(0, 10) + "<br/>" + now.toTimeString().slice(0, 8);
-
-                rank++;
-            }
         }
-        </script>
+
+        window.onload = comment;
+
+        function ranking() {
+        //     const nickname = localStorage.getItem('nickname');
+        //     if (!nickname) {
+        //         console.error('Nickname not found in local storage');
+        //         return;
+        // }
+
+            fetch("http://localhost:8080/rank", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Parsed JSON data:', data);
+                if (data && Array.isArray(data)) {
+                    data.forEach((rankData, index) => {
+                        addRow(index + 1, rankData);
+                    });
+                } else {
+                    console.error('Invalid data format:', data);
+                }
+            })
+            .catch(error => console.error('Error fetching rank data:', error));
+        }
+
+        function addRow(rank, rankData) {
+            // rankData를 이용해 테이블에 행을 추가하는 로직을 작성합니다.
+            const table = document.getElementById('rankTable');
+            const row = table.insertRow();
+            const rankCell = row.insertCell(0);
+            const nicknameCell = row.insertCell(1);
+            const timeCell = row.insertCell(2);
+            const endTimeCell = row.insertCell(3);
+
+            rankCell.textContent = rank;
+            nicknameCell.textContent = rankData.nickname;
+            timeCell.textContent = rankData.time;
+            endTimeCell.textContent = rankData.endTime;
+        }
+
+        window.onload = ranking;
+
+
+    </script>
+
 
 <hr style="color:#BBBBBB; margin: 150px auto 0; width: 1320px;">
 
