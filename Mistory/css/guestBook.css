@@ -212,3 +212,13 @@ input[type="radio"]:checked {
     height: 71px;
     border-radius: 0;
 }
+
+.homeBtn{
+    width: 400px;
+    height: 100px;
+    background-color: #008156;
+    color: #fff;
+    font-size: 40px;
+    border-radius: 10px;
+    margin-top: 110px;
+}
