@@ -156,8 +156,8 @@ a:visited {
 }
 
 #circle {
-    width: 300px; /* 초기 크기 */
-    height: 300px; /* 초기 크기 */
+    width: 500px; /* 초기 크기 */
+    height: 500px; /* 초기 크기 */
     background: radial-gradient(circle at center, rgba(247, 202, 24, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
     border-radius: 50%;
     position: absolute;
@@ -169,11 +169,11 @@ a:visited {
 
 @keyframes pulse {
     0% {
-        width: 300px;
+        width: 500px;
         height: 300px;
     }
     100% {
-        width: 330px;
+        width: 500px;
         height: 330px;
     }
 }
