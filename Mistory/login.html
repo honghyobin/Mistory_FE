@@ -131,6 +131,25 @@
         });
     </script>
 
+    <audio id="backgroundAudio" src="/mp3/로그인 등장.mp3" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.classList.remove('no-js');
+    checkLoginError();
+    
+    // 페이지 로드 시 페이드 인 효과를 추가
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach(element => {
+        element.classList.add('show');
+    });
+
+    // 오디오 재생
+    const audio = document.getElementById('backgroundAudio');
+    audio.play();
+});
+
+    </script>
+
     <hr style="color:#BBBBBB; margin: 100px auto 0; width: 1320px;">
 
     <footer style="padding: 20px 0; background-color: none;">
