@@ -53,7 +53,7 @@
             <p style="font-size: 30px; float: left;">내가 쓴 댓글</p>
             <hr style="border: 0.5px #999 solid; width: 1320px;">
             <div id="commentDiv" style="display: flex; justify-content: space-between; padding: 30px 20px;">
-                <p style="font-size: 27px;">여기는 무서운 댓글이............................</p>
+                <p style="font-size: 27px;">그 소리를 들었네.............................?</p>
                 <img src="img/lock.png" style="align-self: start;">
             </div>
         </div>
@@ -85,41 +85,31 @@
 
         const commentDiv = document.getElementById("commentDiv");
 
-        function comment() {
-
-            fetch("http://localhost:8080/comments", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(comment => {
-                console.log('Parsed JSON data:', comment);
-                if (data && Array.isArray(comment)) {
-                } else {
-                    console.error('Invalid data format:', comment);
-                }
-            })
-            .catch(error => console.error('Error fetching rank data:', error));
-
+        function fetchComments() {
+            console.log('Fetching comments...');
+            fetch('http://43.203.128.248:3000/comments', { method: 'GET' }) // GET 메서드 명시
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('댓글 조회에 실패했습니다.');
+                    }
+                    return response.json(); // json 변환은 이곳에서 해야 함
+                })
+                .then(data => {
+                    console.log('Fetched data:', data);
+                    displayComments(data);
+                })
+                .catch(error => console.error('Error fetching posts:', error));
         }
 
-        window.onload = comment;
+        const displayComments = (comments) => {
+            comments.forEach(comment => {
+                console.log(comment.content);
+            });
+        };
 
         function ranking() {
-        //     const nickname = localStorage.getItem('nickname');
-        //     if (!nickname) {
-        //         console.error('Nickname not found in local storage');
-        //         return;
-        // }
 
-            fetch("http://localhost:8080/rank", {
+            fetch("http://43.203.128.248:3000/rank", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -159,7 +149,10 @@
             endTimeCell.textContent = rankData.endTime;
         }
 
-        window.onload = ranking;
+        window.onload = () => {
+            fetchComments();
+            ranking();
+        };
 
 
     </script>

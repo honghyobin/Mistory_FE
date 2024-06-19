@@ -249,44 +249,6 @@
             fetchComments();
         });
 
-        // function timer(){
-        //     let timer;
-        //     const timerElement = document.getElementById('timer');
-        //     const duration = 5 * 60 * 1000; // 5분을 밀리초로 환산
-        //     localStorage.removeItem('timerEndTime');
-        //     localStorage.removeItem('timerStartTime');
-
-        //     function startTimer() {
-        //         const now = new Date().getTime();
-        //         const endTime = now + duration;
-
-        //         localStorage.setItem('timerEndTime', endTime);
-        //         localStorage.setItem('timerStartTime', now);
-
-        //         updateTimer();
-        //     }
-
-        //     function updateTimer() {
-        //         const now = new Date().getTime();
-        //         const endTime = localStorage.getItem('timerEndTime');
-        //         const distance = endTime - now;
-
-        //         if (distance <= 0) {
-        //             clearInterval(timer);
-        //             timerElement.textContent = "00:00";
-        //             localStorage.removeItem('timerEndTime');
-        //             localStorage.removeItem('timerStartTime');
-        //         } else {
-        //             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        //             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        //             timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        //         }
-        //     }
-
-        //     startTimer();
-        //     timer = setInterval(updateTimer, 1000);
-        // }
-
     </script>
 
     <hr style="color:#BBBBBB; margin: 100px auto 0; width: 1320px;">
