@@ -8,7 +8,7 @@
 }
 
 .registrationDiv {
-    width: 1320px;
+    width: 1130px;
     height: 1160px;
     background-color: #fff;
     border-radius: 30px;
@@ -25,7 +25,7 @@
     height: 170px;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     font-size: 30px;
     padding-top: 10px;
 }
@@ -33,15 +33,25 @@
 .department p,
 .nameInput p,
 .contentInput p {
-    align-self: start;
+    align-self: center;
     margin: 0;
 }
 
+.nameInput p,
+.contentInput p{
+    margin-left: 37px;
+}
+
+.department p{
+    margin-left: 9px;
+}
 .nameInput input {
     width: 650px;
     height: 70px;
     font-size: 30px;
     font-family: 'Pretendard-Regular';
+    border-style: none;
+    border-bottom: solid 1px;
 }
 
 .contentInput textarea {
@@ -55,9 +65,14 @@
 
 .nameInput input,
 .contentInput textarea {
-    margin-left: 70px;
+    margin-left: 123px;
 }
-
+.contentInput textarea{
+    width: 645px;
+    margin-top: 41px;
+    padding: 5px;
+    border-radius: 8px;
+}
 .registrationBtn {
     width: 400px;
     height: 100px;
@@ -80,7 +95,6 @@
 
 .comment {
     max-width: 1320px;
-    height: 200px;
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 6px 5px #c3c3c3;
@@ -89,13 +103,15 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
+    padding-bottom: 30px;    
 }
 
 .comment img {
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin-right: 20px;
+    margin-bottom: 17px;
 }
 
 .name, .content, .dateTime {
@@ -115,13 +131,15 @@
     height: auto;
     align-self: flex-start; 
     margin-right: 30px;
-    margin-left: 30px;
+    margin-left: 112px;
+    margin-top: -15px;
 }
 
 .plusImgDiv{
     display: flex;
     width: 100%;
-    margin: 35px 0 0 30px;
+    margin: 0 0 0 30px;
+    align-items: center;
 }
 
 .details .dateTime {
@@ -167,7 +185,8 @@
 }
 
 .radio {
-    margin-left: 30px;
+    gap: 12px;
+    margin-left: 115px;
     display: flex;
     justify-content: center;
     align-items: center;
