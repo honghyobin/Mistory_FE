@@ -80,3 +80,8 @@
     body.dark-mode  footer{
         background-color: #202124 !important;
     }   
+
+    body.dark-mode .bi-chevron-left,
+    body.dark-mode .bi-chevron-right{
+        color: #000;
+    }
