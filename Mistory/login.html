@@ -40,7 +40,7 @@
             <div class="logoImg"><img src="img/logo.png"/></div>
             <p class="message">발견한 단어를 조합하여 <br/> 로그인 해주세요</p>
             <form action="http://43.203.128.248:3000/login" method="POST">
-                <input type="text" value="MIRIM2024" placeholder="아이디" id="username" name="username"/>
+                <input type="text" value="" placeholder="아이디" id="username" name="username"/>
                 <input type="password" value="" placeholder="비밀번호" id="password" name="password"/>
                 <button id="loginForm" class="loginBtn" type="submit">로그인</button>
             </form>
@@ -83,45 +83,8 @@
                 // return response.json();
             })
             .then(data => {
-
-                const nickname = localStorage.getItem('nickname');
-                console.log(nickname);
-
-                // 걸린 시간 가져오기
-                // 타이머 종료 및 걸린 시간 계산
-                const now = new Date().getTime();
-                const endTime = parseInt(localStorage.getItem('timerEndTime'), 10);
-                const startTime = endTime - (5 * 60 * 1000);
-                const elapsedTime = now - startTime;
-
-                const elapsedMinutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
-                const elapsedSeconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
-
-                const time = `00:${String(elapsedMinutes).padStart(2, '0')}:${String(elapsedSeconds).padStart(2, '0')}`;
-                console.log(time);
-
-                fetch("http://43.203.128.248:3000/rank", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ nickname, time })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Parsed JSON data:', data);
-                    if (data && Array.isArray(data)) {
-                        
-                    } else {
-                        console.error('Invalid data format:', data);
-                    }
-                })
-                .catch(error => console.error('Error fetching rank data:', error));
+                alert("로그인 성공!");
+                
             })
             .catch(error => {
                 // if (error.message !== "Unauthorized") {

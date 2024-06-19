@@ -40,7 +40,7 @@
         <div class="profile">
             <div class="imgNames">
                 <img src="img/user.png">
-                <p>MIRIM</p>
+                <p>고미림</p>
             </div>
             <div class="idPw">
                 <p>아이디 &nbsp;&nbsp;&nbsp;| MIRIM2024</p>
@@ -53,7 +53,7 @@
             <p style="font-size: 30px; float: left;">내가 쓴 댓글</p>
             <hr style="border: 0.5px #999 solid; width: 1320px;">
             <div id="commentDiv" style="display: flex; justify-content: space-between; padding: 30px 20px;">
-                <p style="font-size: 27px;">그 소리를 들었네.............................?</p>
+                <p style="font-size: 27px;">........그 소리를 들었어..?</p>
                 <img src="img/lock.png" style="align-self: start;">
             </div>
         </div>
@@ -77,6 +77,7 @@
     <!-- <button onclick="addRow()">랭크 추가</button> -->
     
     <script src="/Mistory/js/dark-mood.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         //화면 로딩
         // $(function(){
@@ -85,58 +86,59 @@
 
         const commentDiv = document.getElementById("commentDiv");
 
-        function fetchComments() {
-            console.log('Fetching comments...');
-            fetch('http://43.203.128.248:3000/comments', { method: 'GET' }) // GET 메서드 명시
+        function ranking() {
+            const nickname = localStorage.getItem('nickname');
+            console.log(nickname);
+
+            // 걸린 시간 가져오기
+            const now = new Date().getTime();
+            const endTime = parseInt(localStorage.getItem('timerEndTime'), 10);
+            const startTime = endTime - (5 * 60 * 1000);
+            const elapsedTime = now - startTime;
+
+            const elapsedMinutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+            const elapsedSeconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+            const time = `00:${String(elapsedMinutes).padStart(2, '0')}:${String(elapsedSeconds).padStart(2, '0')}`;
+            console.log(time);
+
+                const url = `http://43.203.128.248:3000/rank?nickname=${nickname}&time=${time}`;
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('댓글 조회에 실패했습니다.');
+                        throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    return response.json(); // json 변환은 이곳에서 해야 함
+                    return response.json();
                 })
                 .then(data => {
-                    console.log('Fetched data:', data);
-                    displayComments(data);
+                    console.log('Parsed JSON data:', data);
+                    if (data && Array.isArray(data)) {
+                        data.forEach((rankData, index) => {
+                            addRow(index + 1, rankData);
+                        });
+                    } else {
+                        console.error('Invalid data format:', data);
+                    }
                 })
-                .catch(error => console.error('Error fetching posts:', error));
-        }
+                .catch(error => console.error('Error fetching rank data:', error));
 
-        const displayComments = (comments) => {
-            comments.forEach(comment => {
-                console.log(comment.content);
-            });
-        };
-
-        function ranking() {
-
-            fetch("http://43.203.128.248:3000/rank", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Parsed JSON data:', data);
-                if (data && Array.isArray(data)) {
-                    data.forEach((rankData, index) => {
-                        addRow(index + 1, rankData);
-                    });
-                } else {
-                    console.error('Invalid data format:', data);
-                }
-            })
-            .catch(error => console.error('Error fetching rank data:', error));
         }
 
         function addRow(rank, rankData) {
-            // rankData를 이용해 테이블에 행을 추가하는 로직을 작성합니다.
             const table = document.getElementById('rankTable');
+            
+            // 최대 10개의 행을 유지하기 위해 기존의 행을 삭제합니다.
+            while (table.rows.length > 10) {
+                return;
+            }
+
+            // 새로운 행을 추가합니다.
             const row = table.insertRow();
             const rankCell = row.insertCell(0);
             const nicknameCell = row.insertCell(1);
@@ -150,7 +152,7 @@
         }
 
         window.onload = () => {
-            fetchComments();
+            localStorage.removeItem('timerEndTime');
             ranking();
         };
 
