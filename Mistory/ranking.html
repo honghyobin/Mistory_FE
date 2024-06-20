@@ -92,6 +92,7 @@
 
             // 걸린 시간 가져오기
             const now = new Date().getTime();
+
             const endTime = parseInt(localStorage.getItem('timerEndTime'), 10);
             const startTime = endTime - (5 * 60 * 1000);
             const elapsedTime = now - startTime;
@@ -152,7 +153,7 @@
         }
 
         window.onload = () => {
-            localStorage.removeItem('timerEndTime');
+            // localStorage.removeItem('timerEndTime');
             ranking();
         };
 

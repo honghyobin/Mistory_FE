@@ -36,11 +36,11 @@ function displayPosts(posts) {
             typeEffect(detailQElement, 50); // 타이핑 속도 설정
         } else {
             const sectionIndex = index - 2; // section_3부터 시작
-            let section = document.getElementById(`section_${sectionIndex + 3}`);
+            let section = document.getElementById(`section_3`);
             if (!section) {
                 section = document.createElement('div');
-                section.id = `section_${sectionIndex + 3}`;
-                section.classList.add(`section_${sectionIndex + 3}`);
+                section.id = `section_3}`;
+                section.classList.add(`section_3`);
                 containerBottom.appendChild(section);
             }
             section.appendChild(postElement);

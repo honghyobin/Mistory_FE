@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     // 'm' 키를 누를 때 메모장을 토글
     $(document).on('keydown', function(event) {
-        if (event.key === 'm') {
+        if (event.key === '=') {
             toggleMemo();
         }
     });

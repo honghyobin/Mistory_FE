@@ -41,6 +41,8 @@ function updateTimer() {
         localStorage.removeItem('timerEndTime');
         localStorage.removeItem('nickname');
         localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
+        location.href = 'guestBook.html';
+        
     } else {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);

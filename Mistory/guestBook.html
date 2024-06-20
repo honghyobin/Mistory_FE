@@ -86,7 +86,7 @@
             </div>
             <div class="contentInput">
                 <p>내용</p>
-                <textarea type="text" id="contentInput" placeholder="방문 소감을 작성해주세요! (최대 170자)" maxlength="170"></textarea>
+                <textarea type="text" id="contentInput" placeholder="방문 소감을 작성해주세요! (최대 40자)" maxlength="170"></textarea>
             </div>
             <button class="registrationBtn" onclick="addComment()">등록하기</button>
         </div>
@@ -106,6 +106,7 @@
             localStorage.removeItem('timerEndTime');
             localStorage.removeItem('nickname');
             localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
+            localStorage.removeItem('darkMode', 'disabled');
         }
 
         function getImageForDepartment(major) {
@@ -191,6 +192,7 @@
                     displayComments(data);
                 })
                 .catch(error => console.error('Error fetching posts:', error));
+
         }
 
         function displayComments(comments) {
@@ -242,8 +244,8 @@
 
             });
         }
-
-
+        
+        
         // 페이지 로드 시 댓글을 조회하는 예시
         document.addEventListener("DOMContentLoaded", () => {
             fetchComments();

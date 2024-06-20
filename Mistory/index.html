@@ -106,8 +106,8 @@
 
             <p>2. 본 게임의 제한 시간은 5분입니다. </p>
 
-            <p>3. 키보드 M키를 누르면 힌트를 메모할 수 있는 메모장이 나타납니다.</p>
-
+            <p>3. 키보드 '='키를 누르면 힌트를 메모할 수 있는 메모장이 나타납니다.</p>
+                        
             <input type="text" class="nickname" placeholder="닉네임을 입력해주세요!" style="margin-top: 10px;">
 
             <button class="close-button" onclick="closeOverlay()">게임시작!</button>
@@ -420,6 +420,7 @@
                 localStorage.removeItem('timerEndTime');
                 localStorage.removeItem('nickname');
                 localStorage.removeItem('overlayClosed'); // 오버레이 상태 초기화
+                location.href = 'guestBook.html';
             } else {
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
